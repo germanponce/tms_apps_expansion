@@ -1,0 +1,26 @@
+<odoo>
+<data>
+
+<!-- 
+**********************************
+account.invoice
+**********************************
+-->
+
+        <record model="ir.ui.view" id="view_tms_waybill_tree_amount_in_company_curr">
+            <field name="name">tms.waybill.tree.amount_in_company_curr</field>
+            <field name="model">tms.waybill</field>
+            <field name="inherit_id" ref="tms.view_tms_waybill_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_untaxed" position="after">
+                    <field name="amount_untaxed_company_currency" sum="Subtotal MXN"/>
+                </field>
+            </field>
+        </record>
+
+
+    
+</data>
+</odoo>
+
+

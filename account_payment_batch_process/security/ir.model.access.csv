@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+invoice_customer_payment_line_users,invoice.customer.payment.line,model_invoice_customer_payment_line,,1,1,1,1
+invoice_payment_line_users,invoice.payment.line,model_invoice_payment_line,,1,1,1,1
+account_register_payments,account.register.payments,model_account_register_payments,,1,1,1,1

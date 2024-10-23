@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        
+        <record model="ir.ui.view" id="account_invoice_complement_validations">
+            <field name="name">account.invoice.validations</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice_waybill_complemento_ce.account_invoice_form_l10n_mx_einvoice_complemento_carta_porte"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_complement_cp_ids']/form//field[@name='quantity']" position="after">
+                    <field name="validity_quantity_weight" invisible="1" />
+                </xpath>
+
+                <xpath expr="//field[@name='invoice_line_complement_cp_ids']/form//field[@name='dimensions_charge']" position="replace">
+                    <field name="dimensions_charge" invisible="1"/>  
+                    <label for="dimensions_charge2" string="Dimensiones"/>
+                    <div class="o_row">
+                        <field name="dimensions_charge2" placeholder="Ej. 30/20/10"/>  
+                        <field name="default_dimensions_uom" readonly="1"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_fleet_vehicle_facturae_complemento_cp_extras">
+            <field name="name">fleet.vehicle.stcnumber</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet_extension.fleet_vehicle_form_inherit_fleet_extension"/>
+            <field name="arch" type="xml">
+                <field name="model_year" position="after">
+                    <field name="type_stc_permit_number"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

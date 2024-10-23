@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="ifrs_template">
+            <t t-call="web.html_container">
+                <t t-set="data_report_dpi" t-value="600"/>
+                <t t-foreach="docs" t-as="rec">
+                    <t t-call="web.external_layout">
+                        <t t-set="o" t-value="rec.ifrs_id"/>
+                        <!--<t t-set="o" t-value="o.with_context({'lang':o.create_uid.partner_id.lang})" />-->
+                        <div class="page">
+                            <div class="row">
+                                <center>
+                                    <!--<span style="font-size:16px;font-weight:bold;" t-field="o.company_id.name"/><BR/>-->
+                                    <span style="font-size:14px;font-weight:bold;" t-field="o.title"/><BR/>
+                                    <span style="font-size:12px;font-weight:bold;">Año Fiscal: </span><span style="font-size:12px;font-weight:bold;" t-field="rec.fiscalyear_id.name"/> 
+                                    <span style="font-size:12px;font-weight:bold;" t-if="rec.report_type == 'per'"><BR/>Periodo: <span t-field="rec.period.name"/></span>
+                                    <!--<t if="'vehicle_ids' in rec._fields and rec.vehicle_ids">
+                                        <BR/><span style="font-size:12px;font-weight:bold;">Unidades: <span t-esc="', '.join([w.name2 for w in rec.vehicle_ids])"/></span>
+                                    </t>-->
+                                </center>
+                            </div>
+                            <BR/>
+                            <table style="width: 100%;border-collapse: collapse;border: 1px solid #FFFFFF;" id='table_body'>
+                                <thead>
+                                    <tr style="border: 1px solid #999999;">
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #828282;" width="60%">···</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #828282;text-align: center;" width="20%">·</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #828282;text-align: center;" width="20%">·</td>
+                                    </tr>
+                                </thead>                                
+                                <tbody>
+                                    <t t-set="info" t-value="o.with_context(env.context).get_report_data(rec)"/>
+                                    <tr style="border: 1px solid #FFFFFF;" t-foreach="info" t-as="ifrs_l">
+                                        <t t-if="not ifrs_l.get('invisible')">
+                                            <t t-if="ifrs_l.get('type')=='abstract'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C2C2C2;" width="60%">
+                                                    <span t-esc="ifrs_l.get('name').upper()"/>
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C2C2C2;text-align: right;" width="20%"/>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C2C2C2;text-align: right;" width="20%"/>
+                                            </t>
+                                            <t t-if="ifrs_l.get('type')=='detail'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #f2f2f2;" width="60%">
+                                                    <span t-esc="ifrs_l.get('name').capitalize()"/>
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #f2f2f2;text-align: right;" width="20%">
+                                                    <span t-esc="'{:,.2f}'.format(ifrs_l.get('amount',0))" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                    <!--<span t-esc="formatLang(ifrs_l.get('amount',0), dp='Account', currency_obj=rec.currency_id)"/>-->
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #f2f2f2;text-align: right;" width="20%"/>
+                                            </t>
+                                            <t t-if="ifrs_l.get('type')=='total'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #AAAAAA;font-weight: bold;" width="60%">
+                                                    <span t-esc="ifrs_l.get('name').upper()"/>
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #AAAAAA;text-align: right;" width="20%">
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #AAAAAA;text-align: right;" width="20%">
+                                                    <t t-if="ifrs_l.get('comparison') in ('subtract', 'ratio', 'without', False)">
+                                                        <t t-if="ifrs_l.get('operator') in ('subtract', 'ratio', 'without', 'product', False)">
+                                                            <span t-esc="'{:,.2f}'.format(ifrs_l.get('amount',0))" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                        </t>
+                                                        <t t-if="ifrs_l.get('operator')== 'percent'">
+                                                            <span t-esc="'{:,.2f}'.format(ifrs_l.get('amount',0))" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="ifrs_l.get('comparison')== 'percent'">
+                                                        <span t-esc="'{:,.2f}'.format(ifrs_l.get('amount',0))" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                    </t>
+                                                </td>
+                                            </t>
+                                            <t t-if="ifrs_l.get('type')=='constant'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C9C9C9;" width="60%">
+                                                    <span t-esc="ifrs_l.get('name').capitalize()"/>
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C9C9C9;text-align: right;" width="20%">
+                                                    <span t-esc="'{:,.2f}'.format(ifrs_l.get('amount',0))" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                </td>
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C9C9C9;text-align: right;" width="20%"/>
+                                            </t>
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+                                
+                                
+        <template id="ifrs_template2">
+            <t t-call="web.html_container">
+                <t t-set="data_report_dpi" t-value="600"/>
+                <t t-foreach="docs" t-as="rec">
+                    <t t-call="web.external_layout">
+                        <t t-set="o" t-value="rec.ifrs_id"/>
+                        <t t-set="o" t-value="o.with_context({'lang':o.create_uid.partner_id.lang})" />
+                        <div class="page">
+                            <div class="row">
+                                <center>
+                                    <!--<span style="font-size:16px;font-weight:bold;" t-field="o.company_id.name"/><BR/>-->
+                                    <span style="font-size:14px;font-weight:bold;" t-field="o.title"/><BR/>
+                                    <span style="font-size:12px;font-weight:bold;">Año Fiscal: </span><span style="font-size:12px;font-weight:bold;" t-field="rec.fiscalyear_id.name"/> 
+                                    <span style="font-size:12px;font-weight:bold;" t-if="rec.report_type == 'per'">Periodo: <span t-field="rec.period.name"/></span>
+                                    <!--<t if="'vehicle_ids' in rec._fields and rec.vehicle_ids">
+                                        <BR/><span style="font-size:12px;font-weight:bold;">Unidades: <span t-esc="', '.join([w.name2 for w in rec.vehicle_ids])"/></span>
+                                    </t>-->
+                                </center>
+                            </div>
+                            <BR/>
+                            <table style="width: 100%;border-collapse: collapse;border: 1px solid #FFFFFF;" id='table_body'>
+                                <thead>
+                                    <tr style="border: 1px solid #999999;font-size:10px;">
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;" width="16%">Concepto</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Enero</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Febrero</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Marzo</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Abril</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Mayo</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Junio</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Julio</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Agosto</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Septiembre</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Octubre</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Noviembre</td>
+                                        <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #CCCCCC;text-align:center;" width="7%">Diciembre</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="info" t-value="o.with_context(env.context).get_report_data(rec)"/>
+                                    <tr style="border: 1px solid #FFFFFF;font-size:9px;" t-foreach="info" t-as="ifrs_l">
+                                        <t t-if="not ifrs_l.get('invisible')">
+                                            <t t-if="ifrs_l.get('type')=='abstract'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C2C2C2;" width="16%">
+                                                    <span t-esc="ifrs_l.get('name').upper()"/>
+                                                </td>
+                                                <t t-foreach="range(1, 13)" t-as="month">
+                                                    <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #C2C2C2;text-align: right;" width="7%"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="ifrs_l.get('type')=='detail'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #f2f2f2;" width="16%">
+                                                    <span t-esc="ifrs_l.get('name').capitalize()"/>
+                                                </td>
+                                                <t t-foreach="range(1, 13)" t-as="month">
+                                                    <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #f2f2f2;text-align: right;" width="7%">
+                                                        <span t-esc="'{:,.2f}'.format(ifrs_l['period'][month] or 0)" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                        <!--<span t-esc="formatLang(ifrs_l['period'][month] or 0.0, digits=2, grouping=3, monetary=True)"/>-->
+                                                    </td>
+                                                </t>
+                                            </t>
+                                            <t t-if="ifrs_l.get('type')=='total'">
+                                                <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #AAAAAA;font-weight: bold;" width="16%">
+                                                    <span t-esc="ifrs_l.get('name').upper()"/>
+                                                </td>
+                                                <t t-foreach="range(1, 13)" t-as="month">
+                                                    <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #AAAAAA;text-align: right;" width="7%">
+                                                        <t t-if="ifrs_l.get('comparison') in ('subtract', 'ratio', 'without', False)">
+                                                            <t t-if="ifrs_l.get('operator') in ('subtract', 'ratio', 'without', 'product', False)">
+                                                                <span t-esc="ifrs_l['period'][month] or 0" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                            </t>
+                                                            <t t-if="ifrs_l.get('operator')== 'percent'">
+                                                                <span t-esc="'{:,.2f}'.format(ifrs_l['period'][month] or 0)" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="ifrs_l.get('comparison')== 'percent'">
+                                                            <span t-esc="'{:,.2f}'.format(ifrs_l['period'][month] or 0)" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                        </t>
+                                                    </td>
+                                                </t>
+                                            </t>
+                                            <t t-if="ifrs_l.get('type')=='constant'">
+                                                <td class="celdaDetailTitulo" width="16%">
+                                                    <span t-esc="ifrs_l.get('name').capitalize()"/>
+                                                </td>
+                                                <t t-foreach="range(1, 13)" t-as="month">
+                                                    <td style="border: 1px solid #FFFFFF;padding: 2px;background-color: #f2f2f2;text-align:center;font-weight: bold;" width="7%">
+                                                        <span t-esc="'{:,.2f}'.format(ifrs_l['period'][month] or 0)" t-esc-options='{"widget": "monetary", "display_currency": rec.currency_id}'/>
+                                                    </td>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

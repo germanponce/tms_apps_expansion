@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           
+        <template id="report_bitacora_tms_document_02">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang}).sudo()"/>
+
+                            <div class="page">
+                                 <title>Horas de servicio</title>
+                                    <!-- Diseño de la Tabla de Detalle -->
+                                    <style type="text/css">
+                                        .tg  {
+                                                border-collapse:collapse;
+                                                border-spacing:0;
+                                              }
+
+                                        .tg td{
+                                                border-color:black;
+                                                border-style:solid;
+                                                border-width:1px;
+                                                font-family:Arial, sans-serif;
+                                                font-size:14px;
+                                                overflow:hidden;
+                                                padding:10px 5px;
+                                                word-break:normal;
+                                                }
+
+                                        .tg th{
+                                                border-color:black;
+                                                border-style:solid;
+                                                border-width:1px;
+                                                font-family:Arial, sans-serif;font-size:14px;
+                                                font-weight:normal;
+                                                overflow:hidden;
+                                                padding:10px 5px;
+                                                word-break:normal;
+                                                }
+
+                                        .tg .tg-mdnw{
+                                                background-color:#00566c;
+                                                border-color:inherit;
+                                                color:#FFF;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-oe15{
+                                                background-color:#ffffff;
+                                                border-color:#ffffff;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-h4qe{
+                                                background-color:#00566c;
+                                                border-color:#00566c;
+                                                color:#FFF;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-9rax{
+                                                background-color:#78afbd;
+                                                border-color:inherit;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-t71g{
+                                                background-color:#9eb3b8;
+                                                border-color:inherit;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-7ul2{
+                                                background-color:#008fb2;
+                                                border-color:inherit;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:bottom}
+
+                                        .tg .tg-zv4m{
+                                                border-color:#ffffff;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-1m64{
+                                                background-color:#ffffff;
+                                                border-color:#ffffff;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-marca{
+                                                background-color:#ffffff;
+                                                border-color:#ffffff;
+                                                font-weight:bold;
+                                                text-align:right;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-u5vz{
+                                                background-color:#FFF;
+                                                border-color:#ffffff;
+                                                text-align:left;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-sgao{
+                                                background-color:#008fb2;
+                                                border-color:inherit;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:middle
+                                                }
+
+                                        .tg .tg-jrax{
+                                                background-color:#FFF;
+                                                border-color:#ffffff;
+                                                text-align:center;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-054e{
+                                                background-color:#9fcbd5;
+                                                border-color:inherit;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-v6q9{
+                                                background-color:#9fcbd5;
+                                                border-color:inherit;
+                                                font-weight:bold;
+                                                text-align:center;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-e3nw{
+                                                background-color:#78afbd;
+                                                border-color:inherit;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-v3gl{
+                                                background-color:#9fcbd5;
+                                                border-color:inherit;
+                                                font-weight:bold;
+                                                text-align:center;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-n6e5{
+                                                background-color:#FFF;
+                                                border-color:#ffffff;
+                                                text-align:center;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-firma{
+                                                background-color:#FFF;
+                                                border-color:#ffffff;
+                                                text-align:center;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-carga{
+                                                background-color:#FFF;
+                                                border-color:#ffffff;
+                                                text-align:left;
+                                                vertical-align:bottom
+                                                }
+
+                                        .tg .tg-jjsp{
+                                                background-color:#FFF;
+                                                border-color:#ffffff;
+                                                text-align:left;
+                                                vertical-align:top
+                                                }
+
+                                        .tg .tg-logo{
+                                                    background-color:#FFF;
+                                                    border-right: solid;
+                                                    border-color:#ffffff;
+                                                    text-align:left;
+                                                    vertical-align:middle;
+                                                    padding: 0px 75px 0px 75px;
+                                        }
+
+                                        .tg .tg-vrii{
+                                                    background-color:#FFF;
+                                                    border-color:#000000;
+                                                    font-weight:bold;
+                                                    text-align:left;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-cell{
+                                                    background-color:#FFF;
+                                                    border-color:#000000;
+                                                    font-weight:bold;
+                                                    text-align:left;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-pdeq{
+                                                    background-color:#FFF;
+                                                    border-color:inherit;
+                                                    font-weight:bold;
+                                                    text-align:left;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-cmn6{
+                                                    background-color:#00566c;
+                                                    border-color:inherit;
+                                                    color:#FFF;
+                                                    font-weight:bold;
+                                                    text-align:center;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-t8tv{
+                                                    background-color:#ffffff;
+                                                    border-color:#ffffff;
+                                                    text-align:left;
+                                                    vertical-align:bottom
+                                                    }
+
+                                        .tg .tg-xubk{
+                                                    background-color:#FFF;
+                                                    border-color:#ffffff;
+                                                    font-weight:bold;
+                                                    text-align:left;
+                                                    vertical-align:bottom
+                                                    }
+
+                                        .tg .tg-lh7k{
+                                                    border-color:#ffffff;
+                                                    text-align:left;
+                                                    vertical-align:bottom
+                                                    }
+
+                                        .tg .tg-hbz4{
+                                                    background-color:#008fb2;
+                                                    border-color:inherit;
+                                                    font-weight:bold;
+                                                    text-align:left;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-3c56{
+                                                    background-color:#9fcbd5;
+                                                    border-color:#ffffff;
+                                                    text-align:left;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-xgqk{
+                                                    background-color:#FFF;
+                                                    border-color:#efefef;
+                                                    text-align:left;
+                                                    vertical-align:top
+                                                    }
+
+                                        .tg .tg-fmc2{
+                                                    border-color:#ffffff;
+                                                    text-align:center;
+                                                    vertical-align:bottom
+                                                    }
+
+                                        .tg .tg-fm01{
+                                                    border-color:#ffffff;
+                                                    text-align:center;
+                                                    vertical-align:bottom;
+                                                    padding: 1px;
+                                                    }
+
+                                        .tg .tg-jj01{
+                                                    background-color:#FFF;
+                                                    border-color:#ffffff;
+                                                    text-align:left;
+                                                    vertical-align:top;
+                                                    padding: 1px;
+                                                    }
+
+                                        .tg .tg-grc3{
+                                                    background-color:#78afbd;
+                                                    border-color:inherit;
+                                                    text-align:left;
+                                                    vertical-align:bottom
+                                                    }
+
+                                        .tg .tg-w5mh{
+                                                    background-color:#78afbd;
+                                                    border-color:inherit;
+                                                    text-align:left;
+                                                    vertical-align:middle
+                                                    }
+                                                    
+                                        .tg .tg-eiuw{
+                                                    background-color:#9fcbd5;
+                                                    border-color:inherit;
+                                                    text-align:left;
+                                                    vertical-align:bottom
+                                                    }
+                                    </style>
+
+                                <header>
+                                </header>
+                            <table class="tg">
+                                <thead>
+                                  
+                                </thead>
+                                <tbody>
+                                <tr>
+                                        <th style="border-right: 1px solid #000000;text-align:left;
+                                                    vertical-align:middle;
+                                                    padding: 0px 75px 0px 75px;"
+                                                     colspan="4" rowspan="4"  align="center" valign="middle">
+                                            <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                                        </th>
+                                        <th class="tg-cell" colspan="2">
+                                            <strong>
+                                                FECHA:
+                                            </strong>
+                                        </th>
+                                        <th class="tg-pdeq" colspan="3">
+                                            <strong>
+                                                <span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}" />
+                                            </strong>
+                                        </th>
+                                      </tr>
+                                      <tr>
+                                        <td class="tg-cmn6" colspan="5" rowspan="3">BITÁCORA DE HORAS DE SERVICIO DEL CONDUCTOR</td>
+                                      </tr>
+                                      <tr>
+                                      </tr>
+                                      <tr>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">I.  DATOS DE PERMISIONARIO</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-zv4m"  style="padding: 1px;" rowspan="4"></td>
+                                    <td class="tg-1m64" style="padding: 1px;" >Razón social:</td>
+                                    <td class="tg-oe15" style="padding: 1px;" ></td>
+                                    <td class="tg-t8tv"  style="padding: 1px;" colspan="6">TRANSPORTES BELCHEZ SA DE CV</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-1m64" style="padding: 1px;">RFC:</td>
+                                    <td class="tg-oe15" style="padding: 1px;"></td>
+                                    <td class="tg-t8tv" style="padding: 1px;" colspan="6">TBE740319AP4</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-1m64" style="padding: 1px;">Domicilio Fiscal:</td>
+                                    <td class="tg-oe15" style="padding: 1px;"></td>
+                                    <td class="tg-t8tv" style="padding: 1px;" colspan="6">Carretera Veracruz Cardel KM 13.5, Col. Condado Valle Dorado</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-oe15" style="padding: 1px;"></td>
+                                    <td class="tg-oe15" style="padding: 1px;"></td>
+                                    <td class="tg-t8tv" style="padding: 1px;" colspan="6">C.P. 91808 Veracruz, Ver.</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">II.  TIPO DE SERVICIO Y MODALIDAD</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-carga" colspan="8" style="padding: 1px 10px 0px 0px;">Autotransporte foráneo de carga especializado</td>
+                                    <!-- <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td> -->
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-u5vz" style="padding: 1px;">Carga General</td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-u5vz" style="padding: 1px;">Materiales y residuos peligrosos</td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-u5vz" style="padding: 1px;">Con refrigeración</td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                    <td class="tg-jjsp" style="padding: 1px;"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">III.  DATOS DE VEHÍCULO</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-1m64">
+                                        <strong>Número de Económico:</strong>
+                                    </td>
+                                    <td class="tg-t8tv">
+                                        <strong>
+                                            <span t-field="o.vehicle_id.name2"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-marca">
+                                        <strong>Marca:</strong>
+                                    </td>
+                                    <td class="tg-t8tv">
+                                        <strong t-if="o.vehicle_id.model_id">
+                                            <span t-field="o.vehicle_id.model_id.brand_id"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-marca"><strong>Modelo:</strong></td>
+                                    <td class="tg-t8tv">
+                                        <strong t-if="o.vehicle_id.model_id">
+                                            <span t-field="o.vehicle_id.model_id"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-marca"><strong>Placas:</strong></td>
+                                    <td class="tg-t8tv">
+                                        <strong>
+                                            <span t-field="o.vehicle_id.license_plate"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-oe15"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-h4qe" colspan="9">IV.  DATOS DEL CONDUCTOR</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-xubk"><strong>Nombre:</strong></td>
+                                    <td class="tg-lh7k" colspan="3">
+                                        <strong>
+                                            <span t-field="o.employee_id.name"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-xubk"><strong>No. Licencia:</strong></td>
+                                    <td class="tg-lh7k">
+                                        <strong>
+                                            <span t-field="o.employee_id.tms_driver_license_id"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-xubk"><strong>Vigencia:</strong></td>
+                                    <td class="tg-lh7k">
+                                        <strong>
+                                            <span t-field="o.employee_id.tms_driver_license_expiration"  t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">V.  DATOS DE VIAJE</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-sgao">Sale</td>
+                                    <td class="tg-sgao">Llega</td>
+                                    <td class="tg-sgao">Sale</td>
+                                    <td class="tg-sgao">Llega</td>
+                                    <td class="tg-sgao">Sale</td>
+                                    <td class="tg-sgao">Llega</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-7ul2">Ruta</td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-7ul2">Fecha</td>
+                                    <td class="tg-t71g"></td>
+                                    <td class="tg-t71g"></td>
+                                    <td class="tg-t71g"></td>
+                                    <td class="tg-t71g"></td>
+                                    <td class="tg-t71g"></td>
+                                    <td class="tg-t71g"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-7ul2">Hora</td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">VI.  BITACORA DEL CONDUCTOR</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-hbz4" colspan="2">Fecha:</td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-hbz4" colspan="2">Conduciendo:</td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-hbz4" colspan="2">Carga/Descarga</td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-hbz4" colspan="7">CASOS DE EXCEPCIÓN EN LOS QUE EL CONDUCTOR PUEDA EXCEDERSE DE LA JORNADA</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-054e" colspan="7"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-054e" colspan="7"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-054e" colspan="7"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-054e" colspan="7"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-054e" colspan="7"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <div style="page-break-before: always;"/> <!-- Salto de linea -->
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-hbz4" rowspan="2">Fecha</td>
+                                    <td class="tg-hbz4" colspan="2">Hora</td>
+                                    <td class="tg-hbz4" colspan="2">De servicio</td>
+                                    <td class="tg-hbz4" rowspan="2">Fuera de servicio</td>
+                                    <td class="tg-hbz4" rowspan="2">Descanso</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-hbz4">De</td>
+                                    <td class="tg-hbz4">A</td>
+                                    <td class="tg-hbz4">Conduciendo</td>
+                                    <td class="tg-hbz4">Sin conducir</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-054e"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">VII.  FIRMAS</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jrax" colspan="3">_____________________________________</td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jrax" colspan="3">_____________________________________</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jj01"></td>
+                                    <td class="tg-fm01" colspan="3">
+                                        <strong t-if="o.user_id">
+                                            <span t-field="o.user_id.partner_id.name"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-jj01" style="padding 0px;"></td>
+                                    <td class="tg-fm01" style="padding 0px;" colspan="3">
+                                        <strong>
+                                            <span t-field="o.employee_id.name"/>
+                                        </strong>
+                                    </td>
+                                    <td class="tg-jj01" style="padding 0px;"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-firma" colspan="3">
+                                        <strong>
+                                            Firma del responsable
+                                        </strong>
+                                    </td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-firma" colspan="3">
+                                        <strong>
+                                            Firma del conductor
+                                        </strong>
+                                    </td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-mdnw" colspan="9">VII.  ANEXO DE EXCEPCIONES*</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-mdnw" colspan="7">PROYECTO DE NORMA OFICIAL MEXICANA PROY NOM-087-SCT-2-2017, QUE ESTABLECE LOS TIEMPOS DE CONDUCCIÓN Y PAUSAS PARA CONDUCTORES DE LOS SERVICIOS DE AUTOTRANSPORTE FEDERAL</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-e3nw" colspan="7">3. Definiciones</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-grc3" colspan="7">    3.4 Excepciones temporales</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-9rax"></td>
+                                    <td class="tg-w5mh" colspan="6">Podrá prolongarse la duración de la conducción y del tiempo de servicio ininterrumpido, así como reducciones de la duración del descanso diario, únicamente en la medida necesaria, en caso de:</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v3gl">A)</td>
+                                    <td class="tg-eiuw" colspan="6">Accidente</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v3gl">B)</td>
+                                    <td class="tg-eiuw" colspan="6">Avería</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v3gl">C)</td>
+                                    <td class="tg-eiuw" colspan="6">Retraso imprevisto</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v3gl">D)</td>
+                                    <td class="tg-eiuw" colspan="6">Perturbación del servicio</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v3gl">E)</td>
+                                    <td class="tg-eiuw" colspan="6">Interrupción del tráfico</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v3gl">F)</td>
+                                    <td class="tg-eiuw" colspan="6">Fuerza mayor</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-v6q9">G)</td>
+                                    <td class="tg-054e" colspan="6">Sea necesario asegurar el funcionamiento de servicios de interés público con carácter urgente y excepcional.</td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                    <td class="tg-jjsp"></td>
+                                  </tr>
+                                </tbody>
+                                </table>
+                                       
+                            </div>  
+
+                            <div class="footer">
+
+                                    <table style="width: 100%">
+                                        <tr >
+                                            <td style="font-size:10px;width: 15%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                                <span t-esc="o.company_id.name"></span>
+                                            </td>
+                                            <td style="width: 20%;text-align: left;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                            </td>
+                                            <td style="width: 50%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                            </td>
+                                            <td style="width: 15%;text-align: right;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+
+                                                 <strong  style="font-size:10px;text-align: center;" ><span>   Pagina </span><span class="page" /> de <span class="topage" /></strong>                       
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                </t>
+        </template>
+
+
+        <template id="report_tms_bitacora_02_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="3"/>
+                <t t-set="data_report_header_spacing" t-value="3"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tms_travel_reports.report_bitacora_tms_document_02" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+  <data>
+    <record id="einvoice_bitacora_paper_02" model="report.paperformat">
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="header_spacing">35</field>
+            <field name="margin_top">10</field>
+            <field name="margin_right">7</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="name">US Letter Bitacora 02</field>
+            <field name="orientation">Portrait</field>
+            <field name="dpi">110</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+        </record>
+
+
+        <!-- <report 
+            id="report_tms_bicatora_style_02"
+            model="tms.travel"
+            string="Horas de servicio del Conductor"
+            report_type="qweb-pdf"
+            name="tms_travel_reports.report_tms_bitacora_02_report"
+            file="tms_travel_reports.report_tms_bitacora_02_report"
+            attachment_use="True"
+            print_report_name="'Horas de servicio del Conductor - '+(object.name or ' ')"
+            attachment="'Horas de servicio del Conductor  - '+(object.name or ' ').replace('/','').replace(' ','')+'.pdf'"
+        /> -->
+
+        <report 
+            id="report_tms_bicatora_style_02"
+            model="tms.travel"
+            string="Horas de servicio del Conductor"
+            report_type="qweb-pdf"
+            name="tms_travel_reports.report_tms_bitacora_02_report"
+            file="tms_travel_reports.report_tms_bitacora_02_report"
+            print_report_name="'Horas de servicio del Conductor - '+(object.name or ' ')"
+        />
+
+        <record id="report_tms_bicatora_style_02" model="ir.actions.report">
+          <field name="paperformat_id" ref="tms_travel_reports.einvoice_bitacora_paper_02" />
+        </record>
+
+  </data>
+  </openerp>

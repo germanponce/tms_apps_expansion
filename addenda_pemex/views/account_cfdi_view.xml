@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record model="ir.ui.view" id="res_partner_cfdi_addenda_pemex">
+            <field name="name">res.partner.pemex</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice_addenda_no_sale.res_partner_cfdi_addenda"/>
+            <field name="arch" type="xml">
+                <group name="addenda_data_1" position="inside">
+                    <field name="analitico" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                    <field name="clave_transportista" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                    <field name="cedula" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                </group>
+                <group name="addenda_data_2" position="inside">
+                    <newline />
+                    <field name="no_acreedor" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                    <field name="id_analitico" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                    <field name="contrato_siic" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                </group>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="account_invoice_addenda_pemex">
+            <field name="name">account.invoice.pemex</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice_addenda_no_sale.account_invoice_form_l10n_mx_einvoice_addenda"/>
+            <field name="arch" type="xml">
+                <group name="invoice_addenda_header" position="after">
+                    <group>
+                        <group>
+                            <field name="analitico" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                            <field name="clave_transportista" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                            <field name="cedula" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                            <field name="fiscalyear" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                        </group>
+                        <group>
+                            <field name="no_acreedor" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                            <field name="id_analitico" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                            <field name="contrato_siic" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                            <field name="a_relacion" attrs="{'invisible':[('addenda_template','!=','pemex')],'required':[('addenda_template','=','pemex')]}"/>
+                        </group>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+<!-- 
+        <record model="ir.ui.view" id="account_invoice_addenda_pepsico">
+            <field name="name">account.invoice.pepsico</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice_addenda.account_invoice_form_l10n_mx_einvoice_addenda"/>
+            <field name="arch" type="xml">
+                <field name="addenda_jinja" position="after">
+                    <field name="addenda_pepsico" />
+                    <field name="supplier_number" attrs="{'invisible':[('addenda_pepsico','=',False)],'required':[('addenda_pepsico','=',True)]}" />
+                    <field name="invoice_related_id" attrs="{'invisible':[('addenda_pepsico','=',False)],'required':[('type','=','out_refund'),('addenda_pepsico','=',True)]}" />
+                    <field name="picking_related_ids" attrs="{'invisible':[('addenda_pepsico','=',False)],'required':[('addenda_pepsico','=',True)]}" widget="many2many_tags"/>
+
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="account_invoice_addenda_pepsico_wizard">
+            <field name="name">account.invoice.addenda.wizard.pepsico</field>
+            <field name="model">account.invoice.addenda.wizard</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice_addenda.account_invoice_addenda_wizard_form"/>
+            <field name="arch" type="xml">
+                <field name="addenda_jinja" position="after">
+                    <field name="type" invisible="1" />
+                    <field name="addenda_pepsico" />
+                    <field name="supplier_number" attrs="{'invisible':[('addenda_pepsico','=',False)],'required':[('addenda_pepsico','=',True)]}" />
+                    <field name="invoice_related_id" attrs="{'invisible':[('addenda_pepsico','=',False)],'required':[('type','=','out_refund')]}" />
+                    <field name="picking_related_ids" attrs="{'invisible':[('addenda_pepsico','=',False)],'required':[('addenda_pepsico','=',True)]}" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+ -->
+    </data>
+</openerp>

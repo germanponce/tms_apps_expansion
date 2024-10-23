@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<record id="wizard_income_expenses_bl" model="ir.ui.view">
+            <field name="name">wizard.income.expenses</field>
+            <field name="model">wizard.income.expenses</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Generacion de Reporte de Ingresos y Egresos" >
+                  
+                        <separator string="Ingrese los datos para realizar la busqueda" colspan="4"/>
+                                <group>
+                                    <field name="partner_id"/>
+                                </group>
+                                <group>
+                                    <field name="date"/>
+                                    <field name="date_end"/>
+                                </group>
+                                <group>
+                                    <field name="report_type"/>
+                                </group>
+
+
+                        <newline/>
+                   
+                    <footer>
+
+                      <!--  <button name="print_jasper_moves" string="Imprimir" type="object" class="oe_highlight"/>
+                        or
+                        <button name="generate_sale_with_update" string="Generar Pedido" attrs="{'invisible':[('bandera','=',True)]}" type="object" icon="gtk-ok"/>
+
+                        <button name="generate_sale_with_ok" string="Aceptar" attrs="{'invisible':[('bandera','=',False)]}" type="object" icon="gtk-ok"/>-->
+                        <button name="generate_report_income_expenses" string="Generar" type="object" icon="fa-cogs"/>
+
+                        <button string="Cancelar" class="oe_link" special="cancel"/>
+
+
+                    </footer>
+                </form>
+
+                </field>
+            </record>
+
+
+
+    <act_window
+            name="Reporte Ingresos y Egresos"
+            res_model="wizard.income.expenses"
+            src_model="account.inc.exp"
+            view_mode="form" target="new"
+            key2="client_action_multi"
+            id="action_wizard_report_income_expenses"/>
+
+     <menuitem name="Reporte Ingresos y Egresos" id="menu_income_expenses" parent="account.menu_finance_reports" />
+
+     <menuitem action="action_wizard_report_income_expenses" id="action_wizard_id_income_expensesr" parent="menu_income_expenses" sequence="11"/>
+
+
+        <!-- tms.expense.analysis -->
+        <record id="view_account_inc_exp_tree" model="ir.ui.view">
+          <field name="name">account.inc.exp.tree</field>
+          <field name="model">account.inc.exp</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+            <tree string="Reporte Ingresos y Egresos" create="false">
+                <field name="tipo" />
+                <field name="rfc" />
+                <field name="name" />
+                <field name="date_voucher" />
+                <field name="bank" />
+                <field name="date_journal" />
+                <field name="type_journal" />
+                <field name="date_invoice" />
+                <field name="number_account" />
+                <field name="flete" />
+                <field name="other" />
+                <field name="fleteret" />
+                <field name="monto_iva" />
+                <field name="iva_ret" />
+                <field name="iva_cero" />
+                <field name="iva_excento" />
+                <field name="total" />
+            </tree>
+          </field>
+        </record>
+        
+    <record id="action_account_inc_exp" model="ir.actions.act_window">
+        <field name="name">Detalle Reporte</field>
+        <field name="res_model">account.inc.exp</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help">Reporte para detallar los Ingresos y Egresos.</field>
+    </record>
+
+
+     <menuitem action="action_account_inc_exp" id="action_account_inc_exp_menu" parent="menu_income_expenses" sequence="22"/>
+
+
+
+
+    <!--  <record id="report_account_income_expenses_xls" model="ir.actions.report.xml">
+            <field name="name">report_account_income_expenses_xls</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.inc.exp</field>
+            <field name="report_name">report_account_income_expenses_xls</field>
+            <field name="report_rml">income_expenses_account/report_payment.jrxml</field>
+            <field name="report_type">xls</field>
+            <field name="jasper_report">1</field>
+            <field name="jasper_output">xls</field>
+        </record>
+
+    <record id="report_account_income_xls" model="ir.actions.report.xml">
+            <field name="name">report_account_income_xls</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">account.inc.exp</field>
+            <field name="report_name">report_account_income_xls</field>
+            <field name="report_rml">income_expenses_account/report_receipt.jrxml</field>
+            <field name="report_type">xls</field>
+            <field name="jasper_report">1</field>
+            <field name="jasper_output">xls</field>
+        </record> -->
+
+</data>
+</openerp>

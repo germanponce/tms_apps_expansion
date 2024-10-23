@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="liquidation_report_tms">
+        <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang':user.partner_id.lang})"/>                
+                  <div class="page">
+                    <table class="table table-condensed" style="font-size:9px;border: 1px solid #ddd;border-collapse: collapse;padding: 5px;">
+                        <tr>
+                            <td width="30%" align="center" valign="middle" style="border: 1px solid white;padding: 5px;">
+                                <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                            </td>
+                            <td colspan="2" width="40%" align="center" valign="top" style="border: 1px solid white;padding: 5px;">
+                                <strong>
+                                    <span t-field="o.company_id.partner_id.name" style="font-size:14px;"/><BR/>
+                                </strong>
+                                <span t-if="o.company_id.partner_id.vat">RFC: <span t-field="o.company_id.partner_id.vat"/></span>
+                                
+                                <BR/>
+                                <span t-field="o.company_id.partner_id.street_name"/>
+                                    <span t-if="o.company_id.partner_id.street_number"> No.<span t-field="o.company_id.partner_id.street_number"/></span>
+                                    <span t-if="o.company_id.partner_id.street_number2"> Int. <span t-field="o.company_id.partner_id.street_number2"/></span>
+                                    <BR/>
+                                    <span t-if="o.company_id.partner_id.colonia_sat_id">
+                                        <span t-field="o.company_id.partner_id.colonia_sat_id.name"/>,
+                                    </span>
+                                    <span t-if="o.company_id.partner_id.township_sat_id">
+                                        <span t-field="o.company_id.partner_id.township_sat_id.name"/>
+                                    </span>
+                                    <BR/>
+                                    <span t-field="o.company_id.partner_id.state_id.name"/>, 
+                                    <span t-field="o.company_id.partner_id.country_id.name"/>
+                                    <span t-if="o.company_id.partner_id.zip_sat_id">
+                                        CP: <span t-field="o.company_id.partner_id.zip_sat_id.code"/>
+                                    </span>
+
+                            </td>
+                        </tr>    
+                    </table>
+                <div align="center">
+                  <table style="text-align:left;border: 1px solid #07190B;border-collapse: collapse;padding: 5px; text-align: left;">
+                      <tr>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> Operador: </strong><span t-field="o.employee_id_control.name" style="font-size:9px;"/></td>
+                        <td/>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> ID: </strong><span t-field="o.employee_id_control.id" style="font-size:9px;"/></td>
+                        <td/>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> Fecha de impresion: </strong><span t-field="o.date" style="font-size:9px;"/></td>
+                      </tr>
+                      <tr>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> RFC: </strong><span t-field="o.employee_id_control.address_home_id.vat" style="font-size:9px;"/></td>
+                        <td/>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> No. IMSS: </strong><!--<span t-field="o.employee_id_control.tms_social_security_prod_id.default_code" style="font-size:9px;"/>--></td>
+                        <td/>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> Reg. Gastos de Viaje: </strong><span t-field="o.name" style="font-size:9px;"/></td>
+                      </tr>
+                      <tr>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> Curp: </strong><span t-field="o.employee_id_control.identification_id" style="font-size:9px;"/></td>
+                        <td/>
+                        <td width="8%"><strong style="font-size:9px;" width="75"> No. Unidad: </strong> <span t-field="o.vehicle_id.name2" style="font-size:9px;"/></td>
+                        <td/>
+                        <td width="8%"><strong width="75"/> <!--<span t-field="o.vehicle_id.name2" style="font-size:12px;"/>--></td>
+                      </tr>
+                  </table><BR/>
+                        
+
+                        <table>
+                          <tr>
+                              <td colspan="32" style="font-size:9px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C; color: white;"><b>INFORMACION DEL VIAJE</b></td>
+
+                          </tr>
+                          <tr>
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Viaje</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Ruta</strong></td>
+
+                              <td width="14%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center; "><strong style="font-size:9px;"> Fecha/Inicio</strong></td>
+
+                              <td width="14%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center; "><strong style="font-size:9px;"> Fecha/Fin</strong></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Unidad</strong></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Rem1</strong></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Dolly</strong></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Rem2</strong></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Km(Ruta)</strong></td>
+
+                              <td width="16%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Tipo/carga</strong></td>
+                          </tr>
+                          <tr t-foreach="o.travel_ids" t-as="c">
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.name" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.route_id" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-esc="c.date_start_real.strftime('%d-%m-%Y %H:%M')" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-esc="c.date_end_real.strftime('%d-%m-%Y %H:%M')" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.vehicle_id" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.trailer1_id" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.dolly_id" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.trailer2_id" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="c.route_id.distance" style="font-size:9px; text-align: center;"/></td>
+
+                              <td width="16%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><p t-foreach="c.current_waybill_ids" t-as="x"><span t-field="x.waybill_category" style="font-size:9px; text-align: center;"><BR/></span></p></td>
+                              
+                          </tr>
+                        </table><BR/>
+
+                        <table>
+                           <tr>
+                              <td colspan="64" style="font-size:9px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C; color: white;"><b>ANTICIPOS</b></td>
+
+                          </tr>
+                          <tr>
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Viaje</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Concepto de gastos</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Descripcion</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Cantidad</strong></td>
+                              
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Importe</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Impuesto</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Total</strong></td>
+                          </tr>
+                          <tr t-foreach="o.advance_ids" t-as="h">
+                          <t>
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="h.travel_id" style="font-size:9px; text-align: center;"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="h.product_id" style="font-size:9px; text-align: center;"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="h.name" style="font-size:9px; text-align: center;"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="h.product_uom_qty" style="font-size:9px; text-align: center;"/></td>
+
+                            <!--<t t-foreach="o.fuelvoucher_ids" t-as="i">-->
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="h.total" style="font-size:9px; text-align: center;"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code">  <span t-esc="', '.join(map(lambda x: (x.name or x.tax_id.name), h.product_id.supplier_taxes_id))" t-if="h.product_id and h.product_id.supplier_taxes_id"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="h.total" style="font-size:9px; text-align: center;"/></td>
+                            </t>
+                            
+
+                          </tr>
+                        </table><BR/>
+
+                        <table>
+                           <tr>
+                              <td colspan="32" style="font-size:9px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C; color: white;"><b>GASTOS</b></td>
+
+                          </tr>
+                          <tr>
+                            <td width="22%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Viaje</strong></td>
+ 
+                              <!-- <td width="16%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Concepto de gastos</strong></td> -->
+
+                              <td width="32%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Descripción</strong></td>
+
+                              <td width="12%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Cantidad</strong></td>
+      
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Precio</strong></td>
+                              
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Importe</strong></td>
+                              
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Impuesto</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Total</strong></td>
+                          </tr>
+                          <tr t-foreach="o.expense_line" t-as="w">
+                            <td width="22%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.travel_id" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <!-- <td width="16%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.line_type" style="font-size:9px; text-align: center;" width="75"/></td> -->
+
+                            <td width="32%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.name" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="12%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.product_uom_qty" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.price_subtotal" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.tax_amount" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code">  <span style="font-size:9px; text-align: center;" t-esc="', '.join(map(lambda x: (x.name or x.tax_id.name), w.tax_line_ids))" t-if="w.tax_line_ids"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="w.price_total" style="font-size:9px; text-align: center;" width="75"/></td>
+                            
+                          </tr>
+                        </table>
+                        
+                        <br/>
+                          <table>
+                           <tr>
+                              <td colspan="32" style="font-size:9px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C; color: white;"><b>GASTOS INDIRECTOS</b></td>
+
+                          </tr>
+                          <tr>
+                            <td width="22%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Viaje</strong></td>
+ 
+                              <!-- <td width="16%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Concepto de gastos</strong></td> -->
+
+                              <td width="32%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Descripción</strong></td>
+
+                              <td width="12%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Cantidad</strong></td>
+      
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Precio</strong></td>
+                              
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Importe</strong></td>
+                              
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Impuesto</strong></td>
+
+                              <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;"><strong style="font-size:9px;"> Total</strong></td>
+                          </tr>
+                          <tr t-foreach="o.expense_line_indirect" t-as="k2">
+                            <td width="22%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.travel_id" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <!-- <td width="16%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.line_type" style="font-size:9px; text-align: center;" width="75"/></td> -->
+
+                            <td width="32%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.name" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="12%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.product_uom_qty" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.price_subtotal" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.tax_amount" style="font-size:9px; text-align: center;" width="75"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code">  <span style="font-size:9px; text-align: center;" t-esc="', '.join(map(lambda x: (x.name or x.tax_id.name), k2.tax_line_ids))" t-if="k2.tax_line_ids"/></td>
+
+                            <td width="8%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 0px; text-align: center;" id="l_code"><span t-field="k2.price_total" style="font-size:9px; text-align: center;" width="75"/></td>
+                            
+                          </tr>
+                        </table>
+                        
+                        <br/>
+
+                        <table class="table table-condensed" name="invoice_line_table" style="font-size:9px;">
+                          <thead>
+                              <tr>
+                                <th style="width:40%;text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 5px;font-size:9px;background-color: #00566C; color: white;">
+                                  <span><strong>RESUMEN DE GASTOS</strong></span>
+                                </th>
+                                <th style="width:30%;text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 5px;font-size:9px;background-color: #00566C; color: white;">
+                                  <span><strong>DESEMPEÑO GLOBAL</strong></span>
+                                </th>
+                                <th style="width:30%;text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 5px;font-size:9px;background-color: #00566C; color: white;">
+                                  <span><strong>RESUMEN DE COMBUSTIBLE</strong></span>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <td style="text-align:left;border: 1px solid #07190B;border-collapse: collapse;padding: 5px; text-align: left;">
+                                  <table>
+                                    <tr>
+                                      <td>
+                                        <b style="font-size:9px;text-align:left;"> Gastos Comprobados</b><br/>
+                                        <b style="font-size:9px;text-align:left;"> Retenciones: </b><br/>
+                                        <b style="font-size:9px;text-align:left;"> Descuentos: </b><br/>
+                                        <b style="font-size:9px;text-align:left;"> Total (Real): </b><br/>
+                                        <b style="font-size:9px;text-align:left;"> Anticipos: </b><br/>
+                                        <b style="font-size:9px;text-align:left;"> Total a pagar: </b><br/>
+                                      </td>
+                                      <td>
+                                        <span style="font-size:9px;text-align:right;" t-field="o.amount_subtotal_real"/><br/>
+                                        <span style="font-size:9px;text-align:right;" t-field="o.amount_salary_retention"/><br/>
+                                        <span style="font-size:9px;text-align:right;" t-field="o.amount_salary_discount"/><br/>
+                                        <span style="font-size:9px;text-align:right;" t-field="o.amount_total_real"/><br/>
+                                        <span style="font-size:9px;text-align:right;" t-field="o.amount_advance"/><br/>
+                                        <span style="font-size:9px;text-align:right;" t-field="o.amount_balance"/><br/>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                                                    
+                              </td>
+                              <td style="text-align:left;border: 1px solid #07190B;border-collapse: collapse;padding: 5px; text-align: left;">
+                                
+                                  <table>
+                                    <tr>
+                                      <td>
+                                        <b style="font-size:9px;text-align:left;"> Lectura acumulado</b>
+                                        <b style="font-size:9px;text-align:left;"> Distancia Real: </b> <br/>
+                                        <b style="font-size:9px;text-align:left;"> Distancia de Ruta: </b> <br/>
+                                        <b style="font-size:9px;text-align:left;"> Cant. Combustible: </b> <br/>
+                                        <b style="font-size:9px;text-align:left;"> Rendimiento Global Rutas: </b> <br/>
+                                      </td>
+                                      <td>
+                                        <span t-field="o.current_odometer" style="font-size:9px;text-align:right;"/><br/>
+                                        <span t-field="o.distance_real" style="font-size:9px;text-align:right;"/><br/>
+                                        <span t-field="o.distance_routes" style="font-size:9px;text-align:right;"/><br/>
+                                        <span t-field="o.fuel_qty" style="font-size:9px;text-align:right;"/><br/>
+                                        <span t-field="o.global_engine_performance_routes" style="font-size:9px;"/><br/>
+                                      </td>
+                                    </tr>
+                                  </table>
+
+                              </td>
+                              <td style="text-align:left;border: 1px solid #07190B;border-collapse: collapse;padding: 5px; text-align: left;">
+                                  <table>
+                                    <tr>
+                                      <td>
+                                      <b style="font-size:9px;text-align:left;"> Combustible (vales)</b><br/>
+                                      <b style="font-size:9px;text-align:left;"> Impuestos (Todos)</b><br/>
+                                      </td>
+                                      <td>
+                                        <span t-field="o.amount_fuel_voucher" style="font-size:9px;text-align:right;"/><br/>
+                                      <span t-field="o.amount_tax_total" style="font-size:9px;text-align:right;"/><br/>
+                                      </td>
+                                    </tr>
+                                  </table>
+
+                              </td>
+                            </tbody>
+
+                        </table>
+                        <BR/>
+
+
+                        <div align="left"><b style="font-size:9px;">Comentarios</b>: <span t-field="o.notes" style="font-size:9px;"/></div>
+                        <BR/>
+                        <BR/>
+                        <BR/>
+                        <BR/>
+                        
+                        <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                            <tr>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong style="font-size:9px;">Nomina</strong>
+                            </td>
+                              <td class="text-center">
+                                  <strong style="font-size:9px;">Contraloria</strong>
+                              </td>
+                              <td class="text-center">
+                                  <strong style="font-size:9px;">Admin</strong>
+                              </td>
+                             </tr>
+                        </table>
+                        <BR/>
+                        <BR/>
+                        <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="2" cellspacing="2">
+                            <tr>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong style="font-size:9px;">Autorizo</strong>
+                            </td>
+                              <td class="text-center">
+                                  <strong style="font-size:9px;"><span t-field="o.employee_id_control.name"/></strong>
+                              </td>
+                              
+                             </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </t>
+            
+    </template>
+    
+    
+
+    <template id="Settlement_report_style_tms">
+      <t t-call="web.html_container">
+          <t t-set="data_report_margin_top" t-value="15"/> 
+          <t t-set="data_report_header_spacing" t-value="10"/>
+          <t t-set="data_report_dpi" t-value="600"/>
+          <t t-foreach="docs" t-as="o">
+              <t t-call="l10n_mx_liquidation_report.liquidation_report_tms" />
+
+          </t>
+      </t>
+    </template>
+
+  </data>
+
+  <data> 
+    
+
+        <report 
+            id="report_settlement_syle_tms"
+            model="tms.expense"
+            string="Liquidaciones"
+            report_type="qweb-pdf"
+            name="l10n_mx_liquidation_report.Settlement_report_style_tms"
+            file="l10n_mx_liquidation_report.Settlement_report_style_tms"
+            
+        />
+
+        
+  </data>
+</openerp>

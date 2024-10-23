@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!-- SALE ORDER -->
+    <record id="sale_order_res_store_form" model="ir.ui.view">
+        <field name="name">sale.order.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="quotation_store_id" attrs="{'readonly':[('state','=','done')]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_res_store_tree" model="ir.ui.view">
+        <field name="name">sale.order.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="quotation_store_id" attrs="{'readonly':[('state','=','done')]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_res_store_filter" model="ir.ui.view">
+        <field name="name">sale.order.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="order_month" position="after">
+                <filter string="Sucursal" name="quotation_store_id" domain="[]" context="{'group_by':'quotation_store_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+
+    <!-- SALE ORDER -->
+    <record id="stock_picking_res_store_form" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.sale</field>
+        <field name="model">stock.picking</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="quotation_store_id" attrs="{'readonly':[('state','=','done')]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_picking_res_store_tree" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.sale</field>
+        <field name="model">stock.picking</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="quotation_store_id" attrs="{'readonly':[('state','=','done')]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_picking_res_store_filter" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.sale</field>
+        <field name="model">stock.picking</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <field name="picking_type_id" position="after">
+                <filter string="Sucursal Cotizacion" name="quotation_store_id" domain="[]" context="{'group_by':'quotation_store_id'}"/>
+            </field>
+        </field>
+    </record>
+
+
+    </data>
+</openerp>

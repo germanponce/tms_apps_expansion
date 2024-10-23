@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_partner_cfdi_addenda">
+            <field name="name">res.partner.cfdi.addenda.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string='CFDI Addenda'>
+                        <group string="Addenda de Facturación" name="addenda_data">
+                            <group name="addenda_data_1">
+                                <field name="addenda_invoice_mandatory" />
+                                <field name="addenda_template" />                       
+                             </group>
+                            <group name="addenda_data_2">
+                                <field name="addenda_invoice_jinja"
+                                       attrs="{'invisible': [('addenda_invoice_mandatory', '=',False)]}"/>
+                            </group>
+                        </group>
+                        <group colspan="4" col="4" name="addenda_details">
+                            <pre colspan="4" attrs="{'invisible': ['|',('addenda_invoice_mandatory', '=',False),('addenda_invoice_jinja', '=',True)]}" class="oe_edit_only">
+    Por Ejemplo:<BR/>
+                                <field name="addenda_ejemplo" nolabel="1" options="{'mode': 'xml'}" />
+                            </pre>
+                            <pre colspan="4" attrs="{'invisible': ['|',('addenda_invoice_mandatory', '=',False),('addenda_invoice_jinja', '=',False)]}" class="oe_edit_only">
+    Por Ejemplo:<BR/>
+                                <field name="addenda_ejemplo_jinja" nolabel="1" options="{'mode': 'xml'}" />
+    NOTA: Use "o" para referirse a la instancia del registro account.invoice
+                            </pre>                       
+                            <field name="addenda_invoice" nolabel="1" colspan="4" 
+                                   attrs="{'invisible': [('addenda_invoice_mandatory', '=',False)],'required':[('addenda_invoice_mandatory', '=',True)]}" />
+
+                            <button name="validate_addenda" string="Validar Addenda" type="object" colspan="2"
+                                    class="oe_link"
+                                    attrs="{'invisible': [('addenda_invoice_mandatory', '=',False)]}"
+                                    context="{'tipo_addenda':'invoice'}"/>
+
+                            </group>
+                        </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

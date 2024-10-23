@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tms_tipo_unidad_manager,tms.tipo.unidad,model_tms_tipo_unidad,,1,1,1,1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Inherited view for Register Payment as Batch -->
+    <record id="view_account_payment_from_invoices_extend_pay_ref" model="ir.ui.view">
+        <field name="name">account.register.payments.wizard.batch.inherited</field>
+        <field name="model">account.register.payments</field>
+        <field name="inherit_id" ref="account.view_account_payment_from_invoices" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='communication']" position="after">
+                <field name="payment_reference" string="Ref. pago"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

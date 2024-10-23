@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+invoice_payment_line_advance_user,invoice.payment.line.advance,model_invoice_payment_line_advance,,1,1,1,1
+invoice_payment_line_expense_user,invoice.payment.line.expense,model_invoice_payment_line_expense,,1,1,1,1
+account_payment_tms_register_user,account.payment.tms.register,model_account_payment_tms_register,,1,1,1,1
+

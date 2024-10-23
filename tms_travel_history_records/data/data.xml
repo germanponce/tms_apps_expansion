@@ -1,0 +1,25 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="tipo_unidad_00" model="tms.tipo.unidad">
+            <field name="name">Autotanque</field>
+        </record>
+
+        <record id="tipo_unidad_01" model="tms.tipo.unidad">
+            <field name="name">Camión unitario</field>
+        </record>
+
+        <record id="tipo_unidad_02" model="tms.tipo.unidad">
+            <field name="name">Camión remolque</field>
+        </record>
+
+        <record id="tipo_unidad_03" model="tms.tipo.unidad">
+            <field name="name">Tractocamión articulado</field>
+        </record>
+
+        <record id="tipo_unidad_04" model="tms.tipo.unidad">
+            <field name="name">Tractocamión doblemente articulado</field>
+        </record>
+
+    </data>
+</odoo>

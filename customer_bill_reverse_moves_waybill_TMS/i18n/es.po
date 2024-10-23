@@ -1,0 +1,662 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* argil_typ_comissions
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-09 17:24+0000\n"
+"PO-Revision-Date: 2013-10-09 12:59-0600\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: argil_typ_comissions
+#: field:wizard.analisis.comissions,salesman_information_ids:0
+#: field:wizard.analisis.comissions,select_salesman:0
+msgid "Select Salesman"
+msgstr "Seleccionar Vendedores"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report.line,report_id:0
+#: field:salesman.comission.lines,salesman_information_id:0
+msgid "ID Referencia"
+msgstr "ID Referencia"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Comission-comission}"
+msgstr "$F{Comission-comission}"
+
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "\"REPORTE COMISIONES POR FACTURACION \" + $F{Report_Reference-name}"
+msgstr "\"REPORTE COMISIONES POR FACTURACION \" + $F{Report_Reference-name}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "\" \" + $F{Name-name}"
+msgstr "\" \" + $F{Name-name}"
+
+#. module: argil_typ_comissions
+#: view:comission.config:0
+#: model:ir.actions.act_window,name:argil_typ_comissions.comission_config_action_00
+#: model:ir.ui.menu,name:argil_typ_comissions.comission_config_form_00
+msgid "Comissions Parameters"
+msgstr "Configuracion para Comisiones"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,company_id:0
+msgid "Company"
+msgstr "Compañia"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Sanction-sanction}"
+msgstr "$F{Sanction-sanction}"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+#: field:invoice.comission.report,extra_bonus:0
+msgid "Extra Bonus"
+msgstr "Bono Extra"
+
+#. module: argil_typ_comissions
+#: code:addons/argil_typ_comissions/wizard/wizard_invoice_analisis_comissions.py:295
+#, python-format
+msgid "Comisiones por Vendedor"
+msgstr "Comisiones por Vendedor"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Logo-logo}"
+msgstr "$F{Logo-logo}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Comision Total:"
+msgstr "Comision Total:"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Evaluation Period"
+msgstr "Periodo de Evaluacion"
+
+#. module: argil_typ_comissions
+#: view:comission.config:0
+msgid "Parameters"
+msgstr "Parametros"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report.line,payment_days:0
+msgid "Paydays"
+msgstr "Dias de pago"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report.line,origin:0
+msgid "Origin"
+msgstr "Origen"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,notes:0
+msgid "Notes"
+msgstr "Notas"
+
+#. module: argil_typ_comissions
+#: code:addons/argil_typ_comissions/wizard/wizard_invoice_analisis_comissions.py:78
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: argil_typ_comissions
+#: model:ir.model,name:argil_typ_comissions.model_comission_config
+msgid "Parameters for Comission"
+msgstr "Parametros para el Reporte de Comisiones"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Sancion por Venta:"
+msgstr "Sancion por Venta:"
+
+#. module: argil_typ_comissions
+#: help:invoice.comission.report,sanction:0
+msgid "Represents that the seller did not fulfill minimum sales by units"
+msgstr ""
+"Representa que el vendedor no ha cumplido un mínimo de ventas por unidades"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Date_Start-date_start"
+msgstr "/data/record/Date_Start-date_start"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Fecha Fin:"
+msgstr "Fecha Fin:"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+#: field:invoice.comission.report,total_comission_generate:0
+msgid "Comission Total"
+msgstr "Comision Total"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report.line,liters_parts_sold:0
+msgid "Liters and Parts"
+msgstr "Litros y Piezas"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Factura"
+msgstr "Factura"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "DETALLE DE FACTURAS"
+msgstr "DETALLE DE FACTURAS"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Liters_and_Parts-liters_parts_sold}"
+msgstr "$F{Liters_and_Parts-liters_parts_sold}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Report_Reference-name"
+msgstr "/data/record/Report_Reference-name"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+#: model:ir.actions.act_window,name:argil_typ_comissions.action_invoice_comission_report
+#: model:ir.ui.menu,name:argil_typ_comissions.menu_invoice_comission_report
+msgid "Invoices Comissions Report"
+msgstr "Historial de Comisiones"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report,sanction_percentage:0
+msgid "Sanction Percentage"
+msgstr "Porcentaje de Sancion"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Date-date}"
+msgstr "$F{Date-date}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid ""
+"( $F{Sanction-sanction} == true ? $F{Sanction_Percentage-"
+"sanction_percentage} : 0.0 )"
+msgstr ""
+"( $F{Sanction-sanction} == true ? $F{Sanction_Percentage-"
+"sanction_percentage} : 0.0 )"
+
+
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report.line,percentage:0
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Comision"
+msgstr "Comision"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Invoice_Report_Lines-report_lines/Subtotal-amount_payment"
+msgstr "/data/record/Invoice_Report_Lines-report_lines/Subtotal-amount_payment"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid ""
+"( $F{Extra_Bonus-extra_bonus2} == true ? $F{Extra_Percentage-"
+"extra_percentage} : 0.0 )"
+msgstr ""
+"( $F{Extra_Bonus-extra_bonus2} == true ? $F{Extra_Percentage-"
+"extra_percentage} : 0.0 )"
+
+#. module: argil_typ_comissions
+#: view:comission.config:0
+msgid "Parts Range"
+msgstr "Rango de Piezas"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Sanction-sanction"
+msgstr "/data/record/Sanction-sanction"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Subtotal-amount_payment}"
+msgstr "$F{Subtotal-amount_payment}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$V{Comission-comission_1}"
+msgstr "$V{Comission-comission_1}"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report,report_lines:0
+msgid "Invoice Report Lines"
+msgstr "Lineas del Reporte de Facturas"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+msgid "Invoices Comissions Report Search"
+msgstr "Busqueda en el Historial de Comisiones"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,sanction:0
+msgid "Sanction"
+msgstr "Sancion"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+#: field:invoice.comission.report,total_units_sold:0
+msgid "Units Sold"
+msgstr "Unidades Vendidas"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Fecha:"
+msgstr "Fecha:"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Extra_Bonus-extra_bonus"
+msgstr "/data/record/Extra_Bonus-extra_bonus"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Comission_Total-total_comission_generate"
+msgstr "/data/record/Comission_Total-total_comission_generate"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report,amount_acumulate_invoice:0
+msgid "Monto Acumulado de FActuras"
+msgstr "Monto Acumulado de FActuras"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report.line,comission:0
+msgid "Comission"
+msgstr "Comision"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Select how to evaluate"
+msgstr "Seleccione la Forma de Evaluar"
+
+#. module: argil_typ_comissions
+#: model:ir.model,name:argil_typ_comissions.model_salesman_comission_lines
+msgid "Salesman Comissions Lines"
+msgstr "Lineas de Comisiones para los Vendedores"
+
+#. module: argil_typ_comissions
+#: model:ir.model,name:argil_typ_comissions.model_wizard_analisis_comissions
+msgid "Wizard para Generar Calculo de Comisiones ..."
+msgstr "Wizard para Generar Calculo de Comisiones ..."
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "DETALLES"
+msgstr "DETALLES"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,user_id:0
+#: field:salesman.comission.lines,user_id:0
+msgid "Salesman"
+msgstr "Vendedor"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+msgid "Invoices Details"
+msgstr "Detalle de las Facturas"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report,extra_percentage:0
+msgid "Extra Percentage"
+msgstr "Porcentaje Extra"
+
+
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Fecha Inicio:"
+msgstr "Fecha Inicio:"
+
+#. module: argil_typ_comissions
+#: constraint:comission.config:0
+msgid "Error ! Should only be kept of parameters"
+msgstr "Error ! Solo debe existir un registro de Parametros"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Salesman-user_id/Name-name"
+msgstr "/data/record/Salesman-user_id/Name-name"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Invoice_Report_Lines-report_lines/Paydays-payment_days"
+msgstr "/data/record/Invoice_Report_Lines-report_lines/Paydays-payment_days"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Comission_Total-total_comission_generate}"
+msgstr "$F{Comission_Total-total_comission_generate}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Company-company_id/Logo-logo"
+msgstr "/data/record/Company-company_id/Logo-logo"
+
+#. module: argil_typ_comissions
+#: field:res.users,generates_commissions:0
+msgid "Applies to Commissions"
+msgstr "Aplicara Comisiones por Facturas"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "DMTRESS S.A. DE C.V."
+msgstr "DMTRESS S.A. DE C.V."
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+msgid "Invoice Comission Report"
+msgstr "Historial de Comisiones"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Invoice_Report_Lines-report_lines/Percentage-percentage"
+msgstr "/data/record/Invoice_Report_Lines-report_lines/Percentage-percentage"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Extra_Bonus-extra_bonus2}"
+msgstr "$F{Extra_Bonus-extra_bonus2}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Date_Start-date_start}"
+msgstr "$F{Date_Start-date_start}"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Select Sellers"
+msgstr "Selecciona los Vendedores"
+
+#. module: argil_typ_comissions
+#: model:ir.model,name:argil_typ_comissions.model_comission_config_liters_parts
+#: model:ir.model,name:argil_typ_comissions.model_comission_config_nominal
+msgid "Parameters for Comission Percentage Nominal"
+msgstr "Parametros para Comisiones (Porcentaje Nominal)"
+
+#. module: argil_typ_comissions
+#: field:invoice.comission.report,name:0
+msgid "Report Reference"
+msgstr "Referencia del Reporte"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,date:0
+#: field:wizard.analisis.comissions,date:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: argil_typ_comissions
+#: help:invoice.comission.report,extra_bonus:0
+msgid "Represents the Seller to comply with an extra percentage units"
+msgstr ""
+"Representa que el Vendedor Cumplio las Unidades Vendidas y recibira un "
+"porcentaje extra por unidades definido en la tabla de Parametros de "
+"Configuracion"
+
+#. module: argil_typ_comissions
+#: field:wizard.analisis.comissions,all_salesman:0
+msgid "All Salesman"
+msgstr "Todos los Vendedores"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Vendedor:"
+msgstr "Vendedor:"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Sanction_Percentage-sanction_percentage"
+msgstr "/data/record/Sanction_Percentage-sanction_percentage"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Litros/Pzas"
+msgstr "Litros/Pzas"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Numero-number}"
+msgstr "$F{Numero-number}"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,date_end:0
+#: field:wizard.analisis.comissions,date_end:0
+msgid "Date End"
+msgstr "Fecha Fin"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+#: field:invoice.comission.report.line,amount_payment:0
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: argil_typ_comissions
+#: code:addons/argil_typ_comissions/wizard/wizard_invoice_analisis_comissions.py:79
+#, python-format
+msgid "There are no configuration parameters for commissions"
+msgstr ""
+"No tienes definida los parametros de Configuracion para el modulo de "
+"Comisiones"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+msgid "Period"
+msgstr "Periodo"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Date-date"
+msgstr "/data/record/Date-date"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: argil_typ_comissions
+#: view:comission.config:0 field:comission.config,liters_parts_lines:0
+msgid "Volume in Liters and Parts"
+msgstr "Volumen en Litros y Piezas"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Generate Report"
+msgstr "Generar Reporte"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Invoice_Report_Lines-report_lines/Comission-comission"
+msgstr "/data/record/Invoice_Report_Lines-report_lines/Comission-comission"
+
+#. module: argil_typ_comissions
+#: model:ir.actions.report.xml,name:argil_typ_comissions.comission_invoice_salesman_report_jasper
+msgid "Comissions Report"
+msgstr "Reporte de Comisiones"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Dias de Pago"
+msgstr "Dias de Pago"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Units_Sold-total_units_sold"
+msgstr "/data/record/Units_Sold-total_units_sold"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0
+msgid "Print Report"
+msgstr "Imprimir Reporte"
+
+
+#. module: argil_typ_comissions
+#: model:ir.model,name:argil_typ_comissions.model_invoice_comission_report_line
+msgid "Invoice Comissions Report Lines"
+msgstr "Lineas del Historial de Comisiones"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Date_End-date_end}"
+msgstr "$F{Date_End-date_end}"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "( $F{Paydays-payment_days} == null ? 0.0 : $F{Paydays-payment_days} )"
+msgstr "( $F{Paydays-payment_days} == null ? 0.0 : $F{Paydays-payment_days} )"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Commissions for Sellers"
+msgstr "Comisiones para los Vendedores"
+
+#. module: argil_typ_comissions
+#: help:comission.config,nominal_lines:0
+msgid ""
+"Defines the table of fees,  if you want to add a percentage of cash must be "
+"defined in the range, 0 as initial and 0 final."
+msgstr ""
+"Define los parametros de configuracion ,  Si necesitas Definir configuracion "
+"para Facturas pagadas de Contado, se debe definir un rango, 0 como Inicial y "
+"0 como Final."
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Units_Sold-total_units_sold}"
+msgstr "$F{Units_Sold-total_units_sold}"
+
+#. module: argil_typ_comissions
+#: view:comission.config:0 field:comission.config,nominal_lines:0
+msgid "Iva Nominal Percentage Before"
+msgstr "Porcentaje Nominal antes del IVA"
+
+#. module: argil_typ_comissions
+#: model:ir.actions.act_window,name:argil_typ_comissions.action_wizard_comissions
+#: model:ir.ui.menu,name:argil_typ_comissions.menu_action_wizard_comissions
+msgid "Comissions for Sellers"
+msgstr "Calculo de Comisiones"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid ""
+"/data/record/Invoice_Report_Lines-report_lines/Liters_and_Parts-"
+"liters_parts_sold"
+msgstr ""
+"/data/record/Invoice_Report_Lines-report_lines/Liters_and_Parts-"
+"liters_parts_sold"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Porcentaje Extra:"
+msgstr "Porcentaje Extra:"
+
+#. module: argil_typ_comissions
+#: view:wizard.analisis.comissions:0
+msgid "Generate Commissions for Sellers"
+msgstr "Generar Comisiones para los Vendedores"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "$F{Percentage-percentage}"
+msgstr "$F{Percentage-percentage}"
+
+#. module: argil_typ_comissions
+#: model:ir.model,name:argil_typ_comissions.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Date_End-date_end"
+msgstr "/data/record/Date_End-date_end"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "PERIODO"
+msgstr "PERIODO"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Unidades Vendidas:"
+msgstr "Unidades Vendidas:"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "Porcentaje %"
+msgstr "Porcentaje %"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid "/data/record/Extra_Percentage-extra_percentage"
+msgstr "/data/record/Extra_Percentage-extra_percentage"
+
+#. module: argil_typ_comissions
+#: report:Reporte-Comissions:0
+msgid ""
+"/data/record/Invoice_Report_Lines-report_lines/Origin-origin/Numero-number"
+msgstr ""
+"/data/record/Invoice_Report_Lines-report_lines/Origin-origin/Numero-number"
+
+#. module: argil_typ_comissions
+#: view:comission.config:0
+msgid "Range Days"
+msgstr "Rango de Dias"
+
+#. module: argil_typ_comissions
+#: view:invoice.comission.report:0 field:invoice.comission.report,date_start:0
+#: field:wizard.analisis.comissions,date_start:0
+msgid "Date Start"
+msgstr "Fecha Inicio"
+
+#. module: argil_typ_comissions
+#: help:comission.config,liters_parts_lines:0
+msgid ""
+"Defines the charges for the amount of parts and liters sold.\n"
+"    To define a negative percentage symbol-X uses the example:\n"
+"    -0.5%\n"
+"\n"
+"    If you need to Add an infinite number as Final should Place the number "
+"0, for example\n"
+"    over 5,000 pieces, is defined as follows:\n"
+"    - Initial 5000\n"
+"    - Final 0"
+msgstr ""
+"Define los parametros de configuracion que se Aplicaran en el volumen de "
+"ventas (Litros y Piezas) Vendidas.\n"
+"    Si deseas configurar un porcentaje Extra como sancion se debe definir "
+"con el simbolo (-) y despues la cantidad a descontar por Ejemplo:\n"
+"    -0.5%\n"
+"\n"
+"    Si se necesita configurar un parametro final e infinito por ejemplo:\n"
+"     Un parametro para aquellos que tengan un volumen de ventas mas haya de "
+"5,000 , debera ser definido de la siguiente manera:\n"
+"    - Inicial 5000\n"
+"    - Final 0"

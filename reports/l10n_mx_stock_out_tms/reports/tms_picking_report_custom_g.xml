@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<t t-name="l10n_mx_stock_out_tms.tms_picking_style_doc">
+        <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang':user.partner_id.lang})"/>                
+                <div class="page">
+                  
+                    <table class="table table-condensed" style="font-size:9px;border: 1px solid #ddd;border-collapse: collapse;padding: 5px;">
+                        <tr>
+                            <td width="30%" align="center" valign="middle" style="border: 1px solid white;padding: 5px;">
+                                <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                            </td>
+                            <td colspan="2" width="40%" align="center" valign="top" style="border: 1px solid white;padding: 5px;">
+                                <strong>
+                                    <span t-field="o.company_id.partner_id.name" style="font-size:14px;"/><BR/>
+                                </strong>
+                                <span t-if="o.company_id.partner_id.vat">RFC: <span t-field="o.company_id.partner_id.vat"/></span>
+                                
+                                <BR/>
+                                <span t-field="o.company_id.partner_id.street_name"/>
+                                    <span t-if="o.company_id.partner_id.street_number"> No.<span t-field="o.company_id.partner_id.street_number"/></span>
+                                    <span t-if="o.company_id.partner_id.street_number2"> Int. <span t-field="o.company_id.partner_id.street_number2"/></span>
+                                    <BR/>
+                                    <span t-if="o.company_id.partner_id.colonia_sat_id">
+                                        <span t-field="o.company_id.partner_id.colonia_sat_id.name"/>,
+                                    </span>
+                                    <span t-if="o.company_id.partner_id.township_sat_id">
+                                        <span t-field="o.company_id.partner_id.township_sat_id.name"/>
+                                    </span>
+                                    <BR/>
+                                    <span t-field="o.company_id.partner_id.state_id.name"/>, 
+                                    <span t-field="o.company_id.partner_id.country_id.name"/>
+                                    <span t-if="o.company_id.partner_id.zip_sat_id">
+                                        CP: <span t-field="o.company_id.partner_id.zip_sat_id.code"/>
+                                    </span>
+
+                            </td>
+                        </tr>    
+                    </table>
+                    
+                    <table class="table table-condensed" style="padding: 30px;">
+                        <tr>
+                            <td>
+                                <strong style="font-size:15px;">Entrega No.: <span t-field="o.name"/></strong>
+                                <strong style="font-size:15px;color:red;" t-if="o.state =='done' "><br/>Entrega de Mercancia en Estado Hecho</strong>
+
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table class="table table-condensed" name="header_report" style="font-size:9px;">
+                        <thead>
+                          
+                          <tr>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Almacen</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Pedido (Origen)</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Unidad</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Fecha</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Orden Serevicio</strong></td>
+                            </tr>
+                        </thead>
+
+                        <tbody class="invoice_tbody">
+                            <tr >
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="o.mro_order_id.warehouse_id.name" t-if="o.mro_order_id"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="o.origin"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="o.vehicle_id" /></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-esc="o.scheduled_date.strftime('%d-%m-%Y %H:%M')"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="o.mro_order_id"/></td>
+
+                            </tr>
+                        </tbody>
+                      </table>
+                    
+                    <table class="table table-condensed">
+                        <tr>
+                            <td class="table table-condensed" style="font-size:12px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C" col="4"><b>Detalle de la Entrega</b></td>  
+
+                        </tr>
+                    </table>
+
+                    <table class="table table-condensed" name="detail" style="font-size:9px;" t-if="o.state in ('draft','waiting','confirmed','asigned')">
+                        <thead>
+                          
+                          <tr>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Descripción</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Ubicación</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Destino</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Cantidad</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>UdM</strong></td>
+                            </tr>
+                        </thead>
+
+                        <tbody class="invoice_tbody">
+                            <tr t-foreach="o.move_ids_without_package" t-as="pack">
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack.product_id" t-if="pack.product_id"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack.location_id"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack.location_dest_id" /></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack.product_uom_qty"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack.product_uom"/></td>
+
+                            </tr>
+                        </tbody>
+                      </table>
+
+                    <table class="table table-condensed" name="detail" style="font-size:9px;" t-if="o.state in ('done')">
+                        <thead>
+                          
+                          <tr>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Descripción</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Ubicación</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Destino</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>Cantidad Entregada</strong></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #00566C"><strong>UdM</strong></td>
+                            </tr>
+                        </thead>
+
+                        <tbody class="invoice_tbody">
+                            <tr t-foreach="o.move_line_ids_without_package" t-as="pack2">
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack2.product_id" t-if="pack2.product_id"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack2.location_id"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack2.location_dest_id" /></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack2.qty_done"/></td>
+                                <td width="20%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span  t-field="pack2.product_uom_id"/></td>
+
+                            </tr>
+                        </tbody>
+                      </table>
+
+               <br/>
+               <br/>
+               <br/>
+               <div align="center">
+                  <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                            <tr>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong style="font-size:9px;">Mecanico</strong><br/>
+                                    <strong><span style="font-size:9px;" t-field="o.mro_mechanic_id.name"/></strong>
+                            </td>
+                              <td class="text-center">
+                                  <strong style="font-size:9px;">Encargado</strong><br/>
+                                    <strong><span style="font-size:9px;" t-field="user.name"/></strong>
+                              </td>
+                             </tr>
+                        </table>
+                        <BR/>
+                        <BR/>
+                        
+                </div>
+
+
+                </div>
+            </t>
+            
+    </t>
+    
+    
+
+    

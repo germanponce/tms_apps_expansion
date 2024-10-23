@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- ########################################################################################## -->
+    <!-- ###################################### LIQUIDACIONES ##################################### -->
+    <!-- ########################################################################################## -->
+        <!-- Boton "Register Payment" en el formulario de la Factura -->
+        <record id="view_account_payment_from_tms_expenses_ref_cp" model="ir.ui.view">
+            <field name="name">account.register.tms_expense_payments.ref.form</field>
+            <field name="model">account.register.tms_expense_payments</field>
+            <field name="inherit_id" ref="tms.view_account_payment_from_tms_expenses"/>
+            <field name="arch" type="xml">
+                <field name="communication" position="after">
+                    <field name="payment_reference" string="Ref. pago"/>
+                </field>
+                    
+            </field>
+        </record>   
+
+        <record id="view_tms_expense_form_ref_cp" model="ir.ui.view">
+            <field name="name">tms.expense.invoice.ref.pagos</field>
+            <field name="model">tms.expense</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_form"/>
+            <field name="arch" type="xml">
+               
+                <field name="origin" position="after">
+                    <field name="payment_reference" string="Ref. ultimo pago"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_tms_expense_form_ref_cp_tree" model="ir.ui.view">
+            <field name="name">tms.expense.invoice.ref.tree</field>
+            <field name="model">tms.expense</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_tree"/>
+            <field name="arch" type="xml">
+                <field name="vehicle_id" position="after">
+                    <field name="payment_reference" string="Ref. ultimo pago"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_tms_expense_form_ref_cp_tree_search" model="ir.ui.view">
+            <field name="name">tms.expense.invoice.ref.search</field>
+            <field name="model">tms.expense</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_filter"/>
+            <field name="arch" type="xml">
+                <field name="vehicle_id" position="after">
+                    <field name="payment_reference" string="Ref. ultimo pago"/>
+                </field>
+            </field>
+        </record>
+
+
+    <!-- ########################################################################################## -->
+    <!-- ######################################## ANTICIPOS ####################################### -->
+    <!-- ########################################################################################## -->
+
+        <record id="view_account_payment_from_tms_advance_ref_cp" model="ir.ui.view">
+            <field name="name">account.register.tms_advance_payments.ref.form</field>
+            <field name="model">account.register.tms_advance_payments</field>
+            <field name="inherit_id" ref="tms.view_account_payment_from_tms_advances"/>
+            <field name="arch" type="xml">
+                <field name="communication" position="after">
+                    <field name="payment_reference" string="Ref. pago"/>
+                </field>
+                    
+            </field>
+        </record>   
+
+        <record id="view_tms_advance_form_ref_cp" model="ir.ui.view">
+            <field name="name">tms.advance.invoice.ref.pagos</field>
+            <field name="model">tms.advance</field>
+            <field name="inherit_id" ref="tms.view_tms_advance_form"/>
+            <field name="arch" type="xml">
+               
+                <field name="move_id" position="after">
+                    <field name="payment_reference" string="Ref. ultimo pago"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_tms_advance_form_ref_cp_tree" model="ir.ui.view">
+            <field name="name">tms.advance.invoice.ref.tree</field>
+            <field name="model">tms.advance</field>
+            <field name="inherit_id" ref="tms.view_tms_advance_tree"/>
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="payment_reference" string="Ref. ultimo pago"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_tms_advance_form_ref_cp_tree_search" model="ir.ui.view">
+            <field name="name">tms.advance.invoice.ref.search</field>
+            <field name="model">tms.advance</field>
+            <field name="inherit_id" ref="tms.view_tms_advance_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="payment_reference" string="Ref. ultimo pago"/>
+                </field>
+            </field>
+        </record>
+
+
+</odoo>

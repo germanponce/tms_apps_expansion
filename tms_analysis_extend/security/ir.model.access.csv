@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tms_expense_analysis_id,tms.expense.analysis,model_tms_expense_analysis,,1,1,1,1
+tms_waybill_analysis_id,tms.waybill.analysis,model_tms_waybill_analysis,,1,1,1,1

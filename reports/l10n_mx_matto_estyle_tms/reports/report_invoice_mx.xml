@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+<template id="matto_report_style_tms_document">
+    <t t-name="fleet_mro.report_mro_order_detail_document">
+        <t t-call="fleet_mro.fleet_mro_layout">
+            <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>-->
+            <div class="page">
+<table class="table table-condensed" id="encabezado" style="font-size:10px; solid #ddd; collapse;padding: 3px;">
+                <tr>
+                  <td width="30%"  valign="middle" >
+                      <img t-if="user.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(user.company_id.logo)" style="max-height: 45px;height: auto;"/>
+                  </td>
+                  <td colspan="2" width="30%" align="center" valign="top" style="border: 1px solid white;">
+                      <strong>
+                          <span t-field="user.company_id.partner_id.name" style="font-size:10px;"/><BR/>
+                      </strong>
+                      <span t-field="user.company_id.partner_id.street" style="font-size:10px;"/><BR/>
+                      <span t-if="user.company_id.partner_id.street2" style="font-size:10px;"><span t-field="user.company_id.partner_id.street2" style="font-size:10px;"/><BR/></span>
+                      <span t-field="user.company_id.partner_id.state_id.name" style="font-size:10px;"/>, <span t-field="user.company_id.partner_id.country_id.name" style="font-size:10px;"/><BR/>
+                      <strong style="text-align:center;font-size: 12px">Sistema Integral De Mantenimiento </strong>
+                      <p style="text-align:center;font-size: 12px">Service Order: <span t-field="o.name"/></p>
+                  </td>
+              </tr>
+          </table>  
+                <table class="table table-condensed" style="font-size:9px;" width="100%" >
+                        <thead>
+                          <tr>
+                              <td  colspan="8" style="font-size:12px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #23A7F1"><b>TIPO DE SERVICIO: <span t-field="o.mro_type_id"/></b></td>
+
+                          </tr>
+                          <tr>
+                                <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Vehícul6o</strong></td>
+                                <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Tipo Unidad</strong></td>
+                                <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Matricula</strong></td>
+                                <td width="15%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Ultimo Odometro</strong></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Operador</strong></td>
+                                <td width="30%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Supervisor</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.vehicle_id.name2"/></td>
+                                <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.vehicle_id.fleet_type"/></td>
+                                <td width="10%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.vehicle_id.license_plate"/></td>
+                                <td width="15%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.accumulated_odometer"/></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.driver_id.name"/></td>
+                                <td width="30%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.supervisor_id.name"/></td>
+                            </tr>
+                        </tbody>
+                      </table>
+                <BR/>
+                      <table class="table table-condensed" style="font-size:9px;" width="100%" >
+                        <thead>
+                            <tr>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Fecha Inicio Programada</strong></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Fecha Fin Programada</strong></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Fecha Inicio Real</strong></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Fecha Fin Programada</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.date_start"/></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.date_end"/></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.date_start_real"/></td>
+                                <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><span t-field="o.date_end_real"/></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                <!--<table class="mb8">
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Vehiculo: </strong><span t-field="doc.vehicle_id.name2" style="font-size: 10px"/></td>
+                  <td width="25%" style="font-size: 10px"><strong>Tipo De Unidad: </strong><span t-field="doc.vehicle_id.fleet_type" style="font-size: 10px"/></td>
+                  <td width="25%" style="font-size: 10px"><strong>Matricula: </strong><span t-field="doc.vehicle_id.license_plate" style="font-size: 10px"/></td>
+                  <td width="25%" style="font-size: 10px"><strong>Ultima lectura del Odometro: </strong><span t-field="doc.accumulated_odometer" style="font-size: 10px"/></td>
+                </table>-->
+                <!--<table>
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Operador: </strong><span t-field="doc.driver_id.name" style="font-size: 10px"/></td>
+                  <td></td>
+                  <td></td>
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Supervisor: </strong><span t-field="doc.supervisor_id.name" style="font-size: 10px"/></td>
+                </table>
+                <table>
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Fecha Inicio Programada: </strong><span t-field="doc.date_start" style="font-size: 10px"/></td>
+                  <td></td>
+                  <td></td>
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Fecha Inicio Real: </strong><span t-field="doc.date_start_real" style="font-size: 10px"/></td>
+                </table>
+                <table>
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Fecha Fin Programada: </strong><span t-field="doc.date_end" style="font-size: 10px"/></td>
+                  <td></td>
+                  <td></td>
+                  <td width="25%" style="text-align:center;font-size: 10px"><strong>Fecha Fin Real: </strong><span t-field="doc.date_end_real" style="font-size: 10px"/></td>
+                </table>
+                <table>
+                  <td width="25%" style="text-align:center;font-size: 10px" align="left"><strong>Observaciones: </strong><span t-field="doc.note" align="left" style="font-size: 10px"/></td>
+                </table>-->
+                  <BR/>
+                  <t t-if="o.task_ids">
+                <table class="table table-condensed" style="font-size:9px;" width="100%">
+                  <tr>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Tareas Internas: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Mecanico: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Fecha/Hr(inicio): </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Fecha/Hr(Fin): </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Estado: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Hrs. Reales: </strong></td>
+                  </tr>
+                  <tr t-foreach="o.task_ids" t-as="w">
+                  <t t-if="w.external_workshop == False">
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="w.task_id"/></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="w.mechanic_ids"/></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="w.date_start"/></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="w.date_end"/></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="w.state"/></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="w.hours_real"/></td>
+                  </t>  
+                  </tr>
+                  
+                </table>
+              </t>
+                
+                <BR/>
+                
+                   
+         
+                <t t-if="o.stock_move_ids">
+                <table class="table table-condensed" style="font-size:9px;" width="100%">
+                  <tr>
+                      <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Refacciones </strong></td>
+                      <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Cantidad </strong></td>
+                      <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Total </strong></td>
+                  </tr>
+                  <!--<tr t-if="o.task_ids.stock_move_ids.location_id == 'Existencia'">
+                      <td style="text-align:center;font-size: 14px"><p t-field="o.task_ids.stock_move_ids.product_id"/>,<p t-field="o.task_ids.stock_move_ids.product_uom_qty"/>, Total<p t-field="o.task_ids.parts.cost"/></td>-->
+                  
+                  <tr t-foreach="o.stock_move_ids" t-as="s">
+                     
+                     <t t-if="s.location_id.name == 'Existencia' and not s.get_move_destiny_return(s)">
+                         <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="s.product_id"/></td>
+                         <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><p t-field="s.product_uom_qty"/></td>
+                         <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;">
+                             <p t-esc="s.price_unit*s.product_uom_qty"/>
+                         </td>
+                     </t>
+                     
+                  </tr>   
+                </table>
+
+              </t>
+                <BR/>
+                <table>
+                  <tr>
+                     <td class="table table-condensed" style="font-size:11px;border: 1px solid #07190B;border-collapse: collapse;padding: 5px;"><b>Notas: </b><span t-field="o.note" /></td>               
+                 </tr>
+                </table>
+                <BR/>
+                <BR/>
+                <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                            <tr>
+                                <td  class="text-center" >________________________</td>
+                                <td  class="text-center" >________________________</td>
+                                <td  class="text-center" >________________________</td>
+                            </tr>
+                            <tr >
+                                <td class="text-center" >
+                                    <strong style="font-size:10px;">Supervisor: </strong><span t-field="o.supervisor_id.name" style="font-size:10px;"/>
+                                </td>
+                                <td class="text-center" >
+                                  <strong style="font-size:10px;">Mecanico: </strong> 
+                                  <t t-set="mecanico_firma" t-value="''"/>
+                                  <t t-foreach="o.task_ids" t-as="r" >
+                                    <t t-if="r.external_workshop == False">
+                                      <t t-set="mecanico_firma" t-value="r.mechanic_ids[0].name" />
+                                      <!--<p t-raw="mecanico_firma"/>-->
+                                    </t>
+                                  </t>
+                                  <span t-raw="mecanico_firma" style="font-size:10px;"/> 
+                              </td>
+                              <td class="text-center" >
+                                  <strong style="font-size:10px;">Operador: </strong><span t-field="o.driver_id" style="font-size:10px;"/>
+                              </td>
+                            
+                             </tr>
+                        </table>
+                <t t-if="o.purchase_order_line_ids">
+                <!--<table class="table table-condensed" style="font-size:9px;" width="100%">
+                  <tr>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Tareas Externas: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Proveedor: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>costo: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Estado: </strong></td>
+                  </tr>
+                  
+                  <tr t-foreach="o.task_ids" t-as="w">
+                  <t t-if="w.external_workshop == True">
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: left;">
+                        <p t-field="w.task_id"/>
+                    </td>
+                  
+                  
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;">
+                        <t t-foreach="o.purchase_order_line_ids" t-as="a">
+                            <p t-field="a.partner_id.name"/>
+                        </t>
+                    </td>-->
+                    <!--<td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: left;">
+                        <p t-field="w.purchase_order_line_ids.partner_id"/>
+                    </td>-->
+                    <!--<td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: right;">
+                        <t t-foreach="o.purchase_order_ids" t-as="a">
+                            <p t-field="a.amount_total"/>
+                        </t>
+                    </td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;">
+                        <p t-field="w.state"/>
+                    </td>
+                  </t>
+                  </tr>  
+                    
+                  
+                </table>-->
+                <table class="table table-condensed" style="font-size:9px;" width="100%">
+                  <tr>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Tareas Externas: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Proveedor: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>costo: </strong></td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;"><strong>Estado: </strong></td>
+                  </tr>
+                  
+                  <tr t-foreach="o.task_ids" t-as="w">
+                  <t t-if="w.external_workshop == True">
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: left;">
+                        <p t-field="w.task_id"/>
+                    </td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;">
+                        <t t-foreach="w.get_groupped_partners(w.purchase_order_line_ids)" t-as="p">
+                          <p t-esc="p.name"/>
+                        </t>
+
+                        <!-- <t t-foreach="w.purchase_order_line_ids" t-as="a">
+                            <p t-field="a.partner_id"/>
+                        </t> -->
+                        <!--<p t-field="w.purchase_order_line_ids.partner_id"/>-->
+                    </td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: right;">
+                        <p t-esc="w.get_groupped_costs(w.purchase_order_line_ids)"/>
+                        <!-- <t t-foreach="o.purchase_order_ids" t-as="a">
+                            <p t-esc="a.amount_total"/>
+                        </t> -->
+                    </td>
+                    <td width="25%" style="text-align:center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;">
+                        <p t-field="w.state"/>
+                    </td>
+                  </t>
+                  </tr>  
+                    
+                  
+                </table>
+                </t>
+                <BR/>
+                <BR/>
+                <BR/>
+                <table>
+                    <hr align="center" noshade="noshade" size="1" width="30%" />
+                    
+                </table>
+                <table>
+                    <p style="font-size:10px;" align="center" color="black"><strong>Encargado: </strong><span t-field="o.create_uid.name" style="font-size:10px;"/></p>
+                    
+                </table>
+                <!--<table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3" class="text-center">
+                            <tr>
+                                <td></td>
+                                <td  class="text-center" >________________________</td>
+                                <td  class="text-center" >________________________</td>
+                                <td></td>
+                            </tr>
+                            <tr >
+                                
+                           
+                              <td></td>
+                              <td class="text-center" >
+                                  <strong style="font-size:10px;">Encargado: </strong><span t-field="o.create_uid.name" style="font-size:10px;"/>
+                              </td>
+                              <td class="text-center" >
+                                  
+                              </td>
+                              
+                            
+                             </tr>
+
+                        </table>-->
+
+               
+            </div>
+        </t>
+    </t>
+</template>    
+    
+
+    <template id="fleet_mro.report_mro_order_detail">
+      <t t-call="web.html_container">
+          <t t-set="data_report_margin_top" t-value="15"/> 
+          <t t-set="data_report_header_spacing" t-value="10"/>
+          <t t-set="data_report_dpi" t-value="600"/>
+          <t t-foreach="docs" t-as="o">
+              <t t-call="l10n_mx_matto_estyle_tms.matto_report_style_tms_document" />
+
+          </t>
+      </t>
+    </template>
+
+  </data>
+
+   
+    
+
+        <!--<report 
+            id="report_settlement_syle_tms"
+            model="fleet.mro.order"
+            string="Mantenimiento"
+            report_type="qweb-pdf"
+            name="l10n_mx_matto_estyle_tms.matto_report_style_tms"
+            file="l10n_mx_matto_estyle_tms.matto_report_style_tms"
+            
+        />-->
+
+        
+  
+</openerp>

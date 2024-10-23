@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+<template id="tms.report_tms_advance_document">
+    <t t-name="tms.report_tms_advance_document">
+    <t t-call="web.basic_layout">
+     <div class="page">
+          
+        <table class="table table-condensed" id="encabezado" style="font-size:12px; solid #ddd; collapse;padding: 3px;">
+              <tr>
+                  <td width="30%"  valign="middle" >
+                      <img t-if="user.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(user.company_id.logo)" style="max-height: 70px;height: auto;"/>
+                  </td>
+                  <td colspan="2" width="30%" align="center" valign="top" style="border: 1px solid white;">
+                      <strong>
+                          <span t-field="user.company_id.partner_id.name" style="font-size:12px;"/><BR/>
+                      </strong>
+                      <span t-field="user.company_id.partner_id.street" style="font-size:12px;"/><BR/>
+                      <span t-if="user.company_id.partner_id.street2" style="font-size:12px;"><span t-field="user.company_id.partner_id.street2" style="font-size:12px;"/><BR/></span>
+                      <span t-field="user.company_id.partner_id.state_id.name" style="font-size:12px;"/>, <span t-field="user.company_id.partner_id.country_id.name" style="font-size:12px;"/>
+                  </td>
+              </tr>
+          </table>       
+      </div>
+        <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.employee_id.address_home_id.lang})" style="font-size:12px;"/>-->
+        
+        <div class="page">
+            <div class="oe_structure"/>
+            <span  style="font-size:12px;">
+                <strong>Folio # </strong> <span t-field="doc.name"/>  <span t-field="doc.date"/>
+            </span>
+            <!--<hr color="yellow" size="50"></hr>-->
+            <div class="row col mb8" id="informations">
+                <div class="mb8">
+                    <strong class="text-right" style="font-size:12px;">Operador:</strong><br/><span t-field="doc.employee_id.name" style="font-size:9px;"/>
+                </div>
+                <div class="mr32">
+                    <strong class="text-right" style="font-size:12px;"></strong>
+                    <!--<p t-field="doc.date" style="font-size:12px;"/>-->
+                </div>
+                <div class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Fecha:</strong>
+                    <p t-field="doc.date" style="font-size:12px;"/>
+                </div>
+                <div class="mr32">
+                    <strong class="text-right" style="font-size:12px;" t-if="[x for x in doc.sudo().travel_id.waybill_ids.filtered(lambda w: w.state!='cancel')]">Documento Origen:</strong>
+                    <p t-esc="(',').join([x.name for x in doc.sudo().travel_id.waybill_ids.filtered(lambda w: w.state!='cancel')])" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.sudo().travel_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Viaje:</strong>
+                    <p t-field="doc.sudo().travel_id.name" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.sudo().vehicle_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Vehiculo:</strong>
+                    <p><span t-field="doc.sudo().travel_id.vehicle_id.name2" style="font-size:12px;"/><t t-if="doc.sudo().travel_id.trailer1_id" style="font-size:12px;"> + <span t-field="doc.sudo().travel_id.trailer1_id.name2" style="font-size:12px;"/>  </t><t t-if="doc.sudo().travel_id.dolly_id" style="font-size:12px;"> + <span t-field="doc.sudo().travel_id.dolly_id.name2" style="font-size:12px;"/>  </t><t t-if="doc.sudo().travel_id.trailer2_id" style="font-size:12px;"> + <span t-field="doc.sudo().travel_id.trailer2_id.name2" style="font-size:12px;"/>  </t></p>
+                </div>
+                <div t-if="doc.sudo().travel_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Origen:</strong>
+                    <p t-field="doc.sudo().travel_id.departure_id" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.sudo().travel_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Destino:</strong>
+                    <p t-field="doc.sudo().travel_id.arrival_id" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.operation_id" class="mr32" style="font-size:12px;">
+                    <strong class="text-right" style="font-size:12px;">Operation:</strong>
+                    <p t-field="doc.sudo().operation_id.name" style="font-size:12px;"/>
+                </div>
+                <div class="mr32" t-if="doc.auto_expense">
+                    <strong class="text-right" style="font-size:12px;">Pre-Authorized:</strong>
+                    <p><t t-if="doc.auto_expense" style="font-size:12px;">Yes</t><t t-if="not doc.auto_expense" style="font-size:12px;">No</t></p>
+                </div>
+                
+            </div>
+
+             <div align="justify" style="font-size:12px;">
+            <td style="font-size:12px;collapse;padding: 2px;" align="justify">Debe(mos) y pagaré(mos) incondicionalmente por este anticipo a gasto por comprobar a la orden de: Transporte Belchez SA de CV con domicilio en: Cervantes y Padilla Esq. Callejon la Pastora, colonia: Manuel Contreras, la cantidad de: $ <span t-field="doc.total" style="font-size:12px;"/> ,Importe con letra: <span t-field="doc.amount_to_text"/>  , por concepto de anticipo de viaje: <span t-field="doc.sudo().travel_id.name"/>.</td>
+            </div>
+    
+            <br />
+
+            <table class="table table-condensed" style="font-size:12px;collapse;padding: 2px;">
+                <thead>
+                    <tr>
+                        <th class="text-center"  style="font-size:12px;collapse;padding: 2px;">Descripción</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Cantidad</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Importe</th>
+                        <th class="text-center" style="font-size:12px;collapse;padding: 2px;" groups="base.group_multi_currency">Moneda</th>
+                    </tr>
+                </thead>
+                <tbody class="advance_tbody" style="font-size:12px;collapse;padding: 2px;">
+                    <tr>                    
+                        <td style="font-size:12px;collapse;padding: 2px;">
+                            <t t-if="doc.product_id.default_code and doc.product_id.default_code != doc.product_id.name" style="font-size:12px;">[<span t-field="doc.product_id.default_code" style="font-size:12px;"/>] </t>
+                            <span t-field="doc.product_id.name" />
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="doc.product_uom_qty" />
+                            <span t-field="doc.product_uom" groups="product.group_uom" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="doc.total" />
+                        </td> 
+                        <td class="text-center" groups="base.group_multi_currency" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="doc.currency_id.name" />
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <p t-field="doc.notes" style="font-size:12px;"/>
+            <!--<br/>-->
+            
+<div align="justify">
+                <p style="font-size:12px;">Observaciones:</p>
+                <p style="font-size:12px;" align="justify">Valor recibido a mi (muestra) entera satisfacción. Este anticipo de gasto forma parte de una serie numerada del 1 al ____ y todos están sujetos a la condición de que, al no pagarse cualquiera de ellos a su vencimiento, será
+exigibles todos los que le sigan en número, además de los ya vencidos, desde la fecha del vencimiento de este documento hasta el día de su liquidación, causará intereses moratorios al tipo de ____% mensual, pagadero en
+esta ciudad juntamente con el principal.</p>
+                </div>
+
+            <!--<hr/>-->
+                <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                        <tr>
+                            <td class="text-center">________________________</td>
+                            <td class="text-center">________________________</td>
+                         </tr>
+                        <tr>
+                            <td class="text-center">
+                                <strong style="font-size:12px;">Autorizo<br/><span t-field="user.name" /> </strong>
+                        </td>
+
+                          <td class="text-center">
+                           <strong style="font-size:12px;">Acepto<br/><span t-field="doc.employee_id.name" style="font-size:12px;"/></strong>
+                       </td>
+                    </tr>
+                </table>
+            
+          
+            <!-- Tenemos que repetir el reporte -->
+
+<!-- Saltos de Pagina --> 
+
+
+        <table class="table table-condensed" id="encabezado" style="font-size:12px; solid #ddd; collapse;padding: 3px;">
+              <tr>
+                  <td width="30%"  valign="middle" >
+                      <img t-if="user.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(user.company_id.logo)" style="max-height: 70px;height: auto;"/>
+                  </td>
+                  <td colspan="2" width="30%" align="center" valign="top" style="border: 1px solid white;">
+                      <strong>
+                          <span t-field="user.company_id.partner_id.name" style="font-size:12px;"/><BR/>
+                      </strong>
+                      <span t-field="user.company_id.partner_id.street" style="font-size:12px;"/><BR/>
+                      <span t-if="user.company_id.partner_id.street2" style="font-size:12px;"><span t-field="user.company_id.partner_id.street2" style="font-size:12px;"/><BR/></span>
+                      <span t-field="user.company_id.partner_id.state_id.name" style="font-size:12px;"/>, <span t-field="user.company_id.partner_id.country_id.name" style="font-size:12px;"/>
+                  </td>
+              </tr>
+          </table>       
+      </div>
+        <!--<t t-set="doc" t-value="doc.with_context({'lang':doc.employee_id.address_home_id.lang})" style="font-size:12px;"/>-->
+        
+        <div class="page">
+            <div class="oe_structure"/>
+            <span  style="font-size:12px;">
+                <strong>Folio # </strong> <span t-field="doc.name"/>  <span t-field="doc.date"/>
+            </span>
+            <!--<hr color="yellow" size="50"></hr>-->
+            <div class="row col mb8" id="informations">
+                <div class="mb8">
+                    <strong class="text-right" style="font-size:12px;">Operador:</strong><br/><span t-field="doc.employee_id.name" style="font-size:9px;"/>
+                </div>
+                <div class="mr32">
+                    <strong class="text-right" style="font-size:12px;"></strong>
+                    <!--<p t-field="doc.date" style="font-size:12px;"/>-->
+                </div>
+                <div class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Fecha:</strong>
+                    <p t-field="doc.date" style="font-size:12px;"/>
+                </div>
+                <div class="mr32">
+                    <strong class="text-right" style="font-size:12px;" t-if="[x for x in doc.sudo().travel_id.waybill_ids.filtered(lambda w: w.state!='cancel')]">Documento Origen:</strong>
+                    <p t-esc="(',').join([x.name for x in doc.sudo().travel_id.waybill_ids.filtered(lambda w: w.state!='cancel')])" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.sudo().travel_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Viaje:</strong>
+                    <p t-field="doc.sudo().travel_id.name" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.sudo().vehicle_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Vehiculo:</strong>
+                    <p><span t-field="doc.sudo().travel_id.vehicle_id.name2" style="font-size:12px;"/><t t-if="doc.sudo().travel_id.trailer1_id" style="font-size:12px;"> + <span t-field="doc.sudo().travel_id.trailer1_id.name2" style="font-size:12px;"/>  </t><t t-if="doc.sudo().travel_id.dolly_id" style="font-size:12px;"> + <span t-field="doc.sudo().travel_id.dolly_id.name2" style="font-size:12px;"/>  </t><t t-if="doc.sudo().travel_id.trailer2_id" style="font-size:12px;"> + <span t-field="doc.sudo().travel_id.trailer2_id.name2" style="font-size:12px;"/>  </t></p>
+                </div>
+                <div t-if="doc.sudo().travel_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Origen:</strong>
+                    <p t-field="doc.sudo().travel_id.departure_id" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.sudo().travel_id" class="mr32">
+                    <strong class="text-right" style="font-size:12px;">Destino:</strong>
+                    <p t-field="doc.sudo().travel_id.arrival_id" style="font-size:12px;"/>
+                </div>
+                <div t-if="doc.operation_id" class="mr32" style="font-size:12px;">
+                    <strong class="text-right" style="font-size:12px;">Operation:</strong>
+                    <p t-field="doc.sudo().operation_id.name" style="font-size:12px;"/>
+                </div>
+                <div class="mr32" t-if="doc.auto_expense">
+                    <strong class="text-right" style="font-size:12px;">Pre-Authorized:</strong>
+                    <p><t t-if="doc.auto_expense" style="font-size:12px;">Yes</t><t t-if="not doc.auto_expense" style="font-size:12px;">No</t></p>
+                </div>
+                
+            </div>
+
+             <div align="justify" style="font-size:12px;">
+            <td style="font-size:12px;collapse;padding: 2px;" align="justify">Debe(mos) y pagaré(mos) incondicionalmente por este anticipo a gasto por comprobar a la orden de: Transporte Belchez SA de CV con domicilio en: Cervantes y Padilla Esq. Callejon la Pastora, colonia: Manuel Contreras, la cantidad de: $ <span t-field="doc.total" style="font-size:12px;"/> ,Importe con letra: <span t-field="doc.amount_to_text"/>  , por concepto de anticipo de viaje: <span t-field="doc.sudo().travel_id.name"/>.</td>
+            </div>
+    
+            <br />
+
+            <table class="table table-condensed" style="font-size:12px;collapse;padding: 2px;">
+                <thead>
+                    <tr>
+                        <th class="text-center"  style="font-size:12px;collapse;padding: 2px;">Descripción</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Cantidad</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Importe</th>
+                        <th class="text-center" style="font-size:12px;collapse;padding: 2px;" groups="base.group_multi_currency">Moneda</th>
+                    </tr>
+                </thead>
+                <tbody class="advance_tbody" style="font-size:12px;collapse;padding: 2px;">
+                    <tr>                    
+                        <td style="font-size:12px;collapse;padding: 2px;">
+                            <t t-if="doc.product_id.default_code and doc.product_id.default_code != doc.product_id.name" style="font-size:12px;">[<span t-field="doc.product_id.default_code" style="font-size:12px;"/>] </t>
+                            <span t-field="doc.product_id.name" />
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="doc.product_uom_qty" />
+                            <span t-field="doc.product_uom" groups="product.group_uom" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="doc.total" />
+                        </td> 
+                        <td class="text-center" groups="base.group_multi_currency" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="doc.currency_id.name" />
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+ 
+
+            <p t-field="doc.notes" style="font-size:12px;"/>
+            <!--<br/>-->
+            
+
+<div align="justify">
+                <p style="font-size:12px;">Observaciones:</p>
+                <p style="font-size:12px;" align="justify">Valor recibido a mi (muestra) entera satisfacción. Este anticipo de gasto forma parte de una serie numerada del 1 al ____ y todos están sujetos a la condición de que, al no pagarse cualquiera de ellos a su vencimiento, será
+exigibles todos los que le sigan en número, además de los ya vencidos, desde la fecha del vencimiento de este documento hasta el día de su liquidación, causará intereses moratorios al tipo de ____% mensual, pagadero en
+esta ciudad juntamente con el principal.</p>
+                </div>
+
+                <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                        <tr>
+                            <td class="text-center">________________________</td>
+                            <td class="text-center">________________________</td>
+                         </tr>
+                        <tr>
+                            <td class="text-center">
+                                <strong style="font-size:12px;">Autorizo<br/><span t-field="user.name" /> </strong>
+                        </td>
+
+                          <td class="text-center">
+                           <strong style="font-size:12px;">Acepto<br/><span t-field="doc.employee_id.name" style="font-size:12px;"/></strong>
+                       </td>
+                    </tr>
+                </table>
+
+        </div>
+    </t>
+</t>
+        
+</template>    
+    
+
+    <template id="anticipo_report_style_tms">
+      <t t-call="web.html_container">
+          <t t-set="data_report_margin_top" t-value="15"/> 
+          <t t-set="data_report_header_spacing" t-value="10"/>
+          <t t-set="data_report_dpi" t-value="600"/>
+          <t t-foreach="docs" t-as="o">
+              <t t-call="l10n_mx_anticipo_estyle_tms.anticipo_report_style_tms_document" />
+
+          </t>
+      </t>
+    </template>
+
+  </data>
+
+  <data> 
+    
+
+      <!--   <report 
+            id="report_settlement_syle_tms"
+            model="tms.advance"
+            string="Anticipo"
+            report_type="qweb-pdf"
+            name="l10n_mx_anticipo_estyle_tms.anticipo_report_style_tms"
+            file="l10n_mx_anticipo_estyle_tms.anticipo_report_style_tms"
+            
+        /> -->
+
+        
+  </data>
+</openerp>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        
+        <record model="ir.ui.view" id="tms_aybill_shipped_line_ext">
+            <field name="name">waybill.shipped_product.extension</field>
+            <field name="model">tms.waybill</field>
+            <field name="type">form</field>
+            <field name="priority">50</field>
+            <field name="inherit_id" ref="tms.view_tms_waybill_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='waybill_shipped_product']/tree/field[@name='weight_real']" position="after">
+                    <field name="product_volume_upload" />
+                    <field name="product_volume_download" />
+                    <field name="product_temperature_upload" />
+                    <field name="product_temperature_download" />
+                    <field name="need_compute_volume" invisible="1"/> <!-- invisible="1" -->
+                </xpath>
+                <xpath expr="//field[@name='waybill_shipped_product']/tree/field[@name='product_uom_qty_est']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('need_compute_volume','=',True)]}</attribute>
+                </xpath>
+                <field name="amount_total" position="after">
+                    <br/>
+                    <field name="product_volume"  string="Volumen Total"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

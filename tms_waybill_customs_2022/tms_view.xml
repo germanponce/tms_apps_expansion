@@ -1,0 +1,99 @@
+<openerp>
+<data>
+    
+    <!-- Carta Porte -->
+
+    <record id="view_tms_waybill_form_extend_2022" model="ir.ui.view">
+        <field name="name">tms.waybill.2022</field>
+        <field name="model">tms.waybill</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="tms.view_tms_waybill_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='waybill_shipped_product']/tree//field[@name='notes']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='waybill_shipped_product']" position="attributes">
+                <attribute name="context">{'default_notes':x_reference}</attribute>
+            </xpath>
+            <field name="dangerous_cargo" position="before">
+                <field name="x_reference" attrs="{'required': [('state', '=', 'confirmed')]}" placeholder="Referencia Contenedor..."/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Configuración -->
+
+    <record id="view_tms_config_settings_extend_2022" model="ir.ui.view">
+        <field name="name">res config settings 2022</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="tms.res_config_settings_view_form_tms"/>
+        <field name="arch" type="xml">
+            <xpath expr='//div[@id="tms_restrictions"]' position="inside">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="restrict_multi_partners_on_waybill" widget="upgrade_boolean"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="restrict_multi_partners_on_waybill" string="Restricción Exclusiva"/>
+                            <div class="text-muted">
+                                Restringir un viaje para cliente exclusivo
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="restrict_waybill_number_from_framework" widget="upgrade_boolean"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="restrict_waybill_number_from_framework" string="Restricción Armado"/>
+                            <div class="text-muted">
+                                Restringir no. de cartas porte segun Armado:
+                                <ul>
+                                    <li>
+                                        Full 2 Cartas Porte
+                                    </li>
+                                    <li>
+                                        Sencillo 1 Carta Porte 
+                                    </li>
+                                </ul>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="restrict_multi_number_top_waybill" widget="upgrade_boolean"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="restrict_multi_number_top_waybill"/>
+                            <div class="text-muted">
+                                Activa si deseas restringir la cantidad de cartas porte asociadas a un solo viaje y define ese no. maximo
+                            </div>
+                            <div attrs="{'invisible':[('restrict_multi_number_top_waybill','!=',True)]}">
+                                <div class="row mt16">
+                                    <label for="restrict_multi_number_top_waybill_number" class="col-lg-3 o_light_label"/>
+                                    <field name="restrict_multi_number_top_waybill_number"
+                                           attrs="{'required':[('restrict_multi_number_top_waybill','=',True)]}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <label for="process_xml_type"/>
+                            <field name="process_xml_type"/>
+                            <div class="text-muted">
+                                Define la informacion con la que se creara el XML.
+                            </div>
+                        </div>
+                    </div> -->
+            </xpath>
+        </field>
+    </record>
+
+    
+</data>
+</openerp>

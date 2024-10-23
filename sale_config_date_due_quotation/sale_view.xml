@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        
+    <record id="res_config_settings_view_extend_validity_date" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//span[hasclass('col-lg-3')]" position="replace">
+                <span class="col-lg-3">Fecha Limite: <field name="date_validation_order" attrs="{'required': [('use_quotation_validity_days', '=', True)]}"/> fija</span>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</openerp>

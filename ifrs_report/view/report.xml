@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="paperformat_letter_landscape" model="report.paperformat">
+            <field name="name">Carta Apaisada (NIFF)</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="orientation">Landscape</field>            
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">300</field>
+        </record>        
+        
+        
+        <report id="ifrs_portrait_pdf_report_action"
+                string="NIFF a dos columnas"
+                model="ifrs.report.wizard"
+                report_type="qweb-pdf"
+                name="ifrs_report.ifrs_template"
+                file="ifrs_report.ifrs_template"
+                />
+
+        <report id="ifrs_landscape_pdf_report_action"
+                string="NIFF a doce columnas"
+                model="ifrs.report.wizard"
+                report_type="qweb-pdf"
+                name="ifrs_report.ifrs_template2"
+                file="ifrs_report.ifrs_template"
+                paperformat="ifrs_report.paperformat_letter_landscape"
+                />
+        
+        
+        <report id="ifrs_portrait_pdf_report_action_html"
+                string="NIFF a dos columnas"
+                model="ifrs.report.wizard"
+                report_type="qweb-html"
+                name="ifrs_report.ifrs_template"
+                file="ifrs_report.ifrs_template"
+                />
+
+        <report id="ifrs_landscape_pdf_report_action_html"
+                string="NIFF a doce columnas"
+                model="ifrs.report.wizard"
+                report_type="qweb-html"
+                name="ifrs_report.ifrs_template2"
+                file="ifrs_report.ifrs_template"
+                paperformat="ifrs_report.paperformat_letter_landscape"
+                />        
+        
+        <!--
+        <record id="ifrs_report.ifrs_landscape_pdf_report_action" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ifrs_report.paperformat_letter_landscape"/>
+        </record>
+        -->
+    </data>
+</openerp>

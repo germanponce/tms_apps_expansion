@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="quotation_tms_belchez">
+        <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang':user.partner_id.lang})"/>                
+                <div class="page">
+                  <title>Cotizacion</title>
+                        <style media="screen">
+                            body {
+                                font-family: 'Segoe UI','Microsoft Sans Serif',sans-serif;
+                            }
+
+                            /*
+                                These next two styles are apparently the modern way to clear a float. This allows the logo
+                                and the word "Invoice" to remain above the From and To sections. Inserting an empty div
+                                between them with clear:both also works but is bad style.
+                                Reference:
+                                http://stackoverflow.com/questions/490184/what-is-the-best-way-to-clear-the-css-style-float
+                            */
+                            header:before, header:after {
+                                content: " ";
+                                display: table;
+                            }
+
+                            header:after {
+                                clear: both;
+                            }
+
+                            .invoiceNbr {
+                                font-size: 40px;
+                                margin-right: 30px;
+                                margin-top: 30px;
+                                float: right;
+                            }
+
+                            .logo {
+                                float: left;
+                            }
+
+                            .from {
+                                float: left;
+                            }
+
+                            .fromhead {
+                                float: left;
+                            }
+
+                            .to {
+                                float: right;
+                            }
+
+                            .fromto {
+                                border-style: solid;
+                                border-width: 1px;
+                                border-color: #23A7F1;
+                                border-radius: 5px;
+                                margin: 20px;
+                                min-width: 200px;
+                            }
+
+                            .fromtoheader {
+                                border-radius: 5px;
+                                margin: 20px;
+                                min-width: 200px;
+                            }
+
+
+                            .fromtocontent {
+                                margin: 10px;
+                                margin-right: 15px;
+                            }
+
+                            .panel {
+                                background-color: #23A7F1;
+                                padding: 7px;
+                            }
+
+                            .panelhead {
+                                padding: 7px;
+                            }
+
+                            .paneldetail {
+                                background-color: #23A7F1;
+                                padding: 7px;
+                                width: 600px;
+                            }
+
+                            
+                            .items {
+                                clear: both;
+                                display: table;
+                                padding: 20px;
+                            }
+
+                            /* Factor out common styles for all of the "col-" classes.*/
+                            div[class^="col-"] {
+                                display: table-cell;
+                                padding: 7px;
+                            }
+
+                            /*for clarity name column styles by the percentage of width */
+                            .col-1-10 {
+                                width: 10%;
+                            }
+
+                            .col-1-52 {
+                                width: 52%;
+                            }
+
+                            .row {
+                                display: table-row;
+                                page-break-inside: avoid;
+                            }
+
+                        </style>
+
+                        <!-- These styles are exactly like the screen styles except they use points (pt) as units
+                            of measure instead of pixels (px) -->
+                        <style media="print">
+                            body {
+                                font-family: 'Segoe UI','Microsoft Sans Serif',sans-serif;
+                            }
+
+                            header:before, header:after {
+                                content: " ";
+                                display: table;
+                            }
+
+                            header:after {
+                                clear: both;
+                            }
+
+                            .invoiceNbr {
+                                font-size: 30pt;
+                                margin-right: 30pt;
+                                margin-top: 30pt;
+                                float: right;
+                            }
+
+                            .invoiceNbrCFDI {
+                                font-size: 12pt;
+                                margin-right: 30pt;
+                                margin-top: 30pt;
+                                float: right;
+                            }
+
+                            .companyNM {
+                                font-size: 30pt;
+                            }
+
+                            .logo {
+                                float: left;
+                            }
+
+                            .from {
+                                float: left;
+                            }
+
+                            .to {
+                                float: right;
+                            }
+
+                            .fromto {
+                                border-style: solid;
+                                border-width: 1pt;
+                                border-color: #23A7F1;
+                                border-radius: 5pt;
+                                margin: 10pt;
+                                min-width: 400pt;
+                            }
+
+                            .fromtocontent {
+                                margin: 10pt;
+                                margin-right: 15pt;
+                            }
+
+                            .panel {
+                                background-color: #23A7F1;
+                                padding: 7pt;
+                            }
+
+                            .items {
+                                clear: both;
+                                display: table;
+                                padding: 20pt;
+                            }
+
+                            div[class^="col-"] {
+                                display: table-cell;
+                                padding: 7pt;
+                            }
+
+                            .col-1-10 {
+                                width: 10%;
+                            }
+
+                            .col-1-52 {
+                                width: 52%;
+                            }
+
+                            .row {
+                                display: table-row;
+                                page-break-inside: avoid;
+                            }
+                        </style>
+
+                    <header>
+                    </header>
+                    <table class="table table-condensed" style="font-size:18px;border: 1px solid #ddd;border-collapse: collapse;padding: 5px;">
+                        <tr>
+                            <td width="30%" align="left" valign="middle" style="border: 1px solid white;padding: 5px;">
+                                <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                            </td>
+                            <td colspan="2" width="40%" align="center" valign="top" style="border: 1px solid white;padding: 5px;">
+                                <strong>
+                                    <span t-field="o.company_id.partner_id.name" style="font-size:20px;"/><BR/>
+                                </strong>
+                                <span t-if="o.company_id.partner_id.vat">RFC: <span t-field="o.company_id.partner_id.vat"/></span>
+                                <BR/>
+                                <span t-field="o.company_id.partner_id.street_name"/>
+                                    <span t-if="o.company_id.partner_id.street_number"> No.<span t-field="o.company_id.partner_id.street_number"/></span>
+                                    <span t-if="o.company_id.partner_id.street_number2"> Int. <span t-field="o.company_id.partner_id.street_number2"/></span>
+                                    <BR/>
+                                    <span t-if="o.company_id.partner_id.colonia_sat_id">
+                                        <span t-field="o.company_id.partner_id.colonia_sat_id.name"/>,
+                                    </span>
+                                    <span t-if="o.company_id.partner_id.township_sat_id">
+                                        <span t-field="o.company_id.partner_id.township_sat_id.name"/>
+                                    </span>
+                                    <BR/>
+                                    <span t-field="o.company_id.partner_id.state_id.name"/>, 
+                                    <span t-field="o.company_id.partner_id.country_id.name"/>
+                                    <span t-if="o.company_id.partner_id.zip_sat_id">
+                                        CP: <span t-field="o.company_id.partner_id.zip_sat_id.code"/>
+                                    </span>
+
+                            </td>
+                        </tr>    
+                    </table>
+                    
+                    <div class="fromtoheader fromhead" style="max-width: 50%;">
+                        <div>
+                              <strong><span  style="font-size:26px;" t-if="o.state == 'draft'" >Cotización # <span t-field="o.name"/> </span>
+                              <span style="font-size:26px;" t-if="o.state not in ('draft','cancel')" >Pedido # <span t-field="o.name"/> </span>
+                              <span style="font-size:26px;font-color:red;" t-if="o.state == 'cancel'" >Cotización Cancelada # <span t-field="o.name"/> </span></strong>
+                                <br/>
+                                <br/>
+                                <i aria-hidden="true" class="fa fa-calendar"/>
+                                <strong>Fecha de Cotización:</strong>
+                                <br/>
+                                    <span t-esc="o.date_order.strftime('%d-%m-%Y %H:%M:%S')"/>
+                                <br/>
+                                <i aria-hidden="true" class="fa fa-calendar-times-o"/>
+                                <strong>Fecha de Vigencia:</strong>
+                                <br/>
+                                    <span t-esc="o.validity_date.strftime('%d-%m-%Y %H:%M:%S')"/>
+                                <br/>
+                                
+                              </div>
+                    </div>
+                    <div class="fromto to" >
+                      <div class="paneldetail" align="center" ><span style="font-size:18px;"><strong>CLIENTE:</strong></span></div>
+                        <div>
+                              <strong>
+                                    <span style="font-size:18px;padding-left:6px; " t-field="o.partner_id.name"/>
+                              </strong>
+                              <br/>
+                              
+                              <!-- <i aria-hidden="true" class="fa fa-map-marker"/>
+                              <strong>DIRECCION:</strong>
+                              <br/> -->
+                                <!-- <span t-field="o.partner_id.name"/>
+                                <BR/>
+                                  <span t-field="o.partner_id.street_name"  t-if="o.partner_id.street_name" />
+                                  <div t-if="o.partner_id.street_number">
+                                    <span t-if="o.partner_id.street_number"> No. <span t-field="o.partner_id.street_number"/></span>
+                                  </div>
+                                  <div t-if="o.partner_id.street_number2">
+                                    <span t-if="o.partner_id.street_number2"> Int. <span t-field="o.partner_id.street_number2"/></span>
+                                    <BR/>
+                                  </div>
+                                
+                                <div t-if="o.partner_id.street2 or o.partner_id.colonia_sat_id">
+                                    <span t-raw="o.partner_id.street2 or o.partner_id.colonia_sat_id.name"/>
+                                </div>
+                                <div t-if="o.partner_id.locality_sat_id">
+                                    <span t-if="o.partner_id.locality_sat_id">, <span t-field="o.partner_id.locality_sat_id.name"/></span>
+                                </div>
+                                <BR t-if="o.partner_id.street2 or o.partner_id.colonia_sat_id or o.partner_id.locality_sat_id"/>
+                                <span t-if="o.partner_id.country_id">
+                                    <span t-if="o.partner_id.township_sat_id.name"><span t-field="o.partner_id.township_sat_id.name"/>, </span>
+                                    <div t-if="o.partner_id.state_id">
+                                        <span t-field="o.partner_id.state_id.name"/>, 
+                                    </div>
+                                    <div t-if="o.partner_id.country_id"> 
+                                        <span t-field="o.partner_id.country_id.name"/><BR />
+                                    </div>
+                                </span> -->
+                              <div t-if="o.partner_id.phone">
+                                 <i aria-hidden="true" class="fa fa-phone-square"/>
+                                  <span t-esc="o.partner_id.phone or 'N/D'"/>
+                                  <br/> 
+                              </div>
+                              <div t-if="o.partner_id.email">
+                                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                                  <span t-field="o.partner_id.email"/>
+                                  <br/>
+                              </div>
+                              <!-- <div t-if="o.partner_id.zip_sat_id.code or o.partner_id.zip">
+                                  CP: <span t-esc="o.partner_id.zip_sat_id.code or o.partner_id.zip"/>
+                                  <br/>
+                              </div> -->
+                              <!-- <div t-if="o.partner_id.vat">
+                                  <i aria-hidden="true" class="fa fa-building"/>
+                                  <strong>RFC:</strong>
+                                  <span t-field="o.partner_id.vat"/>
+                                  <br/>
+                              </div> -->
+                            </div>
+
+                    </div>
+                    <br/>
+                    <table class="table table-condensed table-bordered" >
+                       <tr>
+                          <td  colspan="32" style="font-size:16px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #23A7F1"><b>PRESUPUESTO</b></td>
+                      </tr>
+                    </table>
+                        
+                    <table class="table table-condensed table-bordered" >
+                      <thead style="font-size:14px;">
+                        <tr>
+                          <th style="width:15%;" class="text-center">
+                            <span>Producto</span>
+                          </th>
+                          <th style="width:15%;" class="text-center">
+                            <span>Descripción</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>Cantidad</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>Precio Unit.</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>Desc.</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>Subtotal</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>IVA 16%</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>RET 4%</span>
+                          </th>
+                          <th style="width:10%;" class="text-center">
+                            <span>Total</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody style="font-size:14px;">
+                        <tr t-as="line" t-foreach="quotation_lines">
+                          <td class="text-center">
+                                <span t-esc="line['product'].name_get()[0][1]" />
+                          </td>
+                          <td class="text-left">
+                            <span t-esc="line['line_name']" />
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'{:0,.1f}'.format(line['line_product_uom_qty'])"  /><!-- <span t-esc="' '+line['line_product_uom'].name"  /> -->
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'$ {:0,.2f}'.format(line['line_price_unit'])"/>
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'$ {:0,.2f}'.format(line['line_discount_amount'])"  />
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'$ {:0,.2f}'.format(line['line_price_subtotal'])" />
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'$ {:0,.2f}'.format(line['line_iva_16'])" />
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'$ {:0,.2f}'.format(line['line_iva_ret_4'])" />
+                          </td>
+                          <td class="text-center">
+                            <span t-esc="'$ {:0,.2f}'.format(line['line_price_total'])" />
+                          </td>
+                          
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+
+                    <br/>
+                    <table class="table table-condensed table-bordered" >
+                       <tr>
+                          <td  colspan="32" style="font-size:16px;border: 1px solid #07190B;border-collapse: collapse;padding: 1px; text-align: center;background-color: #23A7F1"><b>DETALLE</b></td>
+                      </tr>
+                      <tr>
+                        <td colspan="32" >
+                             <div align="justify">
+                                    <p style="font-size:14px;" align="justify">
+                                        <span t-field="o.note"/>
+                                    </p>
+                              </div>
+                        </td>
+                         
+                      </tr>
+                    </table>
+                    <div align="justify" style="font-size:14px;">
+                        <strong>CASO DE INCREMENTO DE TARIFAS:</strong>
+                        <p style="font-size:14px;">
+                            <ul>
+                                <li>Si la carga sobre pasa la altura del contenedor open top.</li> 
+                                <li>Cuando la carga general es: bebidas alcohólicas/medicamentos/electrónicos/menaje de casa/llantas/perfumes/aluminio, cobre y material peligroso.</li> 
+                                <li>Cuando el destino es zona residencial, centro y/o zonas prohibida o de difícil acceso para trailers.</li> 
+                                <li>Si existe una infracción o gratificación hacia alguna autoridad por estar esperando afuera de las instalaciones destino por no dar acceso, se les incluye en la factura.</li> 
+                                <li>Si exceden los pesos solo se viajará en SENCILLO (1 remolque por tracto camión) y se cobra cargo por sobre peso de acuerdo a la cantidad.</li> 
+                                <li>Si requieren tractor blindado.</li> 
+                            </ul>
+                        </p>
+                        <strong>CONSIDERACIONES:</strong>
+                        <p style="font-size:14px;">
+                            <ul>
+                                <li>En contenedores open top es responsabilidad del cliente destino quitar y poner la lona.</li> 
+                                <li>El transporte en viaje en full dependerá del domicilio según tipo de carretera y accesos.</li> 
+                                <li>Nos reservamos el derecho de No hacer el servicio si en el momento de viajar hay cierre de carreteras por cualquier motivo o disturbio social.</li> 
+                                <li>Si excede del tiempo de carga y descarga se cobraran estadía por el tipo de servicio.</li> 
+                                <li>Los contenedores/flat rack/isotanques vacíos de importación, los regresamos al puerto por lo menos al 3er día hábil siguiente de haberlos sacado del puerto (si viajó el mismo día), es decir si sacamos el contenedor hacia Mexico el lunes, lo regresamos a más tardar el jueves, si aumentan kilómetros aumentan los días de entrega.</li>
+                            </ul>
+
+                        </p>
+                        <strong>**Nos reservamos el derecho de no transportar productos de alto riesgo.</strong>
+
+                    </div>
+
+                    </div>
+                    <div class="footer">
+
+                        <table style="width: 100%">
+                            <tr >
+                                <td style="font-size:10px;width: 15%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                    <span t-esc="o.company_id.name"></span>
+                                </td>
+                                <td style="width: 20%;text-align: left;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                </td>
+                                <td style="width: 50%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                </td>
+                                <td style="width: 15%;text-align: right;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+
+                                     <strong  style="font-size:10px;text-align: center;" ><span>   Pagina </span><span class="page" /> de <span class="topage" /></strong>                       
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+            </t>
+            
+    </template>
+    
+    
+
+    <template id="quoation_report_tms">
+      <t t-call="web.html_container">
+          <t t-set="data_report_margin_top" t-value="5"/> 
+          <t t-set="data_report_header_spacing" t-value="10"/>
+          <t t-set="data_report_dpi" t-value="120"/>
+          <t t-foreach="docs" t-as="o">
+              <t t-call="belchez_tms_quotation_report.quotation_tms_belchez" />
+
+          </t>
+      </t>
+    </template>
+
+  </data>
+
+  <data> 
+    
+
+        <report 
+            id="report_quotation_order_tms"
+            model="sale.order"
+            string="Reporte Cotización (Detallado)"
+            report_type="qweb-pdf"
+            name="belchez_tms_quotation_report.quoation_report_tms"
+            file="belchez_tms_quotation_report.quoation_report_tms"
+            
+        />
+
+    <record id="report_quotation_order_tms" model="ir.actions.report">
+          <field name="print_report_name">'Cotización - %s' % (object.name or 'SN',)</field>
+        </record>
+        
+  </data>
+</odoo>

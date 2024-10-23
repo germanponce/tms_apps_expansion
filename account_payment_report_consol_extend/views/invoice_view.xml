@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--  Supplier invoice tree -->
+    <record id="batch_invoice_supplier_tree" model="ir.ui.view">
+        <field name="name">account.account_lines.payment_ref</field>
+        <field name="model">account.account_lines</field>
+        <field name="inherit_id" ref="argil_mx_accounting_reports_consol.view_account_account_lines_tree"/>
+        <field name="arch" type="xml">
+            <field name="move_id" position="after">
+                <field name="payment_reference"/>
+            </field>
+        </field>
+    </record>
+
+<template id="report_consol_extend_reference_payment" inherit_id="argil_mx_accounting_reports_consol.report_auxiliar_cuentas">
+    <xpath expr="//div[@class='page']" position="replace">
+         <div class="page">
+                        <div class="row" style="font-size: 12px;">
+                            <strong><span t-field="o.create_uid.company_id.name"/><BR/>
+                            <span style="font-size: 10px;">AUXILIAR DE LA CUENTA: <span t-field="o.account_id.code"/> - <span t-field="o.account_id.name"/><BR/>
+                            Del Periodo: <span t-field="o.period_id_start.name"/> al Periodo: <span t-field="o.period_id_end.name"/>
+                            </span></strong>
+                        </div>
+
+                        <table class="table table-condensed" style="page-break-inside: avoid">
+                            <thead>
+                                <tr style="text-align:center;font-size: 9px">
+                                    <th>Diario</th>
+                                    <th>Fecha</th>
+                                    <th>Póliza</th>                    
+                                    <th>Ref. Pago</th>                    
+                                    <th>Empresa</th>
+                                    <th>Concepto</th>
+                                    <th>Referencia</th>
+                                    <th>Saldo Inicial</th>
+                                    <th>Cargos</th>
+                                    <th>Abonos</th>
+                                    <th>Saldo Final</th>
+                                    <th>Monto M.E.</th>
+                                    <th>Moneda</th>
+                                    <th>Usuario</th>
+                                </tr>
+                           </thead>
+                           <tbody class="sale_tbody">
+                                <tr t-foreach="o.line_ids" t-as="line" style="font-size: 8px">
+                                <td style="text-align: center;"><span t-field="line.journal_id.name" /></td>
+                                <td style="text-align: center;"><span t-field="line.move_date" /></td>
+                                <td style="text-align: center;"><span t-field="line.move_id.name" /></td>
+                                <td style="text-align: center;"><span t-field="line.move_id.payment_reference" /></td>
+                                <td><span t-field="line.partner_id.name" /></td>
+                                <td><span t-field="line.name" /></td>
+                                <td><span t-field="line.ref" /></td>
+                                <td class="text-right"><span t-field="line.initial_balance" /></td>
+                                <td class="text-right"><span t-field="line.debit"/></td>
+                                <td class="text-right"><span t-field="line.credit"/></td>
+                                <td class="text-right"><span t-field="line.ending_balance" /></td>
+                                <td class="text-right"><span t-field="line.amount_currency" /></td>
+                                <td><span t-field="line.currency_id.name" /></td>
+                                <td style="text-align: center;"><span t-field="line.user_id.name" /></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="sale_tbody">
+                                <tr style="font-size: 8px">
+                                    <td colspan="7">.</td>
+                                    <td class="text-right"><span t-field="o.debit_sum"/></td>
+                                    <td class="text-right"><span t-field="o.credit_sum"/></td>
+                                    <td class="text-right" colspan="4">.</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+    </xpath>
+</template>
+
+</odoo>

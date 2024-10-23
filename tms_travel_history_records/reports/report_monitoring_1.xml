@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           
+        <template id="tms_travel_monitoring_history">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang}).sudo()"/>
+
+                            <div class="page">
+                                 <title>Revisión ocular de la unidad</title>
+                                    <!-- Diseño de la Tabla de Detalle -->
+                                    <style type="text/css">
+                                       .tg1  {
+                                            border-collapse:collapse;
+                                            border-spacing:0;
+                                            }
+                                        .tg1 td{
+                                            border-color:black;
+                                            border-style:solid;
+                                            border-width:1px;
+                                            font-family:Arial, 
+                                            sans-serif;font-size:12px;
+                                            overflow:hidden;
+                                            padding:10px 5px;
+                                            word-break:normal;
+                                            }
+                                        .tg1 th{
+                                            border-color:black;
+                                            border-style:solid;
+                                            border-width:1px;
+                                            font-family:Arial, 
+                                            sans-serif;
+                                            font-size:12px;
+                                            font-weight:normal;
+                                            overflow:hidden;
+                                            padding:10px 5px;
+                                            word-break:normal;
+                                            }
+                                        .tg1 .tg-0pky{
+                                            border-color:inherit;
+                                            text-align:left;
+                                            vertical-align:top
+                                            }
+                                        .tg1 .tg-0lax{
+                                            text-align:left;
+                                            vertical-align:top
+                                            }
+
+
+                                        .tg2  {
+                                                border-collapse:collapse;
+                                                border-spacing:0;
+                                              }
+
+                                        .tg2 td{
+
+                                              border-color:black;
+                                              border-style:solid;
+                                              border-width:1px;
+                                              font-family:Arial, 
+                                              sans-serif;
+                                              font-size:12px;
+                                              overflow:hidden;
+                                              padding:10px 5px;
+                                              word-break:normal;
+
+                                            }
+
+                                        .tg2 th{
+                                              border-color:black;
+                                              border-style:solid;
+                                              border-width:1px;
+                                              font-family:Arial, sans-serif;
+                                              font-size:14px;
+                                              font-weight:normal;
+                                              overflow:hidden;
+                                              padding:10px 5px;
+                                              word-break:normal;
+                                            }
+
+                                        .tg2 .tg-cy5f{
+                                              background-color:#00566C;
+                                              border-color:inherit;
+                                              color:#FFF;
+                                              text-align:left;
+                                              vertical-align:top
+                                            }
+
+                                        .tg2 .tg-txpa{
+                                            background-color:#00566C;
+                                            color:#FFF;
+                                            text-align:left;
+                                            vertical-align:top
+                                          }
+
+                                        .tg2 .tg-xqm4{
+                                            background-color:#D9D9D9;
+                                            text-align:left;
+                                            vertical-align:top
+                                          }
+
+                                        .tg2 .tg-ktyi{
+                                            background-color:#FFF;
+                                            text-align:left;
+                                            vertical-align:top
+                                          }
+
+                                        .tg3  {
+                                                border-collapse:collapse;
+                                                border-spacing:0;
+                                              }
+
+                                        .tg3 td{
+                                                border-color:black;
+                                                border-style:solid;
+                                                border-width:1px;
+                                                font-family:Arial, sans-serif;
+                                                font-size:14px;
+                                                overflow:hidden;
+                                                padding:10px 5px;
+                                                word-break:normal;
+                                              }
+                                        .tg3 th{
+                                                border-color:black;
+                                                border-style:solid;
+                                                border-width:1px;
+                                                font-family:Arial, sans-serif;
+                                                font-size:14px;
+                                                font-weight:normal;
+                                                overflow:hidden;
+                                                padding:10px 5px;
+                                                word-break:normal;
+                                              }
+                                        .tg3 .tg-p9ik{
+                                                background-color:#FFF;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top}
+                                        .tg3 .tg-venp{
+                                                background-color:#00566C;
+                                                color:#FFF;
+                                                font-size:24px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-ulkm{
+                                                background-color:#00566C;
+                                                color:#FFF;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-i6ty{
+                                                background-color: #a6cfd9;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-pn26{
+                                                background-color:#008fb2;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-2z9e{
+                                                background-color:#DCE6F2;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-ktyi{
+                                                background-color:#FFF;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-6cko{
+                                                background-color:#DCE6F2;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                    </style>
+
+                                <header>
+                                </header>
+                                <table class="table table-condensed" style="font-size:18px;border: 1px solid #ddd;border-collapse: collapse;padding: 5px;">
+                                    <tr>
+                                        <td width="25%" align="left" valign="middle" style="border: 1px solid white;padding: 5px;">
+                                            <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                                        </td>
+                                        <td colspan="2" width="40%" align="center" valign="top" style="border: 1px solid white;padding: 5px;">
+                                            <br/>
+                                            <strong>
+                                                <h2>
+                                                    <span t-field="o.company_id.partner_id.name" />
+                                                </h2>
+                                                <BR/>
+                                            </strong>
+
+                                        </td>
+                                        <td width="35%" valign="top" style="border: 1px solid white;text-align: center;">
+                                            <span >
+                                                <strong>
+                                                    <span style="font-size:16px;">HISTORIAL DE MONITOREO</span>
+                                                </strong>
+                                            </span>
+                                            <BR/>Viaje: <span t-field="o.name" style="font-size:14px;"/>
+                                            <BR/>
+                                        </td>
+                                    </tr>    
+                                </table>
+
+
+                                <table class="table table-condensed" style="font-size:14px;border: 1px solid #ddd;border-collapse: collapse;padding: 0px;">
+                                    <tr>
+                                        <td width="10%" align="center" valign="middle" style="border: 1px solid black;padding: 0px;font-size:14px;">
+                                               <strong>Usuario</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Vehiculo</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Conductor</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Cliente</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Referencia</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Ubicación</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Estatus</strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Comentarios</strong>
+                                        </td>
+                                        <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;font-size:14px;">
+                                               <strong>Fecha/Hora</strong>
+                                        </td>
+                                    </tr> 
+                                    <t t-foreach="o.travel_history_monitoring_ids" t-as="history">  
+
+                                        <tr t-if="not history.warning">
+                                            <td width="10%" align="center" valign="middle" style="border: 1px solid black;padding: 0px;">
+                                                    <span t-field="history.user_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.vehicle_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.employee_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.partner_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.x_reference"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.location"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.status"/>
+                                            </td>
+                                            <td width="20%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-field="history.name"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;">
+                                                    <span t-esc="str(history._get_date_time_report_tz())[0:19]"/>
+                                            </td>
+                                        </tr>    
+                                        <tr t-if="history.warning">
+                                            <td width="10%" align="center" valign="middle" style="border: 1px solid black;padding: 0px;color:red;">
+                                                    <span t-field="history.user_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.vehicle_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.employee_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.partner_id"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.x_reference"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.location"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.status"/>
+                                            </td>
+                                            <td width="20%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-field="history.name"/>
+                                            </td>
+                                            <td width="10%" valign="top" style="border: 1px solid black;text-align: center; padding: 0px;color:red;">
+                                                    <span t-esc="str(history._get_date_time_report_tz())[0:19]"/>
+                                            </td>
+                                        </tr>    
+                                    </t>
+
+                                </table>
+
+                            <br/>
+                                       
+                            </div>  
+
+                            <div class="footer">
+
+                                    <table style="width: 100%">
+                                        <tr >
+                                            <td style="font-size:10px;width: 15%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                                <span t-esc="o.company_id.name"></span>
+                                            </td>
+                                            <td style="width: 20%;text-align: left;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                            </td>
+                                            <td style="width: 50%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                            </td>
+                                            <td style="width: 15%;text-align: right;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+
+                                                 <strong  style="font-size:10px;text-align: center;" ><span>   Pagina </span><span class="page" /> de <span class="topage" /></strong>                       
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                </t>
+        </template>
+
+
+        <template id="report_monitoring_history_tmpl">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="3"/>
+                <t t-set="data_report_header_spacing" t-value="3"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tms_travel_history_records.tms_travel_monitoring_history" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+  <data>
+    <record id="monitoring_travel_report_paper" model="report.paperformat">
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="header_spacing">35</field>
+            <field name="margin_top">10</field>
+            <field name="margin_right">7</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="name">US Letter Monitoreo 01</field>
+            <field name="orientation">Portrait</field>
+            <field name="dpi">110</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+        </record>
+
+
+        <!-- <report 
+            id="report_tms_monitoring_history"
+            model="tms.travel"
+            string="Revisión ocular de la unidad"
+            report_type="qweb-pdf"
+            name="tms_travel_history_records.report_monitoring_history_tmpl"
+            file="tms_travel_history_records.report_monitoring_history_tmpl"
+            attachment_use="True"
+            print_report_name="'Revisión ocular de la unidad - '+(object.name or ' ')"
+            attachment="'Revisión ocular de la unidad  - '+(object.name or ' ').replace('/','').replace(' ','')+'.pdf'"
+        /> -->
+
+        <report 
+            id="report_tms_monitoring_history"
+            model="tms.travel"
+            string="Historial de Monitoreo"
+            report_type="qweb-pdf"
+            name="tms_travel_history_records.report_monitoring_history_tmpl"
+            file="tms_travel_history_records.report_monitoring_history_tmpl"
+            print_report_name="'Historial de Monitoreo - '+(object.name or ' ')"
+        />
+
+        <record id="report_tms_monitoring_history" model="ir.actions.report">
+          <field name="paperformat_id" ref="tms_travel_history_records.monitoring_travel_report_paper" />
+        </record>
+
+  </data>
+  </openerp>

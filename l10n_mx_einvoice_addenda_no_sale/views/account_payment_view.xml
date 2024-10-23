@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+            
+            
+        <record id="account_payment_addenda_wizard_form" model="ir.ui.view">
+            <field name="name">account.payment.addenda.wizard</field>
+            <field name="model">account.payment.addenda.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Asistente para Addenda">
+                    <header>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="error,step1,step2,step3,step4"/>
+                    </header>
+                    <group colspan="4" col="4">
+                        <field name="addenda_jinja" />
+                        <field name="payment_id" invisible="1" />
+                        <separator string="Definición de la Addenda" colspan="4" />
+                        <field name="addenda" colspan="4" nolabel="1" />
+                        <separator string="Addenda Calculada" colspan="4" 
+                                   attrs="{'invisible': [('addenda_jinja','=','False')]}"/>
+                        <field name="addenda_computed" colspan="4" nolabel="1" 
+                               attrs="{'invisible': [('addenda_jinja','=','False')]}"/>
+                        <field name="error_log" colspan="4" nolabel="1" 
+                               attrs="{'invisible': [('error_log','=','False')]}"/>
+                    </group>
+                    <footer>
+                        <button name="step1_create_addenda" type="object" string="Crear Addenda"
+                                states="step1" class="oe_highlight" />
+                        <button name="step1_create_addenda" type="object" string="Reintentar Addenda"
+                                states="error" class="oe_highlight" />
+                        <button name="step2_insert_addenda" type="object" string="Insertar Addenda en XML CFDI"
+                                states="step2" class="oe_highlight" />
+                        <button name="step3_enviar_factura" type="object" string="Enviar CFDI al cliente"
+                                states="step3" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+                        
+        <record id="action_account_payment_addenda_wizard" model="ir.actions.act_window">
+            <field name="name">Addenda</field>
+            <field name="res_model">account.payment.addenda.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_payment_addenda_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+            
+            
+        <record model="ir.ui.view" id="account_payment_form_l10n_mx_einvoice_addenda3">
+            <field name="name">account.payment.l10n_mx_einvoice.addenda3</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice.view_account_payment_form_cfdi_pagos"/>
+            <field name="arch" type="xml">                
+                <field name="pay_method_id" position="after">
+                    <field name="addenda_mandatory" 
+                           attrs="{'readonly': ['|',('addenda_ok','=',True),('cfdi_state','in',('cancel'))],'invisible': [('generar_cfdi','=', False)]}"/>
+                    <field name="addenda_manual" 
+                           attrs="{'readonly': [('addenda_ok','=',True)],'invisible': ['|','|',('generar_cfdi','=', False),('addenda_mandatory','=', False),('addenda_ok','=',True)]}"/>
+                    <field name="addenda_ok" 
+                           attrs="{'invisible': ['|',('generar_cfdi','=', False),('addenda_mandatory','=', False)]}"/>
+                </field>
+                <notebook position="inside">
+                    <page string="CFDI Addenda" attrs="{'invisible': [('addenda_mandatory', '=',False)]}">
+                        <group colspan="4" col="4">
+                            <field name="addenda_jinja" />
+                            <button name='%(action_account_payment_addenda_wizard)d' type='action' 
+                                string="Generar Addenda"
+                                attrs="{'invisible': ['|','|','|','|',('state','not in',('posted','sent')),('addenda_ok','=',True),('addenda_mandatory','=',False),('generar_cfdi','=',False),('cfdi_folio_fiscal','=',False)]}"/>
+                            <separator string="Addenda de Factura" colspan="4" />
+                            <field name="addenda" nolabel="1" colspan="4"/>
+                            <separator string="Addenda de Factura Calculada" colspan="4" 
+                                       attrs="{'invisible': [('addenda_jinja', '=',False)]}"/>
+                            <field name="addenda_computed" nolabel="1" colspan="4"
+                                   attrs="{'invisible': [('addenda_jinja', '=',False)]}"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>            
+            
+        <record model="ir.ui.view" id="account_payment_form_l10n_mx_einvoice_addenda1">
+            <field name="name">account.payment.l10n_mx_einvoice.addenda</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice.view_account_payment_form_cfdi_pagos_cancel"/>
+            <field name="arch" type="xml">
+                <button name="cancel" position="after">
+                        <button name='%(action_account_payment_addenda_wizard)d' type='action' 
+                                string="Generar Addenda"
+                                attrs="{'invisible': ['|','|','|','|',('state','not in',('posted','sent')),('addenda_ok','=',True),('addenda_mandatory','=',False),('generar_cfdi','=',False),('cfdi_folio_fiscal','=',False)]}"/>
+                </button>
+            </field>
+        </record>
+                
+                
+        <record id="account_payment_cfdi_addenda_form_button_pay" model="ir.ui.view">
+            <field name="name">account.payment.cfdi.addenda.button_pay</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice.account_payment_cfdi_form_button_pay"/>
+            <field name="arch" type="xml">
+                <field name="pay_method_id" position="after">
+                    <field name="addenda_mandatory" attrs="{'invisible': [('generar_cfdi','=', False)]}" readonly="1"/>
+                    <field name="addenda_manual" attrs="{'invisible': [('generar_cfdi','=', False)]}" />
+                    <field name="addenda_jinja" invisible="1"/>
+                    <field name="addenda" invisible="1"/>
+                    <field name="addenda_ok" invisible="1"/>
+                </field>
+            </field>
+        </record>
+            
+
+        <record id="account_payment_cfdi_addenda_invoice_form" model="ir.ui.view">
+            <field name="name">account.payment.cfdi.addenda.form</field>
+            <field name="model">account.register.payments</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice.account_payment_cfdi_invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="pay_method_id" position="after">
+                    <field name="addenda_mandatory" attrs="{'invisible': [('generar_cfdi','=', False)]}" readonly="1"/>
+                    <field name="addenda_manual" attrs="{'invisible': ['|',('generar_cfdi','=', False),('addenda_mandatory','=', False)]}" />
+                    <field name="addenda_jinja" invisible="1"/>
+                    <field name="addenda" invisible="1"/>
+                    <field name="addenda_ok" invisible="1"/>
+                </field>
+            </field>
+        </record>
+            
+            
+        <record model="ir.ui.view" id="account_payment_form_l10n_mx_einvoice_addenda2">
+            <field name="name">account.payment.l10n_mx_einvoice.addenda</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="l10n_mx_einvoice.view_account_payment_form_cfdi_pagos_cancel"/>
+            <field name="arch" type="xml">
+                <button name="cancel" position="after">
+                    <button name="action_payment_sent" type="object" 
+                            string="Enviar por Correo Electrónico" 
+                            attrs="{'invisible': ['|',('generar_cfdi','=',False),('cfdi_folio_fiscal','=',False)]}"/>
+                </button>
+            </field>
+        </record>
+                
+                
+        
+        
+
+            
+            
+            
+    </data>
+</openerp>

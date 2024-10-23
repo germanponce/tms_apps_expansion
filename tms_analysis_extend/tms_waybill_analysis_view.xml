@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record id="view_tms_waybill_analysis_pivot" model="ir.ui.view">
+         <field name="name">tms.waybill.analysis.pivot</field>
+         <field name="model">tms.waybill.analysis</field>
+         <field name="arch" type="xml">
+             <pivot string="Analisis de Cartas Porte" disable_linking="True">
+                 <field name="partner_id" type="row"/>
+                 <field name="date_order" type="col"/>
+                 <field name="amount" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+        
+    <record id="view_tms_waybill_analysis_graph" model="ir.ui.view">
+         <field name="name">tms.waybill.analysis.graph</field>
+         <field name="model">tms.waybill.analysis</field>
+         <field name="arch" type="xml">
+             <graph string="Analisis de Cartas Porte">
+                 <field name="partner_id"/>
+                 <field name="amount" type="measure"/>
+             </graph>
+         </field>
+    </record>
+        
+    <record id="filter_waybill_income_tms_category" model="ir.filters">
+        <field name="name">Income Type</field>
+        <field name="model_id">tms.waybill.analysis</field>
+        <field name="domain">[]</field>
+        <field name="context">{'group_by': ['date_order:month', 'tms_category']}</field>
+    </record>        
+        
+    <record id="view_tms_waybill_analysis_search" model="ir.ui.view">
+        <field name="name">tms.waybill.analysis.search</field>
+        <field name="model">tms.waybill.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Analisis de Cartas Porte">
+                <field name="partner_id"/>
+                <field name="date_order"/>
+                <field name="store_id"/>
+                <field name="vehicle_id"/>
+                <field name="tms_category"/>
+                <separator/>
+                <filter string="This Year" name="thisyear" domain="['|', ('date_order', '=', False), '&amp;',('date_order','&lt;=', time.strftime('%%Y-12-31')),('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter string="This month" domain="[('date_order','&gt;=', time.strftime('%%Y-%%m-01'))]" name="this_month" />                
+                <separator/>              
+                <separator/>
+                <filter string="My Waybills" domain="[('user_id','=',uid)]" help="Waybills related to me" name="my_travels"/>
+                <filter string="Amount > 0" domain="[('amount','&gt;', 0.0)]" name="my_amount" />
+                <filter string="Shipped Product Quantity > 0" domain="[('qty','&gt;', 0.0)]" name="shipped_products"/>
+                <field name="product_id"/>
+                <field name="shipped_product_id"/>
+                <field name="sequence_id" />
+                <group expand="1" string="Group By">
+                    <filter string="Customer" name="employee_id" context="{'group_by':'partner_id'}"/>
+                    <filter string="Date" name="date_order" context="{'group_by':'date_order'}"/>
+                    <filter string="Vehicle" name='vehicle' context="{'group_by':'vehicle_id'}"/>
+                    <filter string="Sucursal" name="category_product" context="{'group_by':'store_id'}"/>
+                    <filter string="Operation" context="{'group_by':'operation_id'}" name="group_op"/>
+                    <filter string="Category" context="{'group_by':'tms_category'}" name="group_cat"/>
+                    <filter string="Product" context="{'group_by':'product_id'}" name="group_product"/>
+                    <separator/>
+                    <filter string="Date" context="{'group_by':'date_order'}" name="group_date_order"/>
+                    <filter string="Year" context="{'group_by':'date_order:year'}" name="group_date_order_year"/>
+                    <filter string="Month" context="{'group_by':'date_order:month'}" name="group_date_order_month"/>
+                    <filter string="Day" context="{'group_by':'date_order:day'}" name="group_date_order_day"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+        
+    <record id="action_tms_waybill_analysis" model="ir.actions.act_window">
+        <field name="name">Analisis de Cartas Porte</field>
+        <field name="res_model">tms.waybill.analysis</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_this_month':1, 'group_by':[], 'group_by_no_leaf':1}</field>
+        <field name="search_view_id" ref="view_tms_waybill_analysis_search"/>
+        <field name="help">From this report, you can have an overview of the amount of Waybills Income.</field>
+    </record>
+
+    <menuitem action="action_tms_waybill_analysis" 
+              name="Analisis de Cartas Porte" 
+                  parent="tms.menu_tms_reporting"
+                  id="menu_tms_waybill_analysis" sequence="80"/>        
+        
+        
+        
+
+    </data>
+</openerp>

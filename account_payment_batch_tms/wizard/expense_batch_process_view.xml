@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Inherited view for Register Payment as Batch -->
+    <record id="view_account_payment_from_expenses_batch_inherited" model="ir.ui.view">
+        <field name="name">account.register.tms_expense_payments.wizard.batch.inherited</field>
+        <field name="model">account.register.tms_expense_payments</field>
+        <field name="inherit_id" ref="tms.view_account_payment_from_tms_expenses" />
+        <field name="arch" type="xml">
+            <xpath expr="//footer" position="before">
+                <group invisible="not context.get('batch', False)">
+                    <field name="is_expense" invisible="1"/>
+                    <group string="Listado de Liquidaciones a Pagar">
+                    </group>
+                   <!--  <group string="Listado de Liquidaciones a Pagar"
+                           attrs="{'invisible': [('is_expense','=',False)]}">
+                    </group> -->
+                </group>
+                <group invisible="not context.get('batch', False)">
+                    <field name="expense_payments" colspan="4" nolabel="1" >
+                        <tree editable="bottom" create="false">
+                            <field name="partner_id" readonly="1" force_save="1" invisible="1"/>
+                            <field name="employee_id" readonly="1" force_save="1" />
+                            <field name="employee_name" readonly="1" invisible="1"/>
+                            <field name="expense_id" readonly="1" force_save="1" />
+                            <field name="expense_name" readonly="1"  invisible="1"/>
+                            <field name="balance_amt" readonly="1" sum="TOTAL BALANCE" force_save="1"/>
+                            <field name="paying_amt" sum="TOTAL PAYMENT"/>
+                            <field name="payment_difference" readonly="1"  force_save="1"/>
+                            <field name="handling" attrs="{'invisible': [('payment_difference','&lt;=',0.0)]}" />
+                            <field name="writeoff_account_id"
+                                   string="Ajustar la diferencia en"
+                                   invisible="1"/>
+                        </tree>
+                    </field>
+                </group>
+                <group invisible="not context.get('batch', False)" col="6">
+                    <group colspan="4">
+                    </group>
+                    <group>
+                        <field name="total_pay_amount" />
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//button[@name='create_payments']" position="attributes">
+                <attribute name="invisible">context.get('batch', False)</attribute>
+            </xpath>
+            <xpath expr="//button[@name='create_payments']" position="after">
+                <button name="make_payments" string="Confirmar Pagos" type="object" class="btn-primary" invisible="not context.get('batch', False)"/>
+            </xpath>
+            <xpath expr="//field[@name='amount']" position="attributes">
+                <attribute name="invisible">context.get('batch', False)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">context.get('batch', False)</attribute>
+            </xpath>
+            <!-- <xpath expr="//field[@name='currency_id']" position="attributes">
+                <attribute name="invisible">not context.get('batch', False)</attribute>
+            </xpath> -->
+            <xpath expr="//field[@name='currency_id']" position="attributes">
+                <attribute name="invisible">context.get('batch', False)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount2']" position="attributes">
+                <attribute name="invisible">context.get('batch', False)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tms_expense_ids']" position="attributes">
+                <attribute name="invisible">context.get('batch', False)</attribute>
+            </xpath>
+
+            <field name="journal_id" position="after">
+                <field name="journal_batch_id" widget="selection" invisible="not context.get('batch', False)" attrs="{'required':[('expense_payments','!=',False)]}"/>
+            </field>
+
+            <xpath expr="//field[@name='communication']" position="replace">
+
+                <field name="cheque_amount" invisible="not context.get('batch', False)"/>
+                <field name="pago_de_menos" invisible="1"/>
+                <field name="pago_de_mas" invisible="1"/>
+                <field name="amount_difference_plus" invisible="1"/>
+                <field name="batch_writeoff_account_id" attrs="{'invisible':[('pago_de_mas','=',False)],'required':[('pago_de_mas','=',True)]}" domain="[('user_type_id.type','!=','view')]" options="{'no_create':True,'no_create_edit':True}"/>
+                <field name="batch_writeoff_text" attrs="{'invisible':[('pago_de_mas','=',False)],'required':[('pago_de_mas','=',True)]}" domain="[('user_type_id.type','!=','view')]" options="{'no_create':True,'no_create_edit':True}"/>
+                <field name="communication" />
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Action for Batch Payment -->
+    <record id="action_expense_payment_batch" model="ir.actions.act_window">
+        <field name="name">Pago de multiples Liquidaciones</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.register.tms_expense_payments</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_account_payment_from_expenses_batch_inherited"/>
+        <field name="context">{'batch':True}</field>
+        <field name="target">new</field>
+        <field name="multi">True</field>
+    </record>
+
+    <!-- Multi Action menu -->
+    <act_window
+        id="action_invoice_expenses_batch_process"
+        name="Pago de multiples Liquidaciones"
+        res_model="account.register.tms_expense_payments"
+        src_model="tms.expense"
+        view_mode="form"
+        multi="True"
+        target="new"
+        key2="client_action_multi"
+        context="{'batch':True}"/>
+
+</odoo>

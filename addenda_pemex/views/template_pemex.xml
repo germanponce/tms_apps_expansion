@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Addenda>
+    <pm:Addenda_Pemex xsi:schemaLocation="http://pemex.com/facturaelectronica/addenda/v2 https://pemex.reachcore.com/schemas/addenda-pemex-v2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pm="http://pemex.com/facturaelectronica/addenda/v2">
+        <pm:N_ACREEDOR>{{o.no_acreedor}}</pm:N_ACREEDOR>
+        <pm:EJERCICIO>{{o.fiscalyear}}</pm:EJERCICIO>
+        <pm:CLAVE_TRANSP>{{o.clave_transportista}}</pm:CLAVE_TRANSP>
+        <pm:A_RELACION>{{o.a_relacion}}</pm:A_RELACION>
+        <pm:ID_ANALITICO>{{o.id_analitico}}</pm:ID_ANALITICO>
+        <pm:TIPO_PRODUCTO>T</pm:TIPO_PRODUCTO>
+        <pm:CEDULA>{{o.cedula}}</pm:CEDULA>
+        <pm:CONTRATO_SIIC>{{o.contrato_siic}}</pm:CONTRATO_SIIC>
+        <pm:ANALITICO>{{o.analitico}}</pm:ANALITICO>
+    </pm:Addenda_Pemex>
+</cfdi:Addenda>

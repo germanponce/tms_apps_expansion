@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_aptitud,hr.employee.aptitud,model_hr_employee_aptitud,,1,1,1,1
+hr_employee_tipo_licencia_access,hr.employee.tipo.licencia,model_hr_employee_tipo_licencia,,1,1,1,1
+

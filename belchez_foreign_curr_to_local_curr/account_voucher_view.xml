@@ -1,0 +1,25 @@
+<odoo>
+<data>
+
+<!-- 
+**********************************
+account.voucher
+**********************************
+-->
+
+        <record model="ir.ui.view" id="view_voucher_tree_amount_in_company_curr">
+            <field name="name">account.payment.tree.amount_in_company_curr</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount" position="after">
+                    <field name="amount_untaxed_company_currency" sum="Subtotal MXN" string="Monto MXN"/>
+                </field>
+            </field>
+        </record>
+    
+    
+</data>
+</odoo>
+
+

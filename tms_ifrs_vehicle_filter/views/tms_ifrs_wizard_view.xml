@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_ifrs_report_tms">
+            <field name="name">ifrs.report.wizard.form.tms</field>
+            <field name="model">ifrs.report.wizard</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="ifrs_report.view_ifrs_report"/>
+            <field name="arch" type="xml">
+                <field name="period" position="before">
+                    <field name="is_edo_results" invisible="1" />
+                    <field name="store_ids" widget="many2many_tags" attrs="{'invisible':[('is_edo_results','=',False)]}"/>
+                </field>
+                
+                <group name="salida" position="before">
+                    <group string="Vehículos" name="vehiculos" col="4" colspan="4" >
+                         <field name="vehicle_ids" colspan="4" nolabel="1"/>
+                     </group>
+                </group>
+                <field name="report_format" position="replace">
+                    <field name="report_format"  attrs="{'invisible':[('show_report_format2','=',True)]}"/>
+                    <field name="report_format2"  attrs="{'invisible':[('show_report_format2','=',False)],'readonly':[('show_report_format2','=',True)]}"/>
+                    <field name="show_report_format2"  invisible="1"/>
+                </field>
+                <field name="columns" position="replace">
+                        <field name="columns"  attrs="{'invisible':[('show_report_format2','=',True)]}"/>
+                        <field name="columns2"  attrs="{'invisible':[('show_report_format2','=',False)],'readonly':[('show_report_format2','=',True)]}" colspan="2"/>
+
+                </field>
+
+            </field>
+        </record>
+
+
+<record model="ir.ui.view" id="view_ifrs_ifrs_edo_report_tms">
+            <field name="name">ifrs.ifrs.form.tms</field>
+            <field name="model">ifrs.ifrs</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="ifrs_report.view_ifrs_ifrs_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscalyear_id" position="after">
+                    <field name="reporte_belchez_edo" />
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

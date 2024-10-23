@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_purchase_requisition_dynamic_sequence" model="ir.ui.view">
+            <field name="name">purchase.requisition.dynamic_sequence</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='float-left']" position="inside">
+                    <label for="type_of_agreement" class="oe_edit_only oe_inline"/>
+                    <h1>
+                        <field name="type_of_agreement" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    </h1>
+                </xpath>
+                <field name="user_id" position="after">
+                    <field name="department_id" options="{'no_create': True, 'no_create_edit': True}" attrs="{'readonly': [('state','not in',('draft','in_progress','open'))]}" required="1"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

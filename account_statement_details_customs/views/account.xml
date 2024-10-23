@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+       <template id="followup_main_template_extend" inherit_id="account_reports.main_template">
+            <xpath expr="//div[hasclass('js_account_report_footnotes')]" position="after">
+                <t t-if="model._name == 'account.followup.report'">
+                  <!-- <h1>HOLA MUNDO</h1> -->
+                  <div class="o_account_reports_summary">
+                      <div class="o_account_report_summary" role="alert">
+                          <span t-if="report['footer_for_followup']"><t t-esc="report['footer_for_followup']" t-options="{'widget': 'text'}"/></span>
+                      </div>
+                  </div>
+            
+                  <!-- <span t-esc="report['footer_for_followup']" t-if="report['footer_for_followup']"/> -->
+                  <!-- <span t-esc="report"/> -->
+                </t>
+            </xpath>
+        </template>
+
+       <record id="view_account_followup_followup_form_custom_footer" model="ir.ui.view">
+            <field name="name">account_followup.followup.footer</field>
+            <field name="model">account_followup.followup</field>
+            <field name="inherit_id" ref="account_reports_followup.view_account_followup_followup_form"/>
+            <field name="arch" type="xml">
+                <field name="followup_line_ids" position="after">
+                    <group>
+                        <field name="followup_report_footer_custom" nolabel="1" 
+                            placeholder="Ingresa las notas para el seguimiento de clientes." />
+                    </group>
+                </field>
+            </field>
+        </record>
+
+       <record id="inherit_view_customer_statements_followup_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="product.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                    <field name="property_product_pricelist" position="after">
+                        <field name="force_follow_up" />
+                    </field>
+            </field>
+        </record>
+
+        <record id="ir_cron_view_form_warehouse_ext_company_all" model="ir.ui.view">
+            <field name="name">ir.cron.form</field>
+            <field name="model">ir.cron</field>
+            <field name="inherit_id" ref="stock_automatic_rules_extend.ir_cron_view_form_warehouse_ext"/>
+            <field name="arch" type="xml">
+                <field name="procurement_rule" position="after">
+                    <field name="planified_by_company" invisible="1" />
+                    <field name="force_follow_up_cron" invisible="1" />
+                </field>
+                <field name="company_id" position="replace">
+                    <field name="company_id" attrs="{'invisible':[('procurement_rule','=',False),('planified_by_company','=',False)]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

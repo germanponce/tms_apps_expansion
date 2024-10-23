@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <odoo>
+        <data>
+            
+            
+        <record id="account_invoice_addenda_wizard_form" model="ir.ui.view">
+            <field name="name">account.invoice.addenda.wizard</field>
+            <field name="model">account.invoice.addenda.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Asistente para Addenda">
+                    <header>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="error,step1,step2,step3,step4"/>
+                    </header>
+                    <group colspan="4" col="4">
+                        <field name="addenda_jinja" />
+                        <field name="invoice_id" invisible="1" />
+                        <separator string="Definición de la Addenda" colspan="4" />
+                        <field name="addenda" colspan="4" nolabel="1" />
+                        <separator string="Addenda Calculada" colspan="4" 
+                                   attrs="{'invisible': [('addenda_jinja','=','False')]}"/>
+                        <field name="addenda_computed" colspan="4" nolabel="1" 
+                               attrs="{'invisible': [('addenda_jinja','=','False')]}"/>
+                        <field name="error_log" colspan="4" nolabel="1" 
+                               attrs="{'invisible': [('error_log','=','False')]}"/>
+                    </group>
+                    <footer>
+                        <button name="step1_create_addenda" type="object" string="Crear Addenda"
+                                states="step1" class="oe_highlight" />
+                        <button name="step1_create_addenda" type="object" string="Reintentar Addenda"
+                                states="error" class="oe_highlight" />
+                        <button name="step2_insert_addenda" type="object" string="Insertar Addenda en XML Factura"
+                                states="step2" class="oe_highlight" />
+                        <button name="step3_enviar_factura" type="object" string="Enviar CFDI al cliente"
+                                states="step3" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+                        
+        <record id="action_account_invoice_addenda_wizard" model="ir.actions.act_window">
+            <field name="name">Addenda</field>
+            <field name="res_model">account.invoice.addenda.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_invoice_addenda_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+            
+        <record model="ir.ui.view" id="account_invoice_form_l10n_mx_einvoice_addenda">
+            <field name="name">account.invoice.l10n_mx_einvoice.addenda</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <button name="action_invoice_draft" position="after">
+                        <button name='%(action_account_invoice_addenda_wizard)d' type='action' 
+                                string="Generar Addenda"
+                                attrs="{'invisible': ['|','|',('state','!=','open'),('addenda_ok','=',True),('addenda_mandatory','=',False)]}"/>    
+                </button>
+                <xpath expr="//sheet/group//group[last()]" position="inside">
+                    <field name="addenda_mandatory" 
+                           attrs="{'invisible': ['|',('addenda_mandatory','in',(0, False)),('addenda_ok','=',True)]}"/>
+                    <field name="addenda_manual" 
+                           attrs="{'invisible': ['|',('addenda_mandatory','in',(0, False)),('addenda_ok','=',True)]}"/>
+                    <field name="addenda_ok" 
+                           attrs="{'invisible': ['|',('addenda_mandatory','in',(0, False)),('addenda_ok','in',(0, False))]}"/>
+                    <field name="name" widget="section_and_note_text"
+                           attrs="{'required': [('addenda_mandatory', '=',True)],'invisible': ['|',('addenda_mandatory','in',(0, False)),('addenda_ok','=',True)]}"/>
+                </xpath>
+                <notebook position="inside">
+                    <page string="CFDI Addenda" attrs="{'invisible': [('addenda_mandatory', 'in',(0,False))]}">
+                        <group colspan="4" col="4" name="invoice_addenda_header">
+                            <field name="addenda_jinja" />
+                            <button name="compute_addenda" string="Construir Addenda" type="object" class="oe_link"
+                                    attrs="{'invisible': ['|',('addenda_jinja','=',False),('state','!=','draft')]}"/>
+                            <button name='%(action_account_invoice_addenda_wizard)d' type='action' 
+                                string="Generar Addenda"
+                                attrs="{'invisible': ['|','|',('state','!=','open'),('addenda_ok','=',True),('addenda_mandatory','=',False)]}"/>
+                            <field name="addenda_template" />
+                        </group>
+                        <group colspan="4" col="4" name="invoice_addenda_result">
+                            <separator string="Addenda de Factura" colspan="4" />
+                            <field name="addenda" nolabel="1" colspan="4"/>
+                            <separator string="Addenda de Factura Calculada" colspan="4" 
+                                       attrs="{'invisible': [('addenda_jinja', '=',False)]}"/>
+                            <field name="addenda_computed" nolabel="1" colspan="4"
+                                   attrs="{'invisible': [('addenda_jinja', '=',False)]}"/>
+                        </group>
+
+                    </page>
+                </notebook>
+            </field>
+        </record>
+            
+    </data>
+</odoo>

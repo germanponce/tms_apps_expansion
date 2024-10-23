@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+<template id="tms.report_tms_fuelvoucher">
+    <t t-call="web.basic_layout">
+    <t t-foreach="docs" t-as="o">
+     <div class="page">
+          
+        <table class="table table-condensed" id="encabezado" style="font-size:11px; solid #ddd; collapse;padding: 1px;">
+              <tr>
+                  <td width="30%"  valign="middle" >
+                      <img t-if="user.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(user.company_id.logo)" style="max-height: 70px;height: auto;"/>
+                  </td>
+                  <td colspan="2" width="30%" align="center" valign="top" style="border: 1px solid white;">
+                      <strong>
+                          <span t-field="user.company_id.partner_id.name" style="font-size:11px;"/><BR/>
+                      </strong>
+                      <span t-field="user.company_id.partner_id.street" style="font-size:11px;"/><BR/>
+                      <span t-if="user.company_id.partner_id.street2" style="font-size:11px;"><span t-field="user.company_id.partner_id.street2" style="font-size:11px;"/><BR/></span>
+                      <span t-field="user.company_id.partner_id.state_id.name" style="font-size:11px;"/>, <span t-field="user.company_id.partner_id.country_id.name" style="font-size:11px;"/>
+                  </td>
+              </tr>
+          </table>       
+      </div>
+        <div class="page">
+            <div class="oe_structure"/>
+            <h6>
+                <strong>Vale de Combustible # </strong> <span t-field="o.name"/> <BR/> 
+                <strong style="font-size:12px;">Proveedor: </strong> <span t-field="o.partner_id.name" style="font-size:12px;"/>
+            </h6>
+            <!--<h6>
+                <strong style="font-size:12px;">Fuel Supplier: </strong> <span t-field="doc.partner_id.name" style="font-size:12px;"/>
+            </h6>-->
+
+            <div class="row col mb8" id="informations">
+                <div class="mr32">
+                    <strong style="font-size:12px;">Operador:</strong><br/>[ <span t-field="o.employee_id.id" style="font-size:12px;"/> ] <span t-field="o.employee_id.name" style="font-size:12px;"/>
+                </div>
+                <div class="mr32">
+                    <strong style="font-size:12px;">Fecha:</strong>
+                    <p t-field="o.date" style="font-size:12px;"/>
+                </div>
+                <div t-if="o.vehicle_id" class="mr32">
+                    <strong style="font-size:12px;">Unidades:</strong>
+                    <p><strong  style="font-size:12px;"><span t-esc="o.vehicle_id.name2 + ' [' + o.vehicle_id.license_plate + ']'" style="font-size:12px;"/></strong><t t-if="o.travel_id.trailer1_id"  style="font-size:12px;">
+                        <br/><strong  style="font-size:12px;">Trailers: </strong><span t-field="o.travel_id.trailer1_id.name2"  style="font-size:12px;"/>  </t><t t-if="o.travel_id.dolly_id"  style="font-size:12px;"> + <span t-field="o.travel_id.dolly_id.name2"  style="font-size:12px;"/>  </t><t t-if="o.travel_id.trailer2_id"  style="font-size:12px;"> + <span t-field="o.travel_id.trailer2_id.name2" style="font-size:12px;"/>  </t></p>
+                </div>
+                <div t-if="o.travel_id" class="mr32">
+                    <strong style="font-size:12px;">Viaje:</strong>
+                    <p t-field="o.travel_id" style="font-size:12px;"/>
+                </div>
+                <div t-if="o.travel_id" class="mr32">
+                    <strong style="font-size:12px;">Ruta:</strong>
+                    <p t-field="o.travel_id.route_id.name" style="font-size:12px;"/>
+                </div>
+                <div t-if="o.operation_id" class="mr32">
+                    <strong style="font-size:12px;">Operación:</strong>
+                    <p t-field="o.operation_id.name" style="font-size:12px;"/>
+                </div>
+                <!--<div class="mr32">
+                    <strong style="font-size:12px;">State:</strong>
+                    <p t-field="doc.state" style="font-size:12px;"/>
+                </div>-->
+            </div>
+
+            <table class="table table-condensed" style="font-size:12px;collapse;padding: 2px;">
+                <thead>
+                    <tr>
+                        <th style="font-size:12px;collapse;padding: 1px;">Descripción</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Cantidad</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Monto</th>
+                        <th class="text-center" groups="base.group_multi_currency" style="font-size:12px;collapse;padding: 1px;">Moneda</th>
+                    </tr>
+                </thead>
+                <tbody class="fuelvoucher_tbody">
+                    <tr>                    
+                        <td style="font-size:12px;collapse;padding: 2px;">
+                            <t t-if="o.product_id.default_code">[<span t-field="o.product_id.default_code" style="font-size:12px;"/>] </t>
+                            <span t-field="o.product_id.name" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="o.product_uom_qty" style="font-size:12px;"/>
+                            <span t-field="o.product_uom" groups="product.group_uom" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="o.price_total" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-center" groups="base.group_multi_currency" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="o.currency_id.name" style="font-size:12px;"/>
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Datos Total -->
+                          <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                                <table class="table" style="min-width: 250px;max-width: 400px;font-size:12px;collapse;padding: 2px;">
+                                    <tr>
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;"><strong>SubTotal: </strong></td>
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;">
+                                            <span t-field="o.price_subtotal"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="o.tax_line_ids" t-as="t"  id="taxes">
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;"><span t-field="t.tax_id.description"/>
+                                         <!--<span t-esc="abs(t.amount)"/>--></td>
+                                         <td class="text-right"  style="font-size:12px;collapse;padding: 2px;">
+                                            <span t-esc="abs(t.amount)" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="mr32">
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;"><strong>Total</strong></td>
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;">
+                                             <span t-field="o.price_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+<!-- Termina totales-->
+
+                        <br/>
+                        <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                            <tr>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong style="font-size:12px;">FIRMA DEL DESPACHADOR</strong>
+                            </td>
+                              <td class="text-center">
+                                  <strong style="font-size:12px;">SELLO Y FIRMA DE LA EMPRESA</strong>
+                              </td>
+                              <td class="text-center">
+                                  <strong style="font-size:12px;"><span t-field="o.employee_id.name" style="font-size:12px;"/></strong>
+                              </td>
+                             </tr>
+                        </table>
+            <!--<hr/>-->
+
+    <!-- Separamos el Reporte en  2 partes iguales -->
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+            <!-- Tenemos que repetir el reporte -->
+     <div class="page">
+          
+        <table class="table table-condensed" id="encabezado" style="font-size:11px; solid #ddd; collapse;padding: 1px;">
+              <tr>
+                  <td width="30%"  valign="middle" >
+                      <img t-if="user.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(user.company_id.logo)" style="max-height: 70px;height: auto;"/>
+                  </td>
+                  <td colspan="2" width="30%" align="center" valign="top" style="border: 1px solid white;">
+                      <strong>
+                          <span t-field="user.company_id.partner_id.name" style="font-size:11px;"/><BR/>
+                      </strong>
+                      <span t-field="user.company_id.partner_id.street" style="font-size:11px;"/><BR/>
+                      <span t-if="user.company_id.partner_id.street2" style="font-size:11px;"><span t-field="user.company_id.partner_id.street2" style="font-size:11px;"/><BR/></span>
+                      <span t-field="user.company_id.partner_id.state_id.name" style="font-size:11px;"/>, <span t-field="user.company_id.partner_id.country_id.name" style="font-size:11px;"/>
+                  </td>
+              </tr>
+          </table>       
+      </div>           
+            <h6>
+                <strong>Vale de Combustible # </strong> <span t-field="o.name"/> <BR/> 
+                <strong style="font-size:12px;">Proveedor: </strong> <span t-field="o.partner_id.name" style="font-size:12px;"/>
+            </h6>
+            <!--<h6>
+                <strong style="font-size:12px;">Fuel Supplier: </strong> <span t-field="doc.partner_id.name" style="font-size:12px;"/>
+            </h6>-->
+
+            <div class="row col mb8" id="informations">
+                <div class="mr32">
+                    <strong style="font-size:12px;">Operador:</strong><br/>[ <span t-field="o.employee_id.id" style="font-size:12px;"/> ] <span t-field="o.employee_id.name" style="font-size:12px;"/>
+                </div>
+                <div class="mr32">
+                    <strong style="font-size:12px;">Fecha:</strong>
+                    <p t-field="o.date" style="font-size:12px;"/>
+                </div>
+                <div t-if="o.vehicle_id" class="mr32">
+                    <strong style="font-size:12px;">Unidades:</strong>
+                    <p><strong  style="font-size:12px;"><span t-esc="o.vehicle_id.name2 + ' [' + o.vehicle_id.license_plate + ']'" style="font-size:12px;"/></strong><t t-if="o.travel_id.trailer1_id"  style="font-size:12px;">
+                        <br/><strong  style="font-size:12px;">Trailers: </strong><span t-field="o.travel_id.trailer1_id.name2"  style="font-size:12px;"/>  </t><t t-if="o.travel_id.dolly_id"  style="font-size:12px;"> + <span t-field="o.travel_id.dolly_id.name2"  style="font-size:12px;"/>  </t><t t-if="o.travel_id.trailer2_id"  style="font-size:12px;"> + <span t-field="o.travel_id.trailer2_id.name2" style="font-size:12px;"/>  </t></p>
+                </div>
+                <div t-if="o.travel_id" class="mr32">
+                    <strong style="font-size:12px;">Viaje:</strong>
+                    <p t-field="o.travel_id" style="font-size:12px;"/>
+                </div>
+                <div t-if="o.travel_id" class="mr32">
+                    <strong style="font-size:12px;">Ruta:</strong>
+                    <p t-field="o.travel_id.route_id.name" style="font-size:12px;"/>
+                </div>
+                <div t-if="o.operation_id" class="mr32">
+                    <strong style="font-size:12px;">Operación:</strong>
+                    <p t-field="o.operation_id.name" style="font-size:12px;"/>
+                </div>
+                <!--<div class="mr32">
+                    <strong style="font-size:12px;">State:</strong>
+                    <p t-field="doc.state" style="font-size:12px;"/>
+                </div>-->
+            </div>
+            <table class="table table-condensed" style="font-size:12px;collapse;padding: 2px;">
+                <thead>
+                    <tr>
+                        <th style="font-size:12px;collapse;padding: 2px;">Descripción</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Cantidad</th>
+                        <th class="text-right" style="font-size:12px;collapse;padding: 2px;">Monto</th>
+                        <th class="text-center" groups="base.group_multi_currency" style="font-size:12px;collapse;padding: 2px;">Moneda</th>
+                    </tr>
+                </thead>
+                <tbody class="fuelvoucher_tbody">
+                    <tr>                    
+                        <td style="font-size:12px;collapse;padding: 2px;">
+                            <t t-if="o.product_id.default_code">[<span t-field="o.product_id.default_code" style="font-size:12px;"/>] </t>
+                            <span t-field="o.product_id.name" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="o.product_uom_qty" style="font-size:12px;"/>
+                            <span t-field="o.product_uom" groups="product.group_uom"/>
+                        </td>
+                        <td class="text-right" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="o.price_total" style="font-size:12px;"/>
+                        </td>
+                        <td class="text-center" groups="base.group_multi_currency" style="font-size:12px;collapse;padding: 2px;">
+                            <span t-field="o.currency_id.name" style="font-size:12px;"/>
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Datos Total -->
+                          <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                                <table class="table" style="min-width: 250px;max-width: 400px;font-size:12px;collapse;padding: 2px;">
+                                    <tr>
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;"><strong>SubTotal: </strong></td>
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;">
+                                            <span t-field="o.price_subtotal"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="o.tax_line_ids" t-as="t"  id="taxes">
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;"><span t-field="t.tax_id.description"/>
+                                         <!--<span t-esc="abs(t.amount)"/>--></td>
+                                         <td class="text-right"  style="font-size:12px;collapse;padding: 2px;">
+                                            <span t-esc="abs(t.amount)" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                    <tr class="mr32">
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;"><strong>Total</strong></td>
+                                        <td class="text-right"  style="font-size:12px;collapse;padding: 2px;">
+                                             <span t-field="o.price_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+<!-- Termina totales-->
+                        <br/>
+                        <table border="0" style="border-collapse:collapse;color:000000;width:100%" cellpadding="3" cellspacing="3">
+                            <tr>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                                <td class="text-center">________________________</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong style="font-size:12px;">FIRMA DEL DESPACHADOR</strong>
+                            </td>
+                              <td class="text-center">
+                                  <strong style="font-size:12px;">SELLO Y FIRMA DE LA EMPRESA</strong>
+                              </td>
+                              <td class="text-center">
+                                  <strong style="font-size:12px;"><span t-field="o.employee_id.name" style="font-size:12px;"/></strong>
+                              </td>
+                             </tr>
+                        </table>
+
+            <!--<hr/>-->
+        </div>
+</t>
+</t>
+        
+</template>    
+    
+
+<!--     <template id="vale_combustible_report_style_tms">
+      <t t-call="web.html_container">
+          <t t-set="data_report_margin_top" t-value="1"/> 
+          <t t-set="data_report_header_spacing" t-value="10"/>
+          <t t-set="data_report_dpi" t-value="600"/>
+          <t t-foreach="docs" t-as="o">
+              <t t-call="l10n_mx_vale_combustible_estyle_tms.vale_combustible_report_style_tms_document" />
+
+          </t>
+      </t>
+    </template> -->
+
+  </data>
+
+  <data> 
+    
+
+       <!--  <report 
+            id="report_vale_syle_tms"
+            model="tms.fuelvoucher"
+            string="Vale_combustible"
+            report_type="qweb-pdf"
+            name="l10n_mx_vale_combustible_estyle_tms.vale_combustible_report_style_tms"
+            file="l10n_mx_vale_combustible_estyle_tms.vale_combustible_report_style_tms"
+            
+        /> -->
+
+        
+  </data>
+</openerp>

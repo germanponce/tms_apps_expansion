@@ -1,0 +1,33 @@
+<openerp>
+<data>
+
+        <record id="view_waybill_blchz_argil_reclasif" model="ir.ui.view">
+            <field name="name">tms.waybill.form.blchz.argil</field>
+            <field name="model">tms.waybill</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="tms.view_tms_waybill_form"/>
+            <field name="arch" type="xml">
+                <field name="move_id" position="replace">
+                    <field name="move_id"/>
+                    <field name="original_move_id" readonly="1"/>
+                    <field name="cancel_move_id" readonly="1"/>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="view_waybill_cancel_blchz_argil_reclasif" model="ir.ui.view">
+            <field name="name">tms.waybill.cancel.form.blchz.argil</field>
+            <field name="model">tms.waybill.cancel</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="tms.view_waybill_cancel"/>
+            <field name="arch" type="xml">
+                <field name="sequence_id" position="after">
+                    <newline/>
+                    <field name="date_cancel_move"/>
+                </field>
+            </field>
+        </record>
+
+</data>
+</openerp>

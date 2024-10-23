@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- Tipos de Unidad -->
+    <record id="tms_travel_history_events_tree" model="ir.ui.view">
+        <field name="name">tms.travel.history.events.view</field>
+        <field name="model">tms.travel.history.events</field>
+        <field name="arch" type="xml">
+            <tree string="Historial de Monitoreo" editable="top" decoration-danger="warning==True">
+                <field name="warning"/>
+                <field name="user_id" readonly="1"/>
+                <field name="vehicle_id" />
+                <field name="employee_id" />
+                <field name="partner_id" />
+                <field name="x_reference" />
+                <field name="location" />
+                <field name="status" />
+                <field name="name" />
+                <field name="date_time" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tms_travel_history_events_act" model="ir.actions.act_window">
+        <field name="name">Historial de Monitoreo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.travel.history.events</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="tms_travel_inherit_monitoring_extend">
+        <field name="name">tms.travel</field>
+        <field name="model">tms.travel</field>
+        <field name="inherit_id" ref="tms.view_tms_travel_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Historial de Monitoreo">
+                    <button string="Lista" icon="fa-paperclip" name="minitoring_to_tree_view" class="oe_right" style="display: inline-block;
+  padding: 5px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #b787aa;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px #999;" type="object"/>
+                    <button string="Excel" icon="fa-file-excel-o" name="print_history_report_xlsx" class="oe_right" style="display: inline-block;
+  padding: 5px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #b787aa;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px #999;" type="object"/>
+                    <button string="PDF" icon="fa-file-pdf-o" name="print_history_report" class="oe_right" style="display: inline-block;
+  padding: 5px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #b787aa;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px #999;" type="object"/>
+
+                    <group string="Historial">
+                        <field name="travel_history_monitoring_ids" nolabel="1"/>
+                    </group>
+                </page>
+            </notebook>
+
+        </field>
+    </record>
+        
+    </data>
+</odoo>

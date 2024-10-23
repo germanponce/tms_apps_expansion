@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- Tipos de Unidad -->
+    <record id="tipos_de_unidad_tree" model="ir.ui.view">
+        <field name="name">tms.tipo.unidad.view</field>
+        <field name="model">tms.tipo.unidad</field>
+        <field name="arch" type="xml">
+            <tree string="Tipos de Unidades" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="tipos_de_unidad_action" model="ir.actions.act_window">
+        <field name="name">Tipos de Unidad</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.tipo.unidad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="tms_travel_inherit_reports_extend">
+        <field name="name">tms.travel</field>
+        <field name="model">tms.travel</field>
+        <field name="inherit_id" ref="tms.view_tms_travel_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="tipo_unidad_id" />
+                <field name="tipo_servicio" />
+            </xpath>
+
+        </field>
+    </record>
+        
+    </data>
+</odoo>

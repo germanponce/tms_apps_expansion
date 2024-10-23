@@ -1,0 +1,798 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tms_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-12 17:52+0000\n"
+"PO-Revision-Date: 2016-08-12 12:58-0500\n"
+"Last-Translator: Israel Cruz Argil <israel.cruz@argil.mx>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_MX\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_subtotal
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_amount
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Amount > 0"
+msgstr "Importe > 0"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,waybill_state:0
+msgid "Approved"
+msgstr "Aprobada"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_arrival
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_arrival
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_arrival_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Arrival"
+msgstr "Destino"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_calendar
+msgid "Availability"
+msgstr "Disponibilidad"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Available"
+msgstr "Disponible"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Available units..."
+msgstr "Vehículos Disponibles..."
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,state:0
+#: selection:tms.travel.analysis,waybill_state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Category"
+msgstr "Categoría"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,state:0
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,waybill_state:0
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_currency_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_currency_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_partner_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_partner_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_partner_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_date
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_date
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_waybill_date
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_date_order
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_date_end
+msgid "Date End"
+msgstr "Fecha Fin"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_date_start
+msgid "Date Start"
+msgstr "Fecha Inicio"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Day"
+msgstr "Día"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_departure
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_departure
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_departure_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Departure"
+msgstr "Origen"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_display_name
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_display_name
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_display_name
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_dolly_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_dolly_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+#: selection:tms.travel.availability,fleet_type:0
+msgid "Dolly"
+msgstr "Dolly"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Dolly unit..."
+msgstr "Dolly"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,state:0
+msgid "Done"
+msgstr "Done"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Double Trailer"
+msgstr "Doble Remolque"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_employee_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_employee_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_employee_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Driver"
+msgstr "Operador"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_driver_helper
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+msgid "Driver Helper"
+msgstr "Ayudante"
+
+#. module: tms_analysis
+#: model:ir.filters,name:tms_analysis.filter_expense_line_type_salary
+msgid "Employee Salary"
+msgstr "Sueldo Operador"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,name:tms_analysis.action_tms_expense_analysis
+#: model:ir.ui.menu,name:tms_analysis.menu_tms_expense_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_graph
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_pivot
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+msgid "Expense Analysis"
+msgstr "Análisis de Gastos de Viaje"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Extended Filters..."
+msgstr "Filtros extendidos..."
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Fleet Type"
+msgstr "Tipo Unidad"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_framework
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_framework
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_framework
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Framework"
+msgstr "Armado"
+
+#. module: tms_analysis
+#: selection:tms.travel.availability,state:0
+msgid "Free"
+msgstr "Libre"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,tms_category:0
+#: selection:tms.waybill.analysis,tms_category:0
+msgid "Freight"
+msgstr "Flete"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,help:tms_analysis.action_tms_expense_analysis
+msgid "From this report, you can have an overview of the amount of Travel Expenses."
+msgstr "Desde este Análisis puede tener un vistazo del monto de Gastos de Viaje"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,help:tms_analysis.action_tms_travel_analysis
+msgid "From this report, you can have an overview of the amount of Travel Income."
+msgstr "Desde este Análisis puede tener un vistazo del monto de los Ingresos por Viajes"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,help:tms_analysis.action_tms_waybill_analysis
+msgid "From this report, you can have an overview of the amount of Waybills Income."
+msgstr "Desde este Análisis puede tener un vistazo del monto de los Ingresos en Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.filters,name:tms_analysis.filter_expense_line_type_fuel
+#: selection:tms.expense.analysis,line_type:0
+msgid "Fuel"
+msgstr "Combustible"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+msgid "Fuel Analysis"
+msgstr "Análisis de Combustible"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,tms_category:0
+#: selection:tms.waybill.analysis,tms_category:0
+msgid "Highway Tolls"
+msgstr "Autopistas"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_id
+msgid "ID"
+msgstr "ID"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_tms_category
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_tms_category
+msgid "Income Category"
+msgstr "Categoría Ingreso"
+
+#. module: tms_analysis
+#: model:ir.filters,name:tms_analysis.filter_travel_income_tms_category
+#: model:ir.filters,name:tms_analysis.filter_waybill_income_tms_category
+msgid "Income Type"
+msgstr "Tipo Ingreso"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Indirect"
+msgstr "Indirecto"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,tms_category:0
+#: selection:tms.waybill.analysis,tms_category:0
+msgid "Insurance"
+msgstr "Seguro"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_invoice_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_invoice_name
+msgid "Invoice Name"
+msgstr "No. Factura"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_invoice_name
+msgid "Invoice Reference"
+msgstr "Referencia de Factura"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Just Unit"
+msgstr "Unidad Motriz"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Just motorized unit"
+msgstr "Solo Unidad Motriz"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis___last_update
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis___last_update
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability___last_update
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis___last_update
+msgid "Last Modified on"
+msgstr "Última Modifiación en"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_product_id
+msgid "Line"
+msgstr "Linea"
+
+#. module: tms_analysis
+#: model:ir.filters,name:tms_analysis.filter_expense_line_type
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_line_type
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+msgid "Line Type"
+msgstr "Tipo de Línea"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Made-up Expense"
+msgstr "Facilidades Admvas."
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Month"
+msgstr "Mes"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+#: selection:tms.travel.availability,fleet_type:0
+msgid "Motorized Unit"
+msgstr "Unidad Motriz"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Motorized unit..."
+msgstr "Unidad Motriz"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,tms_category:0
+#: selection:tms.waybill.analysis,tms_category:0
+msgid "Move"
+msgstr "Maniobras"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "My Travels"
+msgstr "Mis Viajes"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "My Waybills"
+msgstr "Mis Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "My units"
+msgstr "Mis Vehículos"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_name
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Name"
+msgstr "Nombre"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Negative Balance"
+msgstr "Saldo en Contra"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_office_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_office_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_office_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_office_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Office"
+msgstr "Oficina"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_office_name
+msgid "Office Name"
+msgstr "Oficina"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_operation_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_operation_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_operation_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Operation"
+msgstr "Operación"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,tms_category:0
+#: selection:tms.travel.availability,fleet_type:0
+#: selection:tms.waybill.analysis,tms_category:0
+msgid "Other"
+msgstr "Otros"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,waybill_type:0
+#: selection:tms.waybill.analysis,waybill_type:0
+msgid "Outsourced"
+msgstr "Permisionado"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,state:0
+#: selection:tms.travel.analysis,waybill_state:0
+#: selection:tms.travel.availability,state:0
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_price_unit
+msgid "Price Unit"
+msgstr "Precio Unitario"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_product_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_product_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_qty
+msgid "Product Qty"
+msgstr "Cantidad"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,state:0
+#: selection:tms.travel.availability,state:0
+msgid "Progress"
+msgstr "En Tránsito"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_qty
+msgid "Qty"
+msgstr "Cant"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Real Expense"
+msgstr "Gasto Real"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_route_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_route_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_route_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_route_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Route"
+msgstr "Ruta"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Salary"
+msgstr "Sueldo"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Salary Discount"
+msgstr "Descuento de Sueldo"
+
+#. module: tms_analysis
+#: selection:tms.expense.analysis,line_type:0
+msgid "Salary Retention"
+msgstr "Retención de Sueldo"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_user_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_user_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_user_id
+msgid "Salesman"
+msgstr "Ejecutivo"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Search Unit Availability"
+msgstr "Buscar Disponibilidad de Vehículos"
+
+#. module: tms_analysis
+#: selection:tms.travel.analysis,waybill_type:0
+#: selection:tms.waybill.analysis,waybill_type:0
+msgid "Self"
+msgstr "Propios"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_sequence_id
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_shipped_product_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_shipped_product_id
+msgid "Shipped Product"
+msgstr "Producto Transportado"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_qty
+msgid "Shipped Product Qty"
+msgstr "Sant. Producto Transportado"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Shipped Product Quantity > 0"
+msgstr "Cant. Producto Transportado > 0"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Single Trailer"
+msgstr "Sencillo"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_state
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_state
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "State"
+msgstr "Estado"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_supplier_unit
+msgid "Supplier Unit"
+msgstr "Vehículo de Permisionario"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Supplier's Unit"
+msgstr "Vehículo de Permisionario"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "This Year"
+msgstr "Este Año"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "This month"
+msgstr "Este mes"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Tractor"
+msgstr "Tractor"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Tractor or motorized unit..."
+msgstr "Tractor o Unidad Motriz"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+#: selection:tms.travel.availability,fleet_type:0
+msgid "Trailer"
+msgstr "Remolque"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_trailer1_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_trailer1_id
+msgid "Trailer 1"
+msgstr "Remolque 1"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_trailer2_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_trailer2_id
+msgid "Trailer 2"
+msgstr "Remolque 2"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Trailer unit..."
+msgstr "Remolque"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_travel_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_travel_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_travel_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+msgid "Travel"
+msgstr "Viaje"
+
+#. module: tms_analysis
+#: model:ir.model,name:tms_analysis.model_tms_travel_analysis
+msgid "Travel Analisys"
+msgstr "Análisis de Viajes"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,name:tms_analysis.action_tms_travel_analysis
+#: model:ir.ui.menu,name:tms_analysis.menu_tms_travel_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_graph
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_pivot
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Travel Analysis"
+msgstr "Análisis de Viajes"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_date
+msgid "Travel Date"
+msgstr "Fecha Viaje"
+
+#. module: tms_analysis
+#: model:ir.model,name:tms_analysis.model_tms_expense_analysis
+msgid "Travel Expenses Analisys"
+msgstr "Análisis de Liquidaciones"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_name
+msgid "Travel Number"
+msgstr "No. Viaje"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Travels related to me"
+msgstr "Mis Viajes"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Trip with One Trailer"
+msgstr "Viaje en Sencillo"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Trip with Two Trailer"
+msgstr "Viaje en Full"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Trip without Trailer"
+msgstr "Viaje sin Remolques"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Trips with Company's Vehicles"
+msgstr "Viajes con Vehículos de la Compañía"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+msgid "Trips with Third Part Vehicles"
+msgstr "Viajes con Vehículos de Terceros"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_unit_char
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_unit_char
+msgid "Unidad"
+msgstr "Unidad"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_expense_analysis_unit_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_unit_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_name
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_unit_id
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,name:tms_analysis.action_tms_travel_availability
+#: model:ir.ui.menu,name:tms_analysis.menu_tms_travel_availability
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_form
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_tree
+msgid "Unit Availability"
+msgstr "Disponibilidad de Vehículos"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_fleet_type
+msgid "Unit Fleet Type"
+msgstr "Tipo de Vehículo"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_unit_type_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_unit_type_id
+msgid "Unit Type"
+msgstr "Tipo de Vehículo"
+
+#. module: tms_analysis
+#: model:ir.model,name:tms_analysis.model_tms_travel_availability
+msgid "Unit availability for Travel"
+msgstr "Vehículos disponibles para Viajes"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Vehicles of the Suppliers..."
+msgstr "Vehículos de Permisionarios..."
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_availability_search
+msgid "Vehicles of the company..."
+msgstr "Vehículos de la Compañía..."
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_waybill_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_waybill_id
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_name
+msgid "Waybill"
+msgstr "Carta Porte"
+
+#. module: tms_analysis
+#: model:ir.model,name:tms_analysis.model_tms_waybill_analysis
+msgid "Waybill Analisys"
+msgstr "Análisis de Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.actions.act_window,name:tms_analysis.action_tms_waybill_analysis
+#: model:ir.ui.menu,name:tms_analysis.menu_tms_waybill_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_graph
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_pivot
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Waybill Analysis"
+msgstr "Análisis de Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_waybill_category
+msgid "Waybill Categ"
+msgstr "Categoría de Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_availability_waybill_date
+msgid "Waybill Date"
+msgstr "Fecha Carta Porte"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_waybill_sequence
+msgid "Waybill Sequence"
+msgstr "Serie Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_waybill_state
+msgid "Waybill State"
+msgstr "Estado Carta Porte"
+
+#. module: tms_analysis
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_travel_analysis_waybill_type
+#: model:ir.model.fields,field_description:tms_analysis.field_tms_waybill_analysis_waybill_type
+msgid "Waybill Type"
+msgstr "Tipo Carta Porte"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Waybills related to me"
+msgstr "Mis Cartas Porte"
+
+#. module: tms_analysis
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_expense_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_travel_analysis_search
+#: model:ir.ui.view,arch_db:tms_analysis.view_tms_waybill_analysis_search
+msgid "Year"
+msgstr "Año"

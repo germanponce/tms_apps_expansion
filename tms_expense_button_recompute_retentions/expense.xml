@@ -1,0 +1,19 @@
+<openerp>
+<data>
+        
+        <record id="tms_expense_extended_buttons_recompute" model="ir.ui.view">
+            <field name="name">tms.expense.recompute</field>
+            <field name="model">tms.expense</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_form"/>
+            <field name="arch" type="xml">
+                <div  name="button_box" position="inside">
+                    <button name="compute_special_amounts_expenses" states="draft" string="Actualizar Retenciones" type="object" icon="fa-cogs"/>
+                </div>
+            </field>
+        </record>
+    
+
+    
+</data>
+</openerp>

@@ -1,0 +1,22 @@
+<openerp>
+<data>
+        
+        <record id="view_account_payment_from_tms_advances_extended" model="ir.ui.view">
+            <field name="name">account.register.tms_advance_payments.wizard</field>
+            <field name="model">account.register.tms_advance_payments</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="tms.view_account_payment_from_tms_advances"/>
+            <field name="arch" type="xml">
+                <field name="communication" position="before">
+                    <field name="hold_diference" />
+                    <field name="payment_extra_amount" />
+                    <field name="amount3" />
+                </field>
+                
+            </field>
+        </record>
+    
+
+    
+</data>
+</openerp>

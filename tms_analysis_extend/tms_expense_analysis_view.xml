@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>        
+        
+    <record id="view_tms_expense_analysis_pivot" model="ir.ui.view">
+         <field name="name">tms.expense.analysis.pivot</field>
+         <field name="model">tms.expense.analysis</field>
+         <field name="arch" type="xml">
+             <pivot string="Analisis de Gastos de Viaje" disable_linking="True">
+                 <field name="vehicle_id" type="row"/>
+                 <field name="date" type="col"/>
+                 <field name="subtotal" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+        
+    <record id="view_tms_expense_analysis_graph" model="ir.ui.view">
+         <field name="name">tms.expense.analysis.graph</field>
+         <field name="model">tms.expense.analysis</field>
+         <field name="arch" type="xml">
+             <graph string="Analisis de Gastos de Viaje">
+                 <field name="vehicle_id"/>
+                 <field name="subtotal" type="measure"/>
+             </graph>
+         </field>
+    </record>
+        
+    <record id="filter_expense_line_type" model="ir.filters">
+        <field name="name">Tipo de Gasto</field>
+        <field name="model_id">tms.expense.analysis</field>
+        <field name="domain">[]</field>
+        <field name="context">{'group_by': ['date:month', 'line_type']}</field>
+    </record>
+    <record id="filter_expense_line_type_fuel" model="ir.filters">
+        <field name="name">Combustible</field>
+        <field name="model_id">tms.expense.analysis</field>
+        <field name="domain">[('line_type', '=', 'fuel')]</field>
+        <field name="context">{'group_by': ['date:month', 'vehicle_id']}</field>
+    </record>
+    <record id="filter_expense_line_type_salary" model="ir.filters">
+        <field name="name">Salario del Empleado</field>
+        <field name="model_id">tms.expense.analysis</field>
+        <field name="domain">[('line_type', '=', 'salary')]</field>
+        <!--<field name="user_id" eval="False"/>-->
+        <field name="context">{'group_by': ['date:month', 'employee_id']}</field>
+    </record>
+        
+        
+    <record id="view_tms_expense_analysis_search" model="ir.ui.view">
+        <field name="name">tms.expense.analysis.search</field>
+        <field name="model">tms.expense.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Analisis de Gastos de Viaje">
+                <field name="date"/>
+                <field name="store_id"/>
+                <field name="vehicle_id"/>
+                <field name="employee_id"/>
+                <field name="product_id"/>
+                <field name="line_type"/>
+                <filter string="Este Año" name="thisyear" domain="['|', ('date', '=', False), '&amp;',('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter string="Este Mes" domain="[('date','&gt;=', time.strftime('%%Y-%%m-01'))]" name="this_month" />                
+                <separator/>
+                <filter name="full_analysis" string="Analisis Combustible" domain="[('line_type','=','fuel')]"/>
+                <separator/>
+                <filter name="drive_helper" string="Segundo Operador" domain="[('driver_helper','=',1)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Operador" name="partner_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="Vehiculo" name='user' context="{'group_by':'vehicle_id'}"/>
+                    <filter string="Sucursal" name="category_product" context="{'group_by':'store_id'}"/>
+                    <filter name="group_op" string="Operacion" context="{'group_by':'operation_id'}"/>
+                    <filter name="group_travel" string="Viaje" context="{'group_by':'travel_id'}"/>
+                    <filter name="group_line_type" string="Tipo Linea Gasto" context="{'group_by':'line_type'}"/>
+                    <filter name="group_product_id" string="Producto" context="{'group_by':'product_id'}"/>
+                    <separator/>
+                    <filter name="group_date_f" string="Fecha" context="{'group_by':'date'}"/>
+                    <filter name="group_year" string="Año" context="{'group_by':'date:year'}"/>
+                    <filter name="group_date_month" string="Mes" context="{'group_by':'date:month'}"/>
+                    <filter name="group_date_day" string="Dia" context="{'group_by':'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+        <!-- tms.expense.analysis -->
+        <record id="view_tms_expense_analysis_tree" model="ir.ui.view">
+          <field name="name">tms.expense.analysis.tree</field>
+          <field name="model">tms.expense.analysis</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+            <tree string="Analisis de Gastos de Viaje de Viaje" create="false">
+              <field name="store_id" invisible="1" />
+              <field name="name" />
+              <field name="date" />
+              <field name="year" invisible="1" />
+              <field name="month" invisible="1" />
+              <field name="day" invisible="1" />
+              <field name="employee_id" />
+              <field name="vehicle_char" />
+              <field name="currency_id" invisible="1" />
+              <field name="product_id"  />
+              <field name="expense_line_description" />
+              <field name="operation_id"  invisible="1"/>
+              <field name="price_unit" />
+              <field name="qty" sum="Qty"/>
+              <field name="subtotal" sum="SubTotal"/>
+              <field name="driver_helper"  invisible="1"/>
+              <field name="state" />
+            </tree>
+          </field>
+        </record>
+        
+    <record id="action_tms_expense_analysis" model="ir.actions.act_window">
+        <field name="name">Analisis de Gastos de Viaje</field>
+        <field name="res_model">tms.expense.analysis</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="context">{'search_default_this_month':1}</field>
+        <field name="search_view_id" ref="view_tms_expense_analysis_search"/>
+        <field name="help">From this report, you can have an overview of the amount of Travel Expenses.</field>
+    </record>
+
+    <menuitem action="action_tms_expense_analysis" 
+              name="Analisis de Gastos de Viaje" 
+                  parent="tms.menu_tms_reporting"
+                  id="menu_tms_expense_analysis" sequence="70"/>
+
+
+        
+        
+
+    </data>
+</openerp>

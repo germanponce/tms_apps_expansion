@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_tms_expense_form_ref_cp_payments" model="ir.ui.view">
+            <field name="name">tms.expense.invoice.ref.pagos</field>
+            <field name="model">tms.expense</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_form"/>
+            <field name="arch" type="xml">
+               <notebook position="inside">
+                    <page string="Pagos">
+                        <field name="payment_register_ids" readonly="1" options="{'no_open':True}">
+                            <tree editable="top">
+                                <field name="date" />
+                                <field name="payment_id" />
+                                <field name="amount_payment" sum="Total"/>
+                                <field name="payment_state" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <xpath expr="//page[1]" position="replace">
+                    <page string="Resumen">
+                            <table class="table table-condensed" width="90%" align="center">
+                                <tr>
+                                    <td colspan="2" style="font-align: center;font-size:12px;font-weight:bold;background-color:lightgray;">Expense Summary</td>
+                                    <td style="font-align: center;"/>
+                                    <td colspan="2" style="font-align: center;font-size:12px;font-weight:bold;background-color:lightgray;">Including Fuel Vouchers</td>
+                                </tr>
+                                <tr>
+                                    <td align="right" width="30%"><label for="amount_salary"/></td>
+                                    <td align="right" width="15%"><field name="amount_salary"/></td>
+                                    <td style="font-align: center;" width="10%"/>
+                                    <td align="right" width="30%"><label for="amount_fuel_voucher"/></td>
+                                    <td align="right" width="15%"><field name="amount_fuel_voucher"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><label for="amount_salary_retention"/></td>
+                                    <td align="right"><field name="amount_salary_retention"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"><label for="amount_subtotal_total"/></td>
+                                    <td align="right" style="font-weight:bold;"><field name="amount_subtotal_total"/></td>                                    
+                                </tr>
+                                <tr>
+                                    <td align="right"><label for="amount_salary_discount"/></td>
+                                    <td align="right"><field name="amount_salary_discount"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"><label for="amount_tax_total"/></td>
+                                    <td align="right"><field name="amount_tax_total"/></td>                                    
+                                </tr>
+                                <tr>
+                                    <td align="right"><label for="amount_real_expense"/></td>
+                                    <td align="right"><field name="amount_real_expense"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"><label for="amount_total_total"/></td>
+                                    <td align="right" style="font-weight:bold;"><field name="amount_total_total"/></td>                                    
+                                </tr>
+                                <tr>
+                                    <td align="right"><label for="amount_fuel"/></td>
+                                    <td align="right"><field name="amount_fuel"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"/>
+                                    <td align="right"/>   
+                                </tr>
+                                <tr>
+                                    <td align="right" style="background-color:lightgray;"><label for="amount_subtotal_real"/></td>
+                                    <td align="right" style="font-weight:bold;background-color:lightgray;"><field name="amount_subtotal_real"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"><label for="amount_madeup_expense"/></td>
+                                    <td align="right"><field name="amount_madeup_expense"/></td>                                    
+                                </tr>
+                                <tr>
+                                    <td align="right"><label for="amount_tax_real"/></td>
+                                    <td align="right"><field name="amount_tax_real"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"/>
+                                    <td align="right"/>   
+                                </tr>
+                                <tr>
+                                    <td align="right" style="background-color:lightgray;"><label for="amount_total_real"/></td>
+                                    <td align="right" style="font-weight:bold;background-color:lightgray;"><field name="amount_total_real"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"/>
+                                    <td align="right"/>   
+                                </tr>
+                                <tr>
+                                    <td align="right"><label for="amount_advance"/></td>
+                                    <td align="right"><field name="amount_advance"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"/>
+                                    <td align="right"/>   
+                                </tr>
+                                <tr>
+                                    <td align="right" style="background-color:lightgray;"><label for="amount_balance"/></td>
+                                    <td align="right" style="font-weight:bold;background-color:lightgray;"><field name="amount_balance"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"/>
+                                    <td align="right"/>   
+                                </tr>
+                                <tr>
+                                    <td align="right" style="background-color:lightgray;"><label for="amount_payment_total"/></td>
+                                    <td align="right" style="font-weight:bold;background-color:lightgray;"><field name="amount_payment_total"/></td>
+                                    <td style="font-align: center;"/>
+                                    <td align="right"/>
+                                    <td align="right"/>   
+                                </tr>
+                            </table>
+                        </page>
+                </xpath>
+                <field name="paid" position="after">
+                    <field name="handling" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_tms_expense_form_ref_cp_tree_payments" model="ir.ui.view">
+            <field name="name">tms.expense.invoice.ref.tree</field>
+            <field name="model">tms.expense</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_balance" position="before">
+                    <field name="amount_payment_total" />
+                </field>
+                <field name="amount_balance" position="after">
+                    <field name="handling" />
+                </field>
+            </field>
+        </record>
+
+
+
+        <record id="view_tms_expense_form_ref_cp_search_payments_pays" model="ir.ui.view">
+            <field name="name">tms.expense.invoice.ref.search</field>
+            <field name="model">tms.expense</field>
+            <field name="inherit_id" ref="tms.view_tms_expense_filter"/>
+            <field name="arch" type="xml">
+                 <field name="vehicle_id" position="after">
+                    <field name="payment_rel_id" />
+                    <field name="payment_rel_reference" />
+                </field>
+            </field>
+        </record>
+
+</odoo>

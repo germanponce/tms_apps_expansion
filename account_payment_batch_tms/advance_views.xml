@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record id="view_tms_advance_form_ref_cp_payments" model="ir.ui.view">
+            <field name="name">tms.advance.invoice.ref.pagos</field>
+            <field name="model">tms.advance</field>
+            <field name="inherit_id" ref="tms.view_tms_advance_form"/>
+            <field name="arch" type="xml">
+               <field name="paid" position="replace">
+                    <field name="amount_payment_total" />
+                 </field>
+                 <field name="expense_id" position="replace">
+                    <field name="paid" />
+                    <field name="handling" />
+                 </field>
+                 <field name="total" position="after">
+                    <field name="expense_id" />
+                    <field name="amount_balance" />
+                </field>
+                <notebook position="inside">
+                    <page string="Pagos">
+                        <field name="payment_register_ids" readonly="1" options="{'no_open':True}">
+                            <tree editable="top">
+                                <field name="date" />
+                                <field name="payment_id" />
+                                <field name="amount_payment" sum="Total" />
+                                <field name="payment_state" />
+                            </tree>
+                        </field>
+                    </page>
+                    
+                </notebook>
+            </field>
+        </record>
+
+        <record id="view_tms_advance_form_ref_cp_tree_payments" model="ir.ui.view">
+            <field name="name">tms.advance.invoice.ref.tree</field>
+            <field name="model">tms.advance</field>
+            <field name="inherit_id" ref="tms.view_tms_advance_tree"/>
+            <field name="arch" type="xml">
+                 <field name="total" position="after">
+                    <field name="amount_payment_total" />
+                    <field name="amount_balance" />
+                    <field name="handling" />
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_tms_advance_form_ref_cp_search_payments_pays" model="ir.ui.view">
+            <field name="name">tms.advance.invoice.ref.search</field>
+            <field name="model">tms.advance</field>
+            <field name="inherit_id" ref="tms.view_tms_advance_search"/>
+            <field name="arch" type="xml">
+                 <field name="operation_id" position="after">
+                    <field name="payment_rel_id" />
+                    <field name="payment_rel_reference" />
+                </field>
+            </field>
+        </record>
+
+
+
+</odoo>

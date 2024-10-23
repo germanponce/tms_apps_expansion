@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <template id="tms.report_tms_waybill_document">
+<t t-name="cp.report_tms_waybill_document">
+        <t t-call="web.basic_layout">
+            <t t-set="doc" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <div class="page">
+                 <t t-if="o.state == 'draft'">
+                            <style type="text/css">
+                                div.page {
+                                    background-image: url("/l10n_mx_carta_porte_estyle_tms/static/src/img/draft.svg");
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                }
+                            </style>
+                        </t>
+                 <t t-if="o.state == 'cancel'">
+                            <style type="text/css">
+                                div.page {
+                                    background-image: url("/l10n_mx_carta_porte_estyle_tms/static/src/img/cancelled.svg");
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: contain;
+                                }
+                            </style>
+                        </t>
+                <table class="table table-condensed" id="encabezado" style="font-size:11px;border: 1px solid #ddd;border-collapse: collapse;padding: 5px;">
+
+                    <tr>
+                        <td width="30%" align="center" valign="middle"  style="border: 1px solid white;">
+                          <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                          <!--<img src="https://www.dropbox.com/s/h9tzfz86c64wb9g/skd.png" style="max-height: 90px;height: auto;" />-->
+                        </td>
+                        <td colspan="2" width="40%" align="center" valign="top" style="border: 1px solid white;">
+                            <strong>
+                                <span t-field="o.company_id.partner_id.name" style="font-size:14px;"/><BR/>
+                            </strong>
+                            <span t-if="o.company_id.partner_id.vat">RFC: <span t-field="o.company_id.partner_id.vat"/></span><BR/>
+
+                            <BR/>
+                            <span t-field="o.company_id.partner_id.street"/><BR/>
+                            <span t-if="o.company_id.partner_id.street2"><span t-field="o.company_id.partner_id.street2"/><BR/></span>
+                            <span t-field="o.company_id.partner_id.state_id.name"/>, <span t-field="o.company_id.partner_id.country_id.name"/><BR/>
+                            CP: <span t-field="o.company_id.partner_id.zip"/>
+                        </td>
+                        <td width="30%" valign="top" style="border: 1px solid white;text-align: center;">
+                            <span t-if="o.name">
+                                <strong>Carta porte</strong><BR/><span t-field="o.name"/><BR/>
+                            </span>
+                            <span t-if="not o.name">
+                                <strong>TRANSPORT REQUEST #</strong><BR/><span t-field="o.id"/><BR/>
+                            </span>
+                            <strong>Lugar de expedicion: </strong>
+                                <span t-field="o.company_id.partner_id.zip" id="company_emmiter_zip"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table" width="100%" id="o.igen_destino" style="font-size:11px;border: 2px solid #07190B;border-bottom: collapse;padding: 5px;">
+                     
+                    <thead>  
+                        <tr>
+                            <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>LUGAR Y FECHA DE EXPEDICION: </b> <span t-field="o.company_id.partner_id.state_id.name"/>, <span t-field="o.company_id.partner_id.locality_sat_id.name"/>, <span t-field="o.date_order"/></td>
+                                    
+                        </tr>
+                    </thead>
+                </table>
+                <table class="table" width="100%" id="o.igen_destino" style="font-size:11px;border: 2px solid #07190B;border-bottom: collapse;padding: 5px;">
+                     
+                    <thead>  
+                        <tr>
+                            <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>DATOS DEL CLIENTE: </b> 
+                            <span t-field="o.partner_id.name"/>
+                            <span t-field="o.partner_id.street"/>,
+                            <span t-if="o.partner_id.street2"><span t-field="o.partner_id.street2"/>,</span>
+                            <span t-field="o.partner_id.state_id.name"/>, <span t-field="o.partner_id.country_id.name"/>,
+                            CP: <span t-field="o.partner_id.zip"/><span t-if="o.partner_id.vat">RFC: <span t-field="o.partner_id.vat"/></span></td>
+                                    
+                        </tr>
+                        
+                    </thead>
+                </table>
+                    <table class="table" width="100%" id="o.igen_destino" style="font-size:11px;border: 2px solid #07190B;border-bottom: collapse;padding: 5px;">
+                    <tr>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2" width="50%"><strong>ORIGEN: </strong> <span t-field="o.company_id.partner_id.locality_sat_id.name"/> <span t-field="o.company_id.partner_id.state_id.name"/></td>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2" width="50%"><strong>DESTINO: </strong> <span t-field="o.partner_id.locality_sat_id.name"/> <span t-field="o.partner_id.state_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <td style=" solid #000000; border-right:2px solid #000000" colspan="2" width="50%"><strong>Remitente: </strong>
+                            <span t-field="o.departure_address_id.name"/>
+                        </td>
+                        <td style=" solid #000000; border-right:2px solid #000000" colspan="2" width="50%"><strong>Destino: </strong>
+                            <span t-field="o.arrival_address_id.name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2" width="50%"><strong>Direccion: </strong>
+                            <BR/>
+                            <span t-field="o.company_id.partner_id.street"/> <BR/>
+                            COL. <span t-field="o.company_id.partner_id.colonia_sat_id.name"/><BR/>
+                            <span t-if="o.company_id.partner_id.street2"><span t-field="o.company_id.partner_id.street2"/><BR/></span>
+                            <span t-field="o.company_id.partner_id.state_id.name"/>, <span t-field="o.company_id.partner_id.country_id.name"/><BR/>
+                            CP: <span t-field="o.company_id.partner_id.zip"/><span t-if="o.company_id.partner_id.vat"><BR/>
+                            RFC: <span t-field="o.company_id.partner_id.vat"/></span><BR/>
+                        </td>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2" width="50%"><strong>Direccion: </strong>
+                            <BR/>
+                            <span t-field="o.partner_id.street"/><BR/>
+                            <span t-if="o.partner_id.street2"><span t-field="o.partner_id.street2"/><BR/></span>
+                            <span t-field="o.partner_id.state_id.name"/>, <span t-field="o.partner_id.country_id.name"/><BR/>
+                            CP: <span t-field="o.partner_id.zip"/><span t-if="o.partner_id.vat"><BR/>
+                            RFC: <span t-field="o.partner_id.vat"/></span><BR/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2"><strong>Carga en: </strong>
+                            <span t-field="o.upload_point"/>
+                        </td>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2"><strong>Entrega en: </strong>
+                            <span t-field="o.download_point"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2"><strong>Valor Declarado: </strong>
+                            <span t-field="o.amount_declared"/>
+                        </td>
+                        <td style="border-bottom:2px solid #000000; border-right:2px solid #000000" colspan="2"><strong>Fecha estimada de entrega: </strong>
+                            <span t-field="o.expected_date_delivery"/><br/>
+                            <strong>Contacto: </strong><span t-field="o.partner_order_id.name"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="table" width="100%" id="o.igen_destino" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;">
+                    <tr>
+                        <td rowspan="2" width="40%" style="text-align:center;" id="td_product_label"><strong>DESCRIPCION DE LOS BIENES TRANSPORTADOS</strong></td>
+                        <td colspan="3" style="text-align:center;"><strong>ESTIMADO</strong></td>
+                        <td colspan="3" style="text-align:center;"><!--<strong>REAL</strong>--></td>
+                    </tr>
+                    <tr>
+                        
+                        <td wstyle="border-bottom:2px solid #000000;border-left:2px solid #000000" width="17.5%" style="text-align:center;"><strong>PESO</strong></td>
+                        <td wstyle="border-bottom:2px solid #000000;border-left:2px solid #000000" width="17.5%" style="text-align:center;"><strong>VOLUMEN</strong></td>
+                        <td wstyle="border-bottom:2px solid #000000;border-left:2px solid #000000" width="17.5%" style="text-align:center;"><strong>CANTIDAD</strong></td>
+                        <td width="10%" style="text-align:center;"><!--<strong>WEIGHT</strong>--></td>
+                        <td width="10%" style="text-align:center;"><!--<strong>VOLUME</strong>--></td>
+                        <td width="10%" style="text-align:center;"><!--<strong>QUANTITY</strong>--></td>
+                        
+                    </tr>
+                    <t t-foreach="o.waybill_shipped_product" t-as="tp">
+                        <tr>
+                            <td><span t-field="tp.name" id="span_td_name"/>  <span t-field="tp.notes" id="span_td_name"/></td>
+                            <td style="text-align:center;">
+                                <t t-if="tp.product_uom.category_id.with_context({'lang':'en_US'}).name == 'Weight'">
+                                    <!--<span t-raw="'%.4f' % (tp.product_uom_qty_est)"/> <span t-field="tp.product_uom.name" id="span_weight_est"/>-->
+                                    <span t-raw="'%.4f' % (tp.weight_estimation)"/>
+                                </t>
+                            </td>
+                            <td style="text-align:center;">
+                                <t t-if="tp.product_uom.category_id.with_context({'lang':'en_US'}).name == 'Volume'">
+                                    <span t-raw="'%.4f' % (tp.product_uom_qty_est)"/> <span t-field="tp.product_uom.name" id="span_volume_est"/>
+                                </t>
+                            </td>
+                            <td style="text-align:center;">
+                                <t t-if="tp.product_uom.category_id.with_context({'lang':'en_US'}).name == 'Unit'">
+                                    <!--<span t-raw="'%.4f' % (tp.weight_estimation)"/> <span t-field="tp.weight_estimation.name" id="span_qty_est"/>-->
+                                    <span t-raw="'%.4f' % (tp.product_uom_qty_est)"/>
+                                </t>
+                            </td>                            
+                            <td style="text-align:center;">
+                                <t t-if="tp.product_uom.category_id.with_context({'lang':'en_US'}).name == 'Weight'">
+                                    <!--<span t-raw="'%.4f' % (tp.product_uom_qty)"/> <span t-field="tp.product_uom.name" id="span_weight_real"/>-->
+                                </t>
+                            </td>
+                            <td style="text-align:center;">
+                                <t t-if="tp.product_uom.category_id.with_context({'lang':'en_US'}).name == 'Volume'">
+                                    <!--<span t-raw="'%.4f' % (tp.product_uom_qty)"/> <span t-field="tp.product_uom.name" id="span_volume_real"/>-->
+                                </t>
+                            </td>
+                            <td style="text-align:center;">
+                                <t t-if="tp.product_uom.category_id.with_context({'lang':'en_US'}).name == 'Unit'">
+                                    <!--<span t-raw="'%.4f' % (tp.product_uom_qty)"/> <span t-field="tp.product_uom.name" id="span_qty_real"/>-->
+                                </t>
+                            </td>
+                            
+                        </tr>
+                    </t>
+                    <tr>
+                        <td style="text-align:center;">
+                            <strong>MATERIAL PELIGROSO: </strong>
+                            <div t-if="doc.dangerous_cargo == True">
+                                <input type="checkbox" name="dangerous_cargo" checked="checked">Si</input> - <input type="checkbox" name="dangerous_cargo" value="no">No</input>
+                            </div>
+                            <div t-if="doc.dangerous_cargo == False">
+                                <input type="checkbox" name="dangerous_cargo" value="no">Si</input> - <input type="checkbox" name="dangerous_cargo" checked="checked">No</input>
+                            </div>
+                        </td>
+                        <td colspan="6" style="text-align:center;">ADJUNTE TICKET DE BASCULA</td>
+                    </tr>
+                </table>
+                <table class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">Descripcion</th>
+                            <th style="text-align:center;">Cantidad / UdM</th>
+                            <th class="text-right">Precio Unitario</th>
+                            <th class="text-right">Importe</th>
+                            <th class="text-right">Descuento</th>
+                            <th class="text-right">SubTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="waybill_tbody">
+                        <tr t-foreach="o.waybill_line_ids" t-as="l">
+                            <td><span t-field="l.name" id="l_name"/></td>
+                            <td style="text-align:center;">
+                                <span t-field="l.product_uom_qty" id="l_quantity"/> <span t-raw="' / ' + l.product_uom.name" groups="uom.group_uom" id="l_uom"/>
+                            </td>
+                            <td class="text-right" id="l_price_unit">
+                                <span t-esc="1.00"/>
+                            </td>
+                            <td class="text-right" id="l_subtotal_wo_discount">
+                                <span t-esc="1.00"/>
+                            </td>
+                            <td class="text-right" id="l_discount">
+                                <span t-if="l.discount == 0.0">0.00</span>
+                                <span t-if="l.discount != 0.0"><span t-raw="'%.2f' % (l.price_discount)"/></span>
+                            </td>
+                            <td class="text-right" id="subtotal">
+                                <span t-esc="1.00"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                        
+                        <table class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;">
+                            <thead>  
+                                <tr>
+                                    <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>Ruta:</b><span t-field="o.route_id" /></td>
+                                    
+                                </tr>
+                            </thead>
+                            <thead>  
+                                <tr>
+                                    
+                                    <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>Operador:</b><span t-field="o.employee_id" /></td>
+                                    
+                                </tr>
+                            </thead>
+                            <thead>  
+                                <tr>
+                                    
+                                    <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>Placas:</b><span t-field="o.vehicle_id" /></td>
+                                    
+                                </tr>
+                            </thead>
+                        
+                            <thead>  
+                                <tr>
+                                    
+                                    <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>Remolque:</b><span t-field="o.trailer1_id" /> <span t-field="o.dolly_id" /> <span t-field="o.trailer2_id" /></td>
+                                    
+                                </tr>
+                            </thead>
+                            <thead>
+                            <tr>
+                                <td style="border-bottom:2px solid #000000" colspan="2" width="50%"><b>Indemnizacion: </b>(en su caso)</td> 
+                            </tr>
+                          </thead>
+                            <thead>  
+                                <tr>
+                                    <td class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;"><b>Comentarios: </b><span t-field="doc.notes" /></td>
+                                    
+                                </tr>
+                            </thead>
+                        </table>
+                        <table class="table table-condensed" style="font-size:11px;border: 2px solid #07190B;border-collapse: collapse;padding: 5px;">
+                          <thead>
+                            <tr>
+                              <td style="border-bottom:2px solid #000000" colspan="2" width="50%"><b>Indemnizacion: </b>(en su caso)</td>  
+                            </tr>
+                          </thead>
+                          
+                        </table>
+                        
+                        
+                    </div>
+                
+                <!--<hr id="hr_final"/>-->
+              <p style="font-size:8px;" align="center">RECIBI DE CONFORMIDAD</p>  
+              <p style="font-size:8px;" align="center">_____________________________________________</p>
+              <p style="font-size:8px;" align="center">Nombre y Firma de quien Recibe</p>
+              <p style="font-size:8px;" align="center">PERSONA MORAL DE REGIMEN SIMPLIFICADO CONFORME A LA LEY DE ISR</p>
+            </div>
+            <div align="justify">
+            <p style="font-size:7px;" align="center">CONDICIONES DE PRESTACIÓN DE SERVICIOS QUE AMPARA EL COMPLEMENTO CARTA PORTE.</p>
+<p style="font-size:7px;"><strong>PRIMERA.-</strong> Para los efectos del presente contrato de transporte se denomina "Transportista" al que realiza el servicio de transportación y "Expedidor", "Remitente" o "Usuario" al usuario que contrate el servicio o remite la mercancía.
+<strong>SEGUNDA.-</strong> El "Expedidor", "Remitente" o "Usuario" es responsable de que la información proporcionada al "Transportista" sea veraz y que la documentación que entregue para efectos del transporte sea la correcta.
+<strong>TERCERA.-</strong> El "Expedidor", "Remitente" o "Usuario" debe declarar al "Transportista" el tipo de mercancía o efectos de que se trate, peso, medidas y/o número de la carga que entrega para su transporte y, en su caso, el valor de la misma. La carga que se entregue a granel podrá ser aforada en metros cúbicos con la conformidad del "Expedidor", "Remitente" o "Usuario".
+<strong>CUARTA.-</strong> Para efectos del transporte, el "Expedidor", "Remitente" o "Usuario" deberá entregar al "Transportista" los documentos que las leyes y reglamentos exijan para llevar a cabo el servicio, en caso de no cumplirse con estos requisitos el "Transportista" está obligado a rehusar el transporte de las mercancías.
+<strong>QUINTA.-</strong> Si por sospecha de falsedad en la declaración del contenido de un bulto el "Transportista" deseare proceder a su reconocimiento, podrá hacerlo ante testigos y con asistencia del "Expedidor", "Remitente" o "Usuario" o del consignatario. Si este último no concurriere, se solicitará la presencia de un inspector de la Secretaría de Comunicaciones y Transportes, y se levantará el acta correspondiente. El "Transportista" tendrá en todo caso, la obligación de dejar los bultos en el estado en que se encontraban antes del reconocimiento.
+<strong>SEXTA.-</strong> El "Transportista" deberá recoger y entregar la carga precisamente en los domicilios que señale el "Expedidor", "Remitente" o "Usuario", ajustándose a los términos y condiciones convenidos. El "Transportista" sólo está obligado a llevar la carga al domicilio del consignatario para su entrega una sola vez. Si ésta no fuera recibida, se dejará aviso de que la mercancía queda a disposición del interesado en las bodegas que indique el "Transportista".
+<strong>SÉPTIMA.-</strong> Si la carga no fuere retirada dentro de los 30 días hábiles siguientes a aquél en que hubiere sido puesta a disposición del consignatario, el "Transportista" podrá solicitar la venta en subasta pública con arreglo a lo que dispone el Código de Comercio.
+<strong>OCTAVA.-</strong> El "Transportista" y el "Expedidor", "Remitente" o "Usuario" negociarán libremente el precio del servicio, tomando en cuenta su tipo, característica de los embarques, volumen, regularidad, clase de carga y sistema de pago.
+<strong>NOVENA.-</strong> Si el "Expedidor", "Remitente" o "Usuario" desea que el "Transportista" asuma la responsabilidad por el valor de las mercancías o efectos que él declare y que cubra toda clase de riesgos, inclusive los derivados de caso fortuito o de fuerza mayor, las partes deberán convenir un cargo adicional, equivalente al valor de la prima del seguro que se contrate, el cual se deberá expresar en un CFDI con Complemento Carta Porte.
+<strong>DÉCIMA.-</strong> Cuando el importe del flete no incluya el cargo adicional, la responsabilidad del "Transportista" queda expresamente limitada a la cantidad equivalente a 15 Unidades de Medida y Actualización (UMAS) por tonelada o cuando se trate de embarques cuyo peso sea mayor de 200 kg., pero menor de 1000 kg; y 4 UMAS por remesa cuando se trate de embarques con peso hasta de 200 kg.
+<strong>DÉCIMA PRIMERA.-</strong> El precio del transporte deberá pagarse en origen, salvo convenio entre las partes de pago en destino. Cuando el transporte se hubiere concertado "Flete por Cobrar", la entrega de las mercancías o efectos se hará contra el pago del flete y el "Transportista" tendrá derecho a retenerlos mientras no se le cubra el precio convenido.
+<strong>DÉCIMA SEGUNDA.-</strong> Si al momento de la entrega resultare algún faltante o avería, el consignatario podrá formular su reclamación por escrito al "Transportista", dentro de las 24 horas siguientes.
+ 
+<strong>DÉCIMA TERCERA.-</strong> El "Transportista" queda eximido de la obligación de recibir mercancías o efectos para su transporte, en los siguientes casos:
+a) Cuando se trate de carga que por su naturaleza, peso, volumen, embalaje defectuoso o cualquier otra circunstancia no pueda transportarse sin destruirse o sin causar daño a los demás artículos o al material rodante, salvo que la empresa de que se trate tenga el equipo adecuado.
+b) Las mercancías cuyo transporte haya sido prohibido por disposiciones legales o reglamentarias. Cuando tales disposiciones no prohíban precisamente el transporte de determinadas mercancías, pero sí ordenen la presentación de ciertos documentos para que puedan ser transportadas, el "Expedidor", "Remitente" o "Usuario" estará obligado a entregar al "Transportista" los documentos correspondientes.
+<strong>DÉCIMA CUARTA.-</strong> Los casos no previstos en las presentes condiciones y las quejas derivadas de su aplicación se someterán por la vía administrativa a la Secretaría de Comunicaciones y Transportes.
+<strong>DÉCIMA QUINTA.-</strong> Para el caso de que el "Expedidor", "Remitente" o "Usuario" contrate carro por entero, éste aceptará la responsabilidad solidaria para con el "Transportista" mediante la figura de la corresponsabilidad que contempla el artículo 10 del Reglamento Sobre el Peso, Dimensiones y Capacidad de los Vehículos de Autotransporte que Transitan en los Caminos y Puentes de Jurisdicción Federal, por lo que el "Expedidor", "Remitente" o "Usuario" queda obligado a verificar que la carga y el vehículo que la transporta, cumplan con el peso y dimensiones máximas establecidos en la NOM-012-SCT-2-2017, o la que la sustituya.
+Para el caso de incumplimiento e inobservancia a las disposiciones que regulan el peso y dimensiones, por parte del "Expedidor", "Remitente" o "Usuario", éste será corresponsable de las infracciones y multas que la Secretaría de Infraestructura, Comunicaciones y Transportes o la Guardia Nacional impongan al "Transportista", por cargar las unidades con exceso de peso.</p>
+              <p style="font-size:7px;" align="center">_____________________________________________</p>
+              <p style="font-size:7px;" align="center">Nombre y Firma de quien Recibe</p>
+              </div>
+        </t>
+    </t>
+</template>    
+    
+
+    <template id="cp_report_style_tms">
+      <t t-call="web.html_container">
+          <t t-set="data_report_margin_top" t-value="15"/> 
+          <t t-set="data_report_header_spacing" t-value="10"/>
+          <t t-set="data_report_dpi" t-value="600"/>
+          <t t-foreach="docs" t-as="o">
+              <t t-call="l10n_mx_carta_porte_estyle_tms.cp_report_style_tms_document" />
+
+          </t>
+      </t>
+    </template>
+
+  </data>
+
+  <data> 
+    
+        
+  </data>
+</openerp>

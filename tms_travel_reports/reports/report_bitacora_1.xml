@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           
+        <template id="report_bitacora_tms_document">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang}).sudo()"/>
+
+                            <div class="page">
+                                 <title>Revisión ocular de la unidad</title>
+                                    <!-- Diseño de la Tabla de Detalle -->
+                                    <style type="text/css">
+                                       .tg1  {
+                                            border-collapse:collapse;
+                                            border-spacing:0;
+                                            }
+                                        .tg1 td{
+                                            border-color:black;
+                                            border-style:solid;
+                                            border-width:1px;
+                                            font-family:Arial, 
+                                            sans-serif;font-size:12px;
+                                            overflow:hidden;
+                                            padding:10px 5px;
+                                            word-break:normal;
+                                            }
+                                        .tg1 th{
+                                            border-color:black;
+                                            border-style:solid;
+                                            border-width:1px;
+                                            font-family:Arial, 
+                                            sans-serif;
+                                            font-size:12px;
+                                            font-weight:normal;
+                                            overflow:hidden;
+                                            padding:10px 5px;
+                                            word-break:normal;
+                                            }
+                                        .tg1 .tg-0pky{
+                                            border-color:inherit;
+                                            text-align:left;
+                                            vertical-align:top
+                                            }
+                                        .tg1 .tg-0lax{
+                                            text-align:left;
+                                            vertical-align:top
+                                            }
+
+
+                                        .tg2  {
+                                                border-collapse:collapse;
+                                                border-spacing:0;
+                                              }
+
+                                        .tg2 td{
+
+                                              border-color:black;
+                                              border-style:solid;
+                                              border-width:1px;
+                                              font-family:Arial, 
+                                              sans-serif;
+                                              font-size:12px;
+                                              overflow:hidden;
+                                              padding:10px 5px;
+                                              word-break:normal;
+
+                                            }
+
+                                        .tg2 th{
+                                              border-color:black;
+                                              border-style:solid;
+                                              border-width:1px;
+                                              font-family:Arial, sans-serif;
+                                              font-size:14px;
+                                              font-weight:normal;
+                                              overflow:hidden;
+                                              padding:10px 5px;
+                                              word-break:normal;
+                                            }
+
+                                        .tg2 .tg-cy5f{
+                                              background-color:#00566C;
+                                              border-color:inherit;
+                                              color:#FFF;
+                                              font-weight:bold;
+                                              text-align:left;
+                                              vertical-align:top
+                                            }
+
+                                        .tg2 .tg-txpa{
+                                            background-color:#00566C;
+                                            color:#FFF;
+                                            font-weight:bold;
+                                            text-align:left;
+                                            vertical-align:top
+                                          }
+
+                                        .tg2 .tg-xqm4{
+                                            background-color:#D9D9D9;
+                                            font-weight:bold;
+                                            text-align:left;
+                                            vertical-align:top
+                                          }
+
+                                        .tg2 .tg-ktyi{
+                                            background-color:#FFF;
+                                            text-align:left;
+                                            vertical-align:top
+                                          }
+
+                                        .tg3  {
+                                                border-collapse:collapse;
+                                                border-spacing:0;
+                                              }
+
+                                        .tg3 td{
+                                                border-color:black;
+                                                border-style:solid;
+                                                border-width:1px;
+                                                font-family:Arial, sans-serif;
+                                                font-size:14px;
+                                                overflow:hidden;
+                                                padding:10px 5px;
+                                                word-break:normal;
+                                              }
+                                        .tg3 th{
+                                                border-color:black;
+                                                border-style:solid;
+                                                border-width:1px;
+                                                font-family:Arial, sans-serif;
+                                                font-size:14px;
+                                                font-weight:normal;
+                                                overflow:hidden;
+                                                padding:10px 5px;
+                                                word-break:normal;
+                                              }
+                                        .tg3 .tg-p9ik{
+                                                background-color:#FFF;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top}
+                                        .tg3 .tg-venp{
+                                                background-color:#00566C;
+                                                color:#FFF;
+                                                font-size:24px;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-ulkm{
+                                                background-color:#00566C;
+                                                color:#FFF;
+                                                font-size:12px;
+                                                font-weight:bold;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-i6ty{
+                                                background-color: #a6cfd9;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-pn26{
+                                                background-color:#008fb2;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-2z9e{
+                                                background-color:#DCE6F2;
+                                                font-size:12px;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-ktyi{
+                                                background-color:#FFF;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                        .tg3 .tg-6cko{
+                                                background-color:#DCE6F2;
+                                                text-align:left;
+                                                vertical-align:top
+                                              }
+                                    </style>
+
+                                <header>
+                                </header>
+                                <table class="table table-condensed" style="font-size:18px;border: 1px solid #ddd;border-collapse: collapse;padding: 5px;">
+                                    <tr>
+                                        <td width="25%" align="left" valign="middle" style="border: 1px solid white;padding: 5px;">
+                                            <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 90px;height: auto;"/>
+                                        </td>
+                                        <td colspan="2" width="40%" align="center" valign="top" style="border: 1px solid white;padding: 5px;">
+                                            <br/>
+                                            <strong>
+                                                <h2>
+                                                    <span t-field="o.company_id.partner_id.name" />
+                                                </h2>
+                                                <BR/>
+                                            </strong>
+
+                                        </td>
+                                        <td width="35%" valign="top" style="border: 1px solid white;text-align: center;">
+                                            <span >
+                                                <strong>
+                                                    <span style="font-size:16px;">BITACORA DE REVISION OCULAR DIARIA DE LA UNIDAD DE AUTOTRANSPORTE</span>
+                                                </strong>
+                                            </span>
+                                            <!-- <BR/><span t-field="o.name" style="font-size:18px;"/> -->
+                                            <BR/>
+                                        </td>
+                                    </tr>    
+                                </table>
+
+                                <table class="table table-condensed" style="font-size:14px;border: 1px solid #ddd;border-collapse: collapse;padding: 0px;">
+                                    <tr>
+                                        <td width="65%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                                <span style="font-size:14px;" t-field="o.company_id.partner_id.street_name"/>
+                                                <span style="font-size:14px;" t-if="o.company_id.partner_id.street_number">, No.<span style="font-size:14px;" t-field="o.company_id.partner_id.street_number"/></span>
+                                                <span style="font-size:14px;" t-if="o.company_id.partner_id.street_number2">, Int. <span style="font-size:14px;" t-field="o.company_id.partner_id.street_number2"/></span>
+                                                <span style="font-size:14px;" t-if="o.company_id.partner_id.colonia_sat_id">
+                                                    , <span style="font-size:14px;" t-field="o.company_id.partner_id.colonia_sat_id.name"/>
+                                                </span>
+                                                <span style="font-size:14px;" t-if="o.company_id.partner_id.township_sat_id">
+                                                    , <span style="font-size:14px;" t-field="o.company_id.partner_id.township_sat_id.name"/>
+                                                </span>
+                                                <span style="font-size:14px;" t-esc="', '+ o.company_id.partner_id.state_id.name"/>, 
+                                                <span style="font-size:14px;" t-if="o.company_id.partner_id.zip_sat_id">
+                                                    , CP: <span style="font-size:14px;" t-field="o.company_id.partner_id.zip_sat_id.code"/>
+                                                </span>
+
+
+                                        </td>
+                                        
+                                        <td width="35%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                                <span style="font-size:14px;" t-field="o.company_id.partner_id.email"/>
+                                                 <span style="font-size:14px;" t-esc="'Tel. '+o.company_id.partner_id.phone"/>
+                                                
+
+                                        </td>
+                                    </tr>   
+                                    <tr>
+                                        <td width="65%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                        </td>
+                                        
+                                        <td width="35%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                            <table>
+                                                <tr>
+                                                    <td class="text-right">
+                                                        Tipo de Servicio:
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <div t-if="o.tipo_servicio == 'publico'">
+                                                            <input type="checkbox" name="publico" checked="checked"> Público</input>
+                                                        </div>
+                                                        <div t-if="o.tipo_servicio == 'privado'">
+                                                            <input type="checkbox" name="privado" checked="checked"> Privado</input>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>                                   
+                                        </td>
+                                        
+                                    </tr>  
+                                </table>
+
+                                <table class="table table-condensed" style="font-size:14px;border: 1px solid #ddd;border-collapse: collapse;padding: 0px;">
+                                    <tr>
+                                        <td width="40%" align="center" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                               <strong>Nombre del Conductor</strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                               <strong>Número de Licencia</strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                               <strong>Categoría</strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                               <strong>Vigencia</strong>
+                                        </td>
+                                    </tr>    
+                                    <tr t-if="o.employee_id">
+                                        <td width="40%" align="center" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong>
+                                                <span t-field="o.employee_id.name"/>
+                                            </strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                            <strong>
+                                                <span t-field="o.employee_id.tms_driver_license_id"/>
+                                            </strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                            <strong>
+                                                <span t-field="o.employee_id.tms_driver_license_type"/>
+                                            </strong>
+                                        </td>
+                                        <td width="20%" valign="top" style="border: 1px solid white;text-align: center; padding: 0px;">
+                                            <strong>
+                                                <span t-field="o.employee_id.tms_driver_license_expiration"/>
+                                            </strong>
+                                        </td>
+                                    </tr>    
+
+                                </table>
+
+                                <table class="table table-condensed" style="font-size:14px;border: 1px solid #ddd;border-collapse: collapse;padding: 0px;" t-if="o.vehicle_id">
+                                    <tr>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong>Económico:</strong>
+                                        </td>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                             <strong>
+                                                <span t-field="o.vehicle_id.name2"/>
+                                            </strong>
+                                        </td>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong>Marca:</strong>
+                                        </td>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong t-if="o.vehicle_id.model_id">
+                                                <span t-field="o.vehicle_id.model_id.brand_id"/>
+                                            </strong>
+                                        </td>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong>Modelo:</strong>
+                                        </td>
+                                        <td width="16%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong t-if="o.vehicle_id.model_id">
+                                                <span t-field="o.vehicle_id.model_id"/>
+                                            </strong>
+                                        </td>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                            <strong>Placas:</strong>
+                                        </td>
+                                        <td width="12%" align="left" valign="middle" style="border: 1px solid white;padding: 0px;">
+                                             <strong>
+                                                <span t-field="o.vehicle_id.license_plate"/>
+                                            </strong>
+                                        </td>
+                                        
+                                        
+                                    </tr>   
+                                </table>
+
+                                <!-- <table class="table table-condensed table-bordered; padding: 0px;" cellspading="20">
+                                  <thead style="font-size:14px;">
+                                    <tr>
+                                      <th style="width:30%;padding: 0px 10px 0px 0px;" class="text-right">
+                                        <strong>Tipo de Unidad:</strong>
+                                      </th>
+                                      <th style="width:70%;padding: 0px 10px 0px 0px;" class="text-center">
+                                        <strong>
+                                            <span t-field="o.tipo_unidad_id"/>
+                                        </strong>
+                                      </th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                          <td style="width:30%;padding: 0px 10px 0px 0px;" class="text-right">
+                                            <strong>Lugar, fecha y hora de elaboración de la  revisión de la Unidad:</strong>
+                                          </td>
+                                          <td style="width:30%;padding: 0px 10px 0px 0px;" class="text-center">
+
+                                          </td>
+                                          <td style="width:20%;padding: 0px 10px 0px 0px;" class="text-center">
+                                            <strong>
+                                                <span t-field="o.date" t-field-options='{"format": "hh:mm:ss a"}' />
+                                            </strong>
+                                          </td>
+                                          <td style="width:20%;padding: 0px 10px 0px 0px;" class="text-center">
+                                            <strong>
+                                                <span t-field="o.date" t-field-options='{"format": "hh:mm:ss a"}' />
+                                            </strong>
+                                          </td>
+                                        </tr>
+
+                                    </tbody>
+                                  </thead>
+                                </table> -->
+
+                            <table class="tg1 table table-condensed">
+                            <thead>
+                              <tr>
+                                <th class="tg-0pky" style="padding: 0px 10px 0px 10px;">
+                                    <strong>
+                                        Tipo de Unidad:
+                                    </strong>
+                                </th>
+                                <th class="tg-0pky" colspan="6" style="padding: 0px 10px 0px 10px;">
+                                    <strong>
+                                        <span t-field="o.tipo_unidad_id"/>
+                                    </strong>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td style="width:40%; text-right" class="tg-0pky">
+                                    <strong>
+                                        Lugar, fecha y hora de elaboración de la  revisión de la Unidad:
+                                    </strong>
+                                </td>
+                                <td style="width:20%;" class="tg-0lax text-center">
+
+                                </td>
+                                <td style="width:20%;" class="tg-0pky text-center" colspan="2" valign="middle" >
+                                    <strong>
+                                        <span t-field="o.date" t-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}" />
+                                    </strong>
+                                </td>
+                                <td style="width:20%;" class="tg-0pky text-center" colspan="2" valign="middle" >
+                                    <strong>
+                                        <span t-field="o.date" t-options='{"format": "hh:mm:ss a"}' />
+                                    </strong>
+                                </td>
+                              </tr>
+                              <tr>
+                                    <td style="text-right;" class="tg-0pky">
+                                        <strong>
+                                            Origen:
+                                        </strong>
+                                    </td>
+                                    <td style="text-right;" class="tg-0pky">
+                                        <strong>
+                                            <span t-field="o.departure_id" /> 
+                                        </strong>
+                                    </td>
+                                    <td style="text-right;" class="tg-0pky">
+                                        <strong>
+                                            Destino:
+                                        </strong>
+                                    </td>
+                                    <td style="text-right;" class="tg-0pky">
+                                        <strong>
+                                            <span t-field="o.arrival_id" /> 
+                                        </strong>
+                                    </td>
+                                    <td style="text-right;" class="tg-0pky">
+                                        <strong>
+                                            Distancia KM:
+                                        </strong>
+                                    </td>
+                                    <td style="text-right;" class="tg-0pky">
+                                        <strong>
+                                            <span t-field="o.distance_route" /> 
+                                        </strong>
+                                    </td>
+                                    
+                                  </tr>
+                            </tbody>
+                            </table>
+                            <!-- Formulario -->
+                            <table class="tg2">
+                            <tbody>
+                            <tr>
+                                <th class="tg-cy5f" style="padding: 0px 10px 0px 10px;" colspan="3">REVISION</th>
+                                <th class="tg-txpa" style="padding: 0px 10px 0px 10px;" colspan="2">EVALUACION</th>
+                                <th class="tg-txpa" style="padding: 0px 10px 0px 10px;" colspan="4">REVISION</th>
+                                <th class="tg-txpa" style="padding: 0px 10px 0px 10px;">EVALUACION</th>
+                              </tr>
+                              <tr>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">REVISION INTERNA</td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">PARTE INFERIOR</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Indicador de presión de aceite</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Frenos (Sin Fugas de aire)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi"  style="padding: 0px 10px 0px 10px;" colspan="3">Indicador de presión de aire/vacío</td>
+                                <td class="tg-ktyi"  style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi"  style="padding: 0px 10px 0px 10px;" colspan="4">Muelles (Suspensión sin hojas sueltas, rotas, fisuras)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi"  style="padding: 0px 10px 0px 10px;" colspan="3">Dispositivo de advertencia de poco aire o vacío</td>
+                                <td class="tg-ktyi"  style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi"  style="padding: 0px 10px 0px 10px;" colspan="4">Chasis sin fisuras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="10">Tablero de instrumentos.</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Velocímetro</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Líneas de aire</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="6">Luces de tablero</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;">Direccionales</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Líneas eléctricas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;">Estacionamiento</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Diferencial sin fugas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;">Galibo (Altura)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Trasmisión sin fugas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;">Interior</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">AREA DE COMBUSTION INTERNA</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;">Advertencia</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Motor</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;">Demarcadoras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Radiador</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Calentador Desempañador</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Batería</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Batería</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Bandas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Motor</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">EQUIPO DE EMERGENCIA</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" colspan="3">Claxon o corneta</td>
+                                <td class="tg-ktyi" colspan="2"></td>
+                                <td class="tg-ktyi" colspan="4">Libro guía u Hoja de Información de Emergencia</td>
+                                <td class="tg-ktyi"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Cinturón de seguridad (mínimo del operador)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Botiquín de primeros auxilios</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Parabrisas (Sin fisuras que obstruyan la visibilidad del conductor)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Caja de herramientas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Limpiadores</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4" rowspan="2">Equipo de seguridad (De acuerdo a la Información de Emergencia en Transportación)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="2"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Espejos retrovisores (2).</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Volante (Dirección sin juego excesivo).</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4" rowspan="2">Extintor (1 por vehículo, de acuerdo al tipo que indique la Información de Emergencia en Transportación)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="2"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Freno de pie.</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Frenos de emergencia</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Triángulos de seguridad (Mínimo 3)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">FRENTE (EXTERIOR)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Retrancas (Mínimo 2)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Defensa (Sujeción)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">PARTE POSTERIOR</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Faros principales (funcionamiento)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="7">Luces</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Demarcadoras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="5">Luces </td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Demarcadoras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Gálibo (Altura)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Direccionales</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Direccionales</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">de Gálibo (Altura)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Estacionamiento</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">de Advertencia</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Advertencia</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2">Estacionamiento</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Frenado</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Llantas (No renovadas en el eje delantero, desgaste)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Marcha atrás</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Rines sin fisuras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Reflejantes visibles</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Birlos y tuercas completos</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Guadafangos (Loderas)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Guardafangos (Loderas)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="2"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Dispositivos de aseguramiento</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-xqm4" colspan="3">LADO IZQUIERDO Y LADO DERECHO</td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;">I</td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;">D</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Cerradura de puertas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Tanque de combustible sin fugas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Defensa</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Tapón del tanque de combustible</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Escape</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Luces de advertencia y laterales</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="5">REMOLQUE, SEMIRREMOLQUE (INCLUYENDO TIPO TANQUE)</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Reflejantes visibles</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Freno remolque</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Llanta de refacción</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Líneas eléctricas (sujetas)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Llantas (Desgaste y aire)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Conexiones de frenos</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Rines sin fisuras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Conexión quinta rueda</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Birlos  y tuercas completos y sin fisuras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Patines</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Sistema de aseguramiento y sujeción de la carga</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Cerradura de puertas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Quinta rueda</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="4">Carteles de riesgo (4) ó (8)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;" colspan="3">AUTOTANQUE</td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;">I</td>
+                                <td class="tg-xqm4" style="padding: 0px 10px 0px 10px;">D</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" rowspan="8">Luces</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Demarcadoras</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Mata chispas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Identificación (porta placa)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Placa metálica de identificación</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Direccionales</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Engomados de prueba vigente</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Estacionamiento</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Reflejantes</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Gálibo (Altura)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Tubería, válvulas, conexiones</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Advertencia</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Escalerillas</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Frenado</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Pasillo</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">de Marcha atrás</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Cuerpo del tanque (sin golpes, fisuras o fugas)</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi text-center" style="padding: 0px 10px 0px 10px;" colspan="5" rowspan="5"><br/>_____________________________________<br/>Firma del conductor<br/><strong><span t-field="o.employee_id.name"/></strong></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Instrumentos de medición</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Válvula de desfogue interna y de vacío</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Entrada pasa hombre</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                              <tr>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;" colspan="3">Conexión a tierra</td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                                <td class="tg-ktyi" style="padding: 0px 10px 0px 10px;"></td>
+                              </tr>
+                            </tbody>
+                            </table>
+
+                            <!-- Anexo -->
+
+                            <table class="tg3">
+                            <thead>
+                              <tr>
+                                <th class="tg-venp" style="padding: 0px 10px 0px 10px;" colspan="9">I. ANEXO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-p9ik" colspan="9"></td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-ulkm" colspan="8">NORMA OFICIAL MEXICANA PARA EL TRANSPORTE TERRESTRE DE MATERIALES Y RESIDUOS PELIGROSOS NOM-006-SCT2/2011, ASPECTOS BASICOS PARA LA REVISION OCULAR DIARIA DE LA UNIDAD DESTINADA AL AUTOTRANSPORTE DE MATERIALES Y RESIDUOS PELIGROSOS</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-pn26" colspan="8">1. Objetivo</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-i6ty" colspan="8">La presente Norma Oficial Mexicana tiene como objetivo establecer la información básica y las especificaciones que deben cumplirse para la revisión ocular diaria de la unidad destinada al autotransporte de substancias, materiales o residuos peligrosos por parte de los autotransportistas en corresponsabilidad con sus conductores, para asegurarse que éstas se encuentran en buenas condiciones mecánicas y de operación.</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-pn26" colspan="8">2. Campo de aplicación</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-i6ty" colspan="8">Esta Norma Oficial Mexicana es de observancia obligatoria para los autotransportistas en corresponsabilidad con sus conductores, así como del transporte privado de substancias, materiales y residuos peligrosos que transitan en las vías generales de comunicación de jurisdicción federal, quienes deberán efectuar la revisión ocular diaria de las unidades que transportan substancias, materiales o residuos peligrosos y asentar la información correspondiente en la Bitácora de Revisión Ocular Diaria de la Unidad de Autotransporte.</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-pn26" colspan="8">5.4 Elementos mínimos que deberán revisarse.</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-i6ty" colspan="8">Se deberán revisar como mínimo los elementos (componentes) que se citan en este numeral, debiendo señalar el resultado de la evaluación de su estado y funcionamiento de acuerdo a lo siguiente:</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-2z9e">a)</td>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-2z9e" colspan="7">Bien (&#10003;)</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-2z9e">b)</td>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-2z9e" colspan="7">Mal (X)</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-6cko">c)</td>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-6cko" colspan="7">No aplica (NA)</td>
+                              </tr>
+                              <tr>
+                                <td style="padding: 0px 10px 0px 10px;" class="tg-ktyi" colspan="8"></td>
+                              </tr>
+                            </tbody>
+                            </table>
+
+                            <table style="width: 100%;page-break-inside: avoid;">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align: middle;text-align: center;width:15%;padding-top:4px;padding-bottom:4px;"></td>
+                                        
+                                        <td style="vertical-align: middle;text-align: center;width:20%;padding-top:4px;padding-bottom:4px;"></td>
+                                        <td style="vertical-align: middle;text-align: center;width:25%;padding-top:4px;padding-bottom:4px;">
+                                            <b></b><br/><br/>
+                                            <!--<b><span t-field="o.analyst_request_id" /></b><br/> -->
+                                            <b>__________________________________________</b><br/>
+                                            <b>Nombre y Firma de vigilante</b><br/><br/>
+                                            <!-- <b>FIRMA ST</b><br/><br/> -->
+                                        </td>
+                                        <td style="vertical-align: middle;text-align: center;width:25%;padding-top:4px;padding-bottom:4px;">
+                                            <!-- Aqui Otra Firma -->
+                                        </td>
+                                        <td style="vertical-align: middle;text-align: center;width:15%;padding-top:4px;padding-bottom:4px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                                       
+                            </div>  
+
+                            <div class="footer">
+
+                                    <table style="width: 100%">
+                                        <tr >
+                                            <td style="font-size:10px;width: 15%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                                <span t-esc="o.company_id.name"></span>
+                                            </td>
+                                            <td style="width: 20%;text-align: left;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                            </td>
+                                            <td style="width: 50%;text-align: center;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+                                            </td>
+                                            <td style="width: 15%;text-align: right;border: 1px solid #07190B;border-collapse: collapse;padding: 1px;border-bottom: 1px;border-left: 1px;border-right: 1px;">
+
+                                                 <strong  style="font-size:10px;text-align: center;" ><span>   Pagina </span><span class="page" /> de <span class="topage" /></strong>                       
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                </t>
+        </template>
+
+
+        <template id="report_tms_bitacora_01_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="3"/>
+                <t t-set="data_report_header_spacing" t-value="3"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tms_travel_reports.report_bitacora_tms_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+  <data>
+    <record id="einvoice_bitacora_paper_01" model="report.paperformat">
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="header_spacing">35</field>
+            <field name="margin_top">10</field>
+            <field name="margin_right">7</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="name">US Letter Bitacora 01</field>
+            <field name="orientation">Portrait</field>
+            <field name="dpi">110</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+        </record>
+
+
+        <!-- <report 
+            id="report_tms_bicatora_style_01"
+            model="tms.travel"
+            string="Revisión ocular de la unidad"
+            report_type="qweb-pdf"
+            name="tms_travel_reports.report_tms_bitacora_01_report"
+            file="tms_travel_reports.report_tms_bitacora_01_report"
+            attachment_use="True"
+            print_report_name="'Revisión ocular de la unidad - '+(object.name or ' ')"
+            attachment="'Revisión ocular de la unidad  - '+(object.name or ' ').replace('/','').replace(' ','')+'.pdf'"
+        /> -->
+
+        <report 
+            id="report_tms_bicatora_style_01"
+            model="tms.travel"
+            string="Revisión ocular de la unidad"
+            report_type="qweb-pdf"
+            name="tms_travel_reports.report_tms_bitacora_01_report"
+            file="tms_travel_reports.report_tms_bitacora_01_report"
+            print_report_name="'Revisión ocular de la unidad - '+(object.name or ' ')"
+        />
+
+        <record id="report_tms_bicatora_style_01" model="ir.actions.report">
+          <field name="paperformat_id" ref="tms_travel_reports.einvoice_bitacora_paper_01" />
+        </record>
+
+  </data>
+  </openerp>

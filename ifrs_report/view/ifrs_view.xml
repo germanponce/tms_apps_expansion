@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- VISTAS -->
+
+        <record model="ir.ui.view" id="view_ifrs_ifrs_tree">
+          <field name="name">ifrs.ifrs.tree</field>
+          <field name="model">ifrs.ifrs</field>
+          <field name="arch" type="xml">
+            <tree string="NIIF - NIIF">
+              <field name="name" />
+              <field name="company_id" />
+              <field name="title" />
+              <field name="fiscalyear_id" />
+              <field name="state" />
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_ifrs_ifrs_form">
+          <field name="name">ifrs.ifrs.form</field>
+          <field name="model">ifrs.ifrs</field>
+          <field name="arch" type="xml">
+            <form string="NIIF - NIIF">
+              <header>
+                <button string="Obtener Reporte" name='%(wizard_report_print)d' type='action' class="oe_inline_header oe_highlight"/>
+                <!--<button string="Computar" name='compute' type='object' class="oe_inline_header"/>-->
+                    <label for='help' string="Mostrar ayuda"/>
+                    <field name='help'/>
+              </header>
+                <group>
+                    <group>
+                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">Aquí defina el nombre del reporte a usar. Este nombre puede ser tan descriptivo como lo desee para mejorar la usabilidad.</i>
+                        <field name="name" />
+                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">Es útil que cada reporte tenga su propio Código para que al querer obtenerlo sea fácilmente identificable</i>
+                        <field name="code" />
+                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">Este Título será impreso en el encabezado del Reporte. Note que el Título es multi-lenguaje. Por lo anterior puede definir el Título en los lenguajes que actualmente tenga activos en el sistema.</i>
+                        <field name="title" />
+                    </group>
+                    <group>
+                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">Cada reporte debe estar relacionado a una Compañía. Este es un campo obligatorio, no es opcional. Esto es porque las cuentas contables no pueden ser mezcladas entre Compañías.</i>
+                        <field name="company_id" required="1"/>
+                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">La moneda no es una opción a definir, sino que se toma la moneda asociada a la Compañía seleccionada. Puede seleccionar otra moneda al momento de obtener el reporte.</i>
+                        <field name="currency_id" required="1" readonly="1"/>
+                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">El Año Fiscal es requerido para calcular los valores que serán mostrados en el reporte</i>
+                        <field name="fiscalyear_id" required="1"/>
+                    </group>
+                </group>
+                <notebook colspan='6'>                
+                    <page string='Líneas del Reporte'>
+                        <field name="ifrs_lines_ids" nolabel="1"
+                            context="{'ifrs_help':help, 'ifrs_id':active_id}" colspan="4">
+                            <tree string="Líneas NIIF">
+                                <field name="id" />
+                                <field name="priority" />
+                                <field name="name" />
+                                <field name="type" />
+                                <field name="cons_ids" />
+                                <field name="total_ids" />
+                                <field name="operand_ids" />
+                                <field name="value" />
+                                <field name="invisible" />
+                                <field name="amount" />
+                            </tree>
+                            <form string="Línea Reporte">
+                                <header>
+                                    <label for='help'/>
+                                    <field name='help'/>
+                                </header>
+                                <group>
+                                    <group>
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Etiqueta de Línea: </b><BR/>Aquí se define la etiqueda que será mostrada en el reporte, si se define como "invisible", entonces se pondrá una línea en blanco en el reporte. El nombre de la Línea también es multi-lenguaje, para que pueda obtener el reporte en el lenguaje de su preferencia.<br/>
+                                        </i>
+                                        <field name="name" />
+                                    </group>
+                                    <group>
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Tipo de Línea: </b><BR/>Existen cuatro tipos de Líneas de Reporte que puede usar:<br/>
+                                            <ul>
+                                                <li>Abstracta: Este tipo se usa para crear una etiqueta para usar en el Reporte, no se usa para calcular nada, ni va relacionada a ningún valor'</li>
+                                                <li>Detalle: Este tipo está estréchamente relacionada a Cuentas Contables. Puede seleccionar cuentas tanto Acumulativas como de Detalle</li>
+                                                <li>Total: Este tipo es para sumarizar Líneas de Tipo "Detalle", inclusive puede hacer operaciones matemáticas con ellas</li>
+                                                <li>Constante: Este tipo es para definir algún valor constante como: Su propia Constante, Días del Periodo, Periodos del Año Fiscal o Mes del Año Fiscal</li>
+                                            </ul>
+                                        </i>
+                                        <field name="type"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Secuencia: </b><BR/>Defina la secuencia para esta línea. La secuencia representa la posición de la Línea en el reporte. Es recomendable que defina un número múltiplo de 10 por si fuera necesario insertar alguna otra línea en el reporte posteriormente.<br/>
+                                        </i>
+                                        <field name="sequence" />
+                                    </group>
+                                    <group>
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Línea Invisible: </b><BR/>Al activar esta opción se evitará que esta línea sea impresa en el reporte. Es útil poner algunas líneas como invisible cuando se usen para hacer cálculos, pero no se quiere que aparezca impreso.<br/>
+                                        </i>
+                                        <field name="invisible" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group attrs="{'invisible':[('type','=','abstract')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Monto Línea: </b><BR/>Este campo sumariza los resultados de las Líneas Detalle, Total y Constantes. Su valor es modificado por el campo "Cambiar Signo". Tenga cuidado!<br/>
+                                            <ul>
+                                                <li>Cuando la Línea es de tipo "Detalle", sumará las cuentas que fueron seleccionadas en el campo "Cuentas Consolidadas"</li>
+                                                <li>Cuando la Línea es de tipo "Total", ejecutará las operaciones que son consideradas en los campos "Operador" y "Hacer Comparación", tomando en cuenta la selección de operandos</li>
+                                                <li>Cuando la Línea es de tipo "Abstracta", no realizará ningún cálculo</li>
+                                                <li>Cuando la Línea es de tipo "Constante", solo mostrará el valor de la Constante</li>
+                                            </ul>
+                                        </i>
+                                        <field name="amount"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('type','=','abstract')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Cambiar Signo al Monto: </b><BR/>Si activa este campo, el valor del monto se multiplica por -1. Es útil cuando se requiere cambiar el signo para alguna conveniencia del Balance Financiero.<BR/>
+                                        </i>
+                                        <field name="inv_sign" colspan='2' />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group attrs="{'invisible':[('type','!=','constant')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Tipo Constante: </b><BR/>Este campo permite tomar en cuenta valores constantes que son relacionados al Año Fiscal tales como: Días del Periodo, Periodos en Año Fiscal o Mes del Año Fiscal. Inclusive puede definir su Propia Constante.<br/>
+                                        </i>
+                                        <field name="constant_type" />
+                                    </group>
+                                    <group attrs="{'invisible':[('type','!=','constant')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Constante: </b><BR/>Valor de la constante.<br/>
+                                        </i>
+                                        <field name="constant" 
+                                               attrs="{'required':[('constant_type','=','constant')]}" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group attrs="{'invisible':[('type','!=','detail')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Rango Contable: </b><BR/>En este campo, a pesar del Rango, puede definir el valor a tomar para el monto (Saldo Inicial, Variación o Saldo del Periodo, Saldo Final) de la sumatoria de las cuentas que se están consultando. Este campo solo está disponible cuando selecciona el Tipo "Detalle"". Las opciones disponibles son:<br/>
+                                            <ul>
+                                                <li>Saldo Inicial: Tomará los valores al Inicio del Periodo que esté consultando</li>
+                                                <li>Variaciones o Saldo del Periodo: Tomará el Saldo del Periodo que esté consultando</li>
+                                                <li>Saldo Final: Tomará el valor del Saldo Final del Periodo que esté consultando</li>
+                                            </ul>
+                                        </i>
+                                        <field name="acc_val" attrs="{'required':[('type','=','detail')]}" />
+                                    </group>
+                                    <group attrs="{'invisible':[('type','!=','detail')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Valores Contables: </b><BR/>En este campo, sin importar el valor, definirá  de donde tomará el monto de las cuentas que está consultando en el Periodo (Debe, Haber, Balance). Este campo solo solo está disponible para el Tipo "Detalle". Las opciones disponibles son:<br/>
+                                            <ul>
+                                                <li>Debe: Tomará los cargos de las cuentas consultadas en "Rango Cuentas"</li>
+                                                <li>Haber: Tomará los abonos de las cuentas consultadas en "Rango Cuentas"</li>
+                                                <li>Saldo: Tomará los cargos-abonos de las cuentas consultadas en "Rango Cuentas"</li>
+                                            </ul>
+                                        </i>
+                                        <field name="value" attrs="{'required':[('type','=','detail')]}" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group attrs="{'invisible':[('type','!=','total')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Operador Aritmético: </b><BR/>Si puede ver este campo es porque ha seleccionado el Tipo "Total". Por defecto todas las líneas con el mismo operando son sumarizadas. Si quiere realizar Resta, Multiplicación, División o Porcentaje, inclusive puede realizar Operaciones Condicionales. Debe definir tanto el Primer Operando como el Segundo Operando. Si solo se define el "Primer Operando" solo se realizará la opercaión con el primer Operando y los elementos del Segundo operando serán ignorados<br/>
+                                        </i>
+                                        <field name="operator" attrs="{'required':[('type','=','total')]}" />
+                                      
+                                    </group>
+                                    <group attrs="{'invisible':[('type','!=','total')]}">
+                                        <i attrs="{'invisible':[('help','=',False)]}" colspan="2">
+                                            <b>Tipo de Comparación: </b><BR/>Esta opción es un tanto mas avanzada. Realizará una Comparación entre los valores resultado del Periodo consultado para la misma línea pero con el valor previamente obtenido. Esta operación se realiza después del cálculo con el Operador Aritmético. Si no hay comparación definida solo el valor obtenido por el Operador Aritmético será dado.<br/>
+                                        </i>
+                                        <field name="comparison" attrs="{'required':[('type','=','total')]}"/>
+                                    </group>
+                                </group>
+                                <group colspan="4" attrs="{'invisible':[('operator','!=','condition')]}">
+                                    <i attrs="{'invisible':[('help','=',False)]}" colspan="4">
+                                        <b>Operación Condicional: </b><BR/>Aquí puede realizar Comparaciones entre los Operandos de la Izquierda y Derecha y tomar una de las opciones disponibles o proveer un valor por defecto si las condiciones no se cumplen<br/>
+                                    </i>
+                                    <div colspan="4">
+                                        <label for="logical_operation" string=' [Izquierda] '/>
+                                        <field
+                                            name="logical_operation"
+                                            class="oe_inline"
+                                            nolabel="1"
+                                            attrs="{'required':[('operator','=','condition')]}"
+                                            />
+                                        <label for="logical_true" string=' [Derecha] '/>
+                                        <field
+                                            name="logical_true"
+                                            class="oe_inline"
+                                            nolabel="1"
+                                            attrs="{'required':[('operator','=','condition')]}"
+                                            />
+                                        <label for="logical_false" string=' De lo contario regresa '/>
+                                        <field
+                                            name="logical_false"
+                                            class="oe_inline"
+                                            nolabel="1"
+                                            attrs="{'required':[('operator','=','condition')]}"
+                                            />
+                                      </div>
+                                    
+                                </group>
+
+
+                                      <notebook colspan="4" attrs="{'invisible':[('type','!=','detail')]}" >
+                                          <page string='Cuentas Consolidadas' >
+                                              <group colspan='2' attrs="{'invisible':['|',('type','!=','detail'),('help','=',False)]}">
+                                                  <i>Este campo debe ser llenado con Cuentas Contables. Puede seleccionar cuentas de Tipo "Vista", si desea seleccionar muchas cuentas contables, o puede usar cuentas contables de Detalle si desea identificar detalladamente qué cuentas desea considerar en esta línea. Tenga en cuenta que usar Cuentas de Detalle puede ser engorroso cuando tiene una línea que depende de muchas Cuentas, es mejor consolidarlas y luego volver aquí y usar su cuenta consolidada.</i>
+                                              </group>
+                                              <field
+                                                  colspan='2'
+                                                  name="cons_ids"
+                                                  nolabel='1'
+                                                  attrs="{'invisible':[('type','!=','detail')]}">
+                                                  <tree>
+                                                      <field name='code'/>
+                                                      <field name='name'/>
+                                                      <field name='user_type_id'/>
+                                                      <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_currency"/>
+                                                      <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                                                  </tree>
+                                              </field>
+                                          </page>
+                                          <page string='Diarios Contables' >
+                                              <group colspan='2' attrs="{'invisible':['|',('type','!=','detail'),('help','=',False)]}">
+                                                  <i>Este campo es para relacionar Diarios Contables. Cuando especifique Diarios Contables solo se tomarán las partidas relacionadas a pólizas con los Diarios Contables especificados. Si lo deja en blanco no se filtrará la información por ningún Diario Contable.</i>
+                                              </group>
+                                              <field colspan='2' name="journal_ids" nolabel='1' attrs="{'invisible':[('type','!=','detail')]}">
+                                                  <tree>
+                                                      <field name='code'/>
+                                                      <field name='name'/>
+                                                      <field name='type'/>
+                                                  </tree>
+                                              </field>
+                                          </page>
+                                          <page string='Cuentas Analíticas' >
+                                              <group colspan='2' attrs="{'invisible':['|',('type','!=','detail'),('help','=',False)]}">
+                                                  <i>Aquí se definen las Cuentas Analíticas a filtrar para obtener el valor para la Línea. Hay posibilidad de que use una cuenta contable para múltiples propósitos y estar usando Cuentas Analíticas para diferenciar asientos.</i>
+                                              </group>
+                                              <field colspan='2' name="analytic_ids" nolabel='1' attrs="{'invisible':[('type','!=','detail')]}">
+                                                  <tree>
+                                                      <field name='code'/>
+                                                      <field name='name'/>
+                                                      <field name='partner_id'/>
+                                                  </tree>
+                                              </field>
+                                          </page>
+                                      </notebook>
+
+                                    <separator string='Primer (Izquierda) Operando' colspan='2' attrs="{'invisible':[('type','!=','total')]}"/>
+                                    <separator string='Segundo (Derecha) Operando' colspan='2' attrs="{'invisible':[('type','!=','total')]}"/>
+                                    <group colspan='2' attrs="{'invisible':['|',('type','!=','total'),('help','=',False)]}">
+                                          <i>Este es el Primer Operando donde puede sumarizaer Líneas "Detalle" incluso Líneas de tivpo "Total". Todas las líneas seleccionadas en este campo serán la suma de todas. Para realizar otras Operaciones Aritméticas como Resta o Miultiplicación, llene el "Primer Operando" y el "Segundo Operando" y no olvide seleccionar el "Operador Aritmético".</i>
+                                    </group>
+                                    <group colspan='2' attrs="{'invisible':['|',('type','!=','total'),('help','=',False)]}">
+                                          <i>Este es el Segundo Operando, de la misma manera que el Primer Operando,  puede realizar suma de Líneas "Detalle" y Líneas "Total". Todas las Líneas que seleccione en este campo serán la suma de todas ellas, y el resultado será usadno posteriormente como el Segundo Operando.</i>
+                                    </group>
+                                    <field
+                                        name="total_ids" widget="many2many"
+                                        nolabel="1" colspan='2'
+                                        domain="[('type','not in',('abstract','constant')),('id','!=',active_id)]"
+                                        attrs="{'invisible':[('type','!=','total')]}">
+                                        <!-- ,'|',('ifrs_id','child_of',parent.ifrs_ids)]}" ,('ifrs_id','=',parent.id)-->
+                                        <tree>
+                                            <field name='ifrs_id'/>
+                                            <field name='priority'/>
+                                            <field name='name'/>
+                                            <field name='type'/>
+                                            <field name='amount'/>
+                                        </tree>
+                                    </field>
+                                    <field
+                                        name="operand_ids" widget="many2many"
+                                        nolabel='1' colspan='2'
+                                        domain="[('type','not in',('abstract','constant')),('id','!=',active_id)]"
+                                        attrs="{'invisible':[('type','!=','total')], 'readonly':[('operator','=','without')], 'required':[('type','=','total'),('operator','!=','without')]}">
+                                        <tree>
+                                            <field name='ifrs_id'/>
+                                            <field name='priority'/>
+                                            <field name='name'/>
+                                            <field name='type'/>
+                                            <field name='amount'/>
+                                        </tree>
+                                    </field>
+
+
+                              <separator string='Notas y Comentarios' colspan='2' />
+                              <field name="comment" colspan="4" nolabel='1'/>
+                              <field name="company_id" colspan="4" nolabel='1' readonly='1'/>
+                              <field name="priority" invisible='1'/>
+                            </form>
+                          </field>
+
+                    </page>
+
+                    <page string='Basado en Otros Reportes'>
+                        <field name='ifrs_ids' nolabel='1' domain="[('id', '!=', active_id)]" />
+                    </page>
+                    <page string='Otra Información'>
+                        <field name="description" />
+                    </page>
+
+                </notebook>
+
+            </form>
+          </field>
+        </record>
+
+        <record id="view_board_search" model="ir.ui.view">
+            <field name="name">ifrs.lines.search</field>
+            <field name="model">ifrs.lines</field>
+            <field name="arch" type="xml">
+               <search string="Búsqueda NIIF">
+                   <filter
+                       string="Reporte"
+                       name="group_report"
+                       context="{'group_by':'ifrs_id'}"/>
+                   <filter
+                       string="Tipo"
+                       name="group_type"
+                       context="{'group_by':'type'}"/>
+               </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_ifrs_lines_form">
+            <field name="name">ifrs.lines.form</field>
+            <field name="model">ifrs.lines</field>
+            <field name="arch" type="xml">
+                <form string="Línea NIIF">
+                    <group col="6" colspan="4">
+                        <field name="name" />
+                        <field name="sequence"></field>
+                        <field name="type" />
+                        <field name="amount"></field>
+                        <field name="invisible"></field>
+                        <field name="ifrs_id"></field>
+                        <field name="comment"></field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_ifrs_lines_tree">
+            <field name="name">ifrs.lines.tree</field>
+            <field name="model">ifrs.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Línea NIIF">
+                        <field name="ifrs_id" invisible='1'/>
+                        <field name="priority"/>
+                        <field name="name" />
+                        <field name="type" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- ACCIONES -->
+
+        <record model="ir.actions.act_window" id="action_ifrs_ifrs_form">
+          <field name="name">NIIF</field>
+          <field name="res_model">ifrs.ifrs</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_ifrs_lines_form">
+            <field name="name">Líneas NIIF</field>
+            <field name="res_model">ifrs.lines</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">search</field>
+        </record>
+
+        <!-- MENUS -->
+
+        <menuitem
+            id="menu_ifrs_ifrs"
+            name="Reportes NIIF"
+            parent="account.menu_finance_reports"
+            sequence="101"
+            groups="ifrs_report.group_ifrsreport,ifrs_report.group_ifrsreport_user"
+        />
+
+        <!-- SUB-MENU -->
+
+        <menuitem
+            id="sub_menu_ifrs_ifrs"
+            name="NIIF (Plantillas)"
+            parent="menu_ifrs_ifrs"
+            action="action_ifrs_ifrs_form"
+        />
+
+        <menuitem
+            id="sub_menu_ifrs_wizard"
+            name="NIIF (Obtener Reporte)"
+            parent="menu_ifrs_ifrs"
+            action="create_wizard_report_action"
+        />
+
+<!--        <record id="account_group_auditory.group_account_user_audit" model="res.groups">
+            <field name="menu_access" eval="[(4, ref('ifrs_report.menu_ifrs_ifrs')), (4, ref('ifrs_report.menu_ifrs_ifrs'))]}"/>
+        </record>
+-->
+    </data>
+</openerp>

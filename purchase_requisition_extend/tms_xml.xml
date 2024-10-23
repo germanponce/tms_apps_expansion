@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="purchase_requisition_extend_auth" model="ir.ui.view">
+            <field name="name">purchase.requisition.inherit</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="state_authorized" />
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

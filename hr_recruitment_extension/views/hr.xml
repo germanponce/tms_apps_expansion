@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Aptitudes -->
+        <record id="aptitud_hr_recruit_1" model="hr.employee.aptitud">
+            <field name="name">SI</field>
+        </record>
+
+        <record id="aptitud_hr_recruit_0" model="hr.employee.aptitud">
+            <field name="name">NO</field>
+        </record>
+
+        <!-- Tipos de Licencia -->
+        <record id="hr_employee_tipo_licencia_a" model="hr.employee.tipo.licencia">
+            <field name="name">A</field>
+        </record>
+
+        <record id="hr_employee_tipo_licencia_b" model="hr.employee.tipo.licencia">
+            <field name="name">B</field>
+        </record>
+
+        <record id="hr_employee_tipo_licencia_be" model="hr.employee.tipo.licencia">
+            <field name="name">BE</field>
+        </record>
+
+        <record id="hr_employee_tipo_licencia_c" model="hr.employee.tipo.licencia">
+            <field name="name">C</field>
+        </record>
+
+        <record id="hr_employee_tipo_licencia_d" model="hr.employee.tipo.licencia">
+            <field name="name">D</field>
+        </record>
+
+
+        <record id="hr_employee_tipo_licencia_e" model="hr.employee.tipo.licencia">
+            <field name="name">E</field>
+        </record>
+
+        <record id="hr_employee_tipo_licencia_eb" model="hr.employee.tipo.licencia">
+            <field name="name">EB</field>
+        </record>
+
+        <record id="hr_employee_tipo_licencia_ps" model="hr.employee.tipo.licencia">
+            <field name="name">Permiso Temporal</field>
+        </record>
+
+
+    </data>
+    <data>
+
+        <record id="create_employee_wizard_form" model="ir.ui.view">
+            <field name="name">create.employee.wizard</field>
+            <field name="model">create.employee.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Creación de Empleados">
+                    <p class="oe_grey">
+                        Ingrese los datos requeridos para la creación del Empleado
+                    </p>
+                    <group>
+                        <field name="is_driver" />
+                    </group>
+                    <group attrs="{'invisible': [('is_driver','=',False)]}">
+                        <group string="Examen Médico">
+                            <field name="no_ex_medico" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="aptitud_id" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="ex_medic_start" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="ex_medic_stop" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="ex_medic_days_to" readonly="1"/>
+                            <field name="exmedic_notas" nolabel="1" placeholder="Notas Medicas ..."/>
+                        </group>
+                        <group string="Aduana">
+                            <field name="r_control" />
+                            <field name="r_control_start" />
+                            <field name="r_control_stop" />
+                            <field name="r_control_days_to" readonly="1"/>
+
+                            <field name="r_control_gafete" />
+                            <field name="r_control_gafete_start" />
+                            <field name="r_control_gafete_stop" />
+                            <field name="r_control_gafete_days_to" readonly="1"/>
+                            <field name="r_control_tz" />
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('is_driver','=',False)]}">
+                        <group string="Licencia">
+                            <field name="no_licencia" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="licencia_id" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="no_licencia_stop" attrs="{'required': [('is_driver','=',True)]}"/>
+                            <field name="no_licencia_days_to" />
+                        </group>
+                        <group string="Comprobante de Domicilio">
+                            <field name="comprobante_date_stop" attrs="{'required': [('is_driver','=',True)]}" string="Vigencia"/>
+                            <field name="comprobante_days_to"  readonly="1"/>
+
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="create_employee" string="Crear Empleado" 
+                                class="oe_highlight" type="object" icon="fa-cogs"/>
+                        ó
+                        <button special="cancel" string="Cancelar" class="oe_link" icon="fa-close"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="action_account_cfdi_wizard_zipfile" model="ir.actions.act_window">
+            <field name="name">Creacion de Empleados</field>
+            <field name="res_model">create.employee.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record> 
+
+
+
+    <record id="hr_recruitmen_wizard_create_form" model="ir.ui.view">
+        <field name="name">hr.applicant.wizard</field>
+        <field name="model">hr.applicant</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+        <field name="arch" type="xml">
+            <button name="create_employee_from_applicant" position="replace">
+                <button string="Crear Empleado" name='%(action_account_cfdi_wizard_zipfile)d' type="action" class="oe_highlight" attrs="{'invisible': ['|',('emp_id', '!=', False),('active', '=', False)]}" icon="fa-user-circle"/>
+            </button>
+             <separator position="replace">
+             </separator>
+            <field name="description" position="replace">
+                <notebook>
+                    <page string="Filtros y Documentos">
+                        <group>
+                            <group string="Filtros">
+                                <label for="entrevista_date"/>
+                                <div class="o_row">
+                                    <field name="entrevista_date"/>
+                                    <field name="entrevista_apto"/>
+                                </div>
+
+                                <label for="prueba_knw_date"/>
+                                <div class="o_row">
+                                    <field name="prueba_knw_date"/>
+                                    <field name="prueba_knw_apto"/>
+                                </div>
+
+                                <label for="referencias_laborales_date"/>
+                                <div class="o_row">
+                                    <field name="referencias_laborales_date"/>
+                                    <field name="referencias_laborales_apto"/>
+                                </div>
+
+                                <label for="psicometrico_date"/>
+                                <div class="o_row">
+                                    <field name="psicometrico_date"/>
+                                    <field name="psicometrico_apto"/>
+                                </div>
+
+                                <label for="poligrafo_date"/>
+                                <div class="o_row">
+                                    <field name="poligrafo_date"/>
+                                    <field name="poligrafo_apto"/>
+                                </div>
+
+                                <label for="antidoping_date"/>
+                                <div class="o_row">
+                                    <field name="antidoping_date"/>
+                                    <field name="antidoping_apto"/>
+                                </div>
+
+                                <label for="socioeconomico_date"/>
+                                <div class="o_row">
+                                    <field name="socioeconomico_date"/>
+                                    <field name="socioeconomico_apto"/>
+                                </div>
+                            </group>
+                            <group string="Documentos">
+                                    <field name="solicitud_empleo" filename="solicitud_empleo_fname" />
+                                    <field name="solicitud_empleo_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="carta_recomendacion_1" filename="carta_recomendacion_1_fname" />
+                                    <field name="carta_recomendacion_1_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="carta_recomendacion_2" filename="carta_recomendacion_2_fname" />
+                                    <field name="carta_recomendacion_2_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="ife_ine" filename="ife_ine_fname" />
+                                    <field name="ife_ine_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="licencia_binary" filename="licencia_binary_fname" />
+                                    <field name="licencia_binary_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="atp_medico_binary" filename="licencia_binary_fname" />
+                                    <field name="atp_medico_binary_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="socioeconomico" filename="socioeconomico_fname" />
+                                    <field name="socioeconomico_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="comprobante_dom" filename="comprobante_dom_fname" />
+                                    <field name="comprobante_dom_fname" invisible="1" class="oe_inline oe_right"/>
+
+
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Resumen de la Solicitud">
+                        <group>
+                            <field name="description" nolabel="1" placeholder="Retroalimentación de las entrevistas ..."/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </field>
+    </record>
+
+
+
+    <record id="hr_employee_recruitment_form" model="ir.ui.view">
+        <field name="name">hr.employee.wizard</field>
+        <field name="model">hr.employee</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Reclutamiento" attrs="{'invisible':[('is_driver','=',False)]}">
+                    <group>
+                        <field name="is_driver" readonly="1"/>
+                    </group>
+                    <group>
+                        <group string="Examen Médico">
+                            <field name="no_ex_medico" readonly="1"/>
+                            <field name="aptitud_id" readonly="1"/>
+                            <field name="ex_medic_start" readonly="1"/>
+                            <field name="ex_medic_stop" readonly="1"/>
+                            <field name="ex_medic_days_to" readonly="1"/>
+
+                            <field name="exmedic_notas" nolabel="1"/>
+                        </group>
+                        <group string="Aduana">
+                            <field name="r_control" readonly="1"/>
+                            <field name="r_control_start" readonly="1"/>
+                            <field name="r_control_stop" readonly="1"/>
+                            <field name="r_control_days_to" readonly="1"/>
+
+                            <field name="r_control_gafete" readonly="1"/>
+                            <field name="r_control_gafete_start" readonly="1"/>
+                            <field name="r_control_gafete_stop" readonly="1"/>
+                            <field name="r_control_gafete_days_to" readonly="1"/>
+                            <field name="r_control_tz" readonly="1"/>
+                        </group>
+                    </group>
+                    <group >
+                        <group string="Licencia">
+                            <field name="no_licencia" readonly="1"/>
+                            <field name="licencia_id" readonly="1"/>
+                            <field name="no_licencia_stop" readonly="1"/>
+                            <field name="no_licencia_days_to" readonly="1"/>
+                        </group>
+                        <group string="Comprobante de Domicilio">
+                            <field name="comprobante_date_stop" readonly="1" string="Vigencia"/>
+                            <field name="comprobante_days_to"  readonly="1"/>
+                        </group>
+                    </group>
+
+                </page>
+                <page string="Filtros y Documentos">
+                        <group>
+                            <group string="Filtros">
+                                <label for="entrevista_date"/>
+                                <div class="o_row">
+                                    <field name="entrevista_date" readonly="1"/>
+                                    <field name="entrevista_apto" readonly="1"/>
+                                </div>
+
+                                <label for="prueba_knw_date"/>
+                                <div class="o_row">
+                                    <field name="prueba_knw_date" readonly="1"/>
+                                    <field name="prueba_knw_apto" readonly="1"/>
+                                </div>
+
+                                <label for="referencias_laborales_date"/>
+                                <div class="o_row">
+                                    <field name="referencias_laborales_date" readonly="1"/>
+                                    <field name="referencias_laborales_apto" readonly="1"/>
+                                </div>
+
+                                <label for="psicometrico_date"/>
+                                <div class="o_row">
+                                    <field name="psicometrico_date" readonly="1"/>
+                                    <field name="psicometrico_apto" readonly="1"/>
+                                </div>
+
+                                <label for="poligrafo_date"/>
+                                <div class="o_row">
+                                    <field name="poligrafo_date" readonly="1"/>
+                                    <field name="poligrafo_apto" readonly="1"/>
+                                </div>
+
+                                <label for="antidoping_date"/>
+                                <div class="o_row">
+                                    <field name="antidoping_date" readonly="1"/>
+                                    <field name="antidoping_apto" readonly="1"/>
+                                </div>
+
+                                <label for="socioeconomico_date"/>
+                                <div class="o_row">
+                                    <field name="socioeconomico_date" readonly="1"/>
+                                    <field name="socioeconomico_apto" readonly="1"/>
+                                </div>
+                            </group>
+                            <group string="Documentos">
+                                    <field name="solicitud_empleo" filename="solicitud_empleo_fname" readonly="1"/>
+                                    <field name="solicitud_empleo_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="carta_recomendacion_1" filename="carta_recomendacion_1_fname" readonly="1"/>
+                                    <field name="carta_recomendacion_1_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="carta_recomendacion_2" filename="carta_recomendacion_2_fname" readonly="1"/>
+                                    <field name="carta_recomendacion_2_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="ife_ine" filename="ife_ine_fname" readonly="1"/>
+                                    <field name="ife_ine_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="licencia_binary" filename="licencia_binary_fname" readonly="1"/>
+                                    <field name="licencia_binary_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="atp_medico_binary" filename="licencia_binary_fname" readonly="1"/>
+                                    <field name="atp_medico_binary_fname" invisible="1" class="oe_inline oe_right"/>
+                                    
+                                    <field name="socioeconomico" filename="socioeconomico_fname" readonly="1"/>
+                                    <field name="socioeconomico_fname" invisible="1" class="oe_inline oe_right"/>
+
+                                    <field name="comprobante_dom" filename="comprobante_dom_fname" />
+                                    <field name="comprobante_dom_fname" invisible="1" class="oe_inline oe_right"/>
+
+
+                            </group>
+                        </group>
+                    </page>
+            </notebook>
+        </field>
+    </record>
+
+
+
+    </data>
+</odoo>
