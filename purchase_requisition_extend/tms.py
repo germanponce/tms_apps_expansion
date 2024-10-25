@@ -142,3 +142,34 @@ class AccountInvoice(models.Model):
                 # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
                 line.x_store_id = line.purchase_line_id.store_id.id
         return invoice
+
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+
+    def _generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id):
+        # Llama al método original para obtener los datos básicos
+        rslt = super(StockMove, self)._generate_valuation_lines_data(partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
+        
+        # Agregar el store_id en los valores de `credit_line_vals` y `debit_line_vals`
+        store_id = self.picking_id.store_id.id if self.picking_id.store_id else False   # Obtiene el ID de `store_id` del movimiento de inventario
+        if store_id:
+            if 'debit_line_vals' in rslt:
+                rslt['debit_line_vals'].update({
+                    'store_id': store_id,
+                })
+            
+            if 'credit_line_vals' in rslt:
+                rslt['credit_line_vals'].update({
+                    'store_id': store_id,
+                })
+            
+            if 'price_diff_line_vals' in rslt:
+                rslt['price_diff_line_vals'].update({
+                    'store_id': store_id,
+                })
+            
+        return rslt

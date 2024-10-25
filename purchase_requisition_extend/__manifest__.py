@@ -23,6 +23,7 @@ Agrega un Estado de Acuerdo en las requisiciones de Compra.
         "account",
         "purchase_requisition",
         "purchase",
+        "tms",
         
     ],
     "data": [
