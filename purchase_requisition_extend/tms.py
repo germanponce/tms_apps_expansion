@@ -180,10 +180,10 @@ class StockMove(models.Model):
         print ("########### _generate_valuation_lines_data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         res = super(StockMove, self)._prepare_account_move_line(qty, cost, credit_account_id, debit_account_id)
         print ("### if self.picking_id: ", self.picking_id)
-        print ("### if self.picking_id.store_id: ", self.picking_id.store_id)
-        if self.picking_id and self.picking_id.store_id:
-            res[0][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
-            res[1][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
+        print ("### if self.picking_id.quotation_store_id: ", self.picking_id.quotation_store_id)
+        if self.picking_id and self.picking_id.quotation_store_id:
+            res[0][2].update({'store_id': self.picking_id.quotation_store_id.id if self.picking_id.quotation_store_id else False })
+            res[1][2].update({'store_id': self.picking_id.quotation_store_id.id if self.picking_id.quotation_store_id else False })
         raise UserError("AQUI")
         return res        
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
