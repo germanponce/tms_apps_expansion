@@ -24,7 +24,9 @@ Agrega un Estado de Acuerdo en las requisiciones de Compra.
         "purchase_requisition",
         "purchase",
         "tms",
-        
+        "stock",
+        "stock_account"
+
     ],
     "data": [
         # 'tms_xml.xml'
