@@ -188,9 +188,8 @@ class StockMove(models.Model):
         picking_store_id = self.picking_id.quotation_store_id
         if picking_store_id:
             moves_res = []
-            for picking in self:
-                for move in picking.move_lines:
-                    moves_res += move.account_move_ids.ids
+            for move in self.picking_id.move_lines:
+                moves_res += move.account_move_ids.ids
             print ("############# moves_res: ", moves_res)
         raise UserError("AQUI")
         return res
