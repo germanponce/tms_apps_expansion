@@ -178,7 +178,7 @@ class StockMove(models.Model):
 
     def _prepare_account_move_line(self, qty, cost, credit_account_id, debit_account_id):
         res = super(StockMove, self)._prepare_account_move_line(qty, cost, credit_account_id, debit_account_id)
-        if self.mro_order_id:
+        if self.picking_id and self.picking_id.store_id:
             res[0][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
             res[1][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
         return res        
