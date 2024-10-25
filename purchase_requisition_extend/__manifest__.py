@@ -25,7 +25,8 @@ Agrega un Estado de Acuerdo en las requisiciones de Compra.
         "purchase",
         "tms",
         "stock",
-        "stock_account"
+        "stock_account",
+        "fleet_mro"
 
     ],
     "data": [
