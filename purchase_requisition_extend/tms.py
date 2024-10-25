@@ -184,5 +184,6 @@ class StockMove(models.Model):
         if self.picking_id and self.picking_id.store_id:
             res[0][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
             res[1][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
+        raise UserError("AQUI")
         return res        
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
