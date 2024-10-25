@@ -181,5 +181,20 @@ class StockMove(models.Model):
         if self.picking_id and self.picking_id.quotation_store_id:
             res[0][2].update({'store_id': self.picking_id.quotation_store_id.id if self.picking_id.quotation_store_id else False })
             res[1][2].update({'store_id': self.picking_id.quotation_store_id.id if self.picking_id.quotation_store_id else False })
-        return res        
+        return res
+
+    def _account_entry_move(self):
+        res = super(StockMove, self)._account_entry_move()
+        account_moves = []
+        picking_store_id = self.picking_id.quotation_store_id
+        if picking_store_id:
+            for picking in self:
+                for move in picking.move_lines:
+                    for acc_move in move.account_move_ids:
+                        account_moves.append(acc_move)
+            for accmv in account_moves:
+                accmv.store_id = picking_store_id.id
+        return res
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
