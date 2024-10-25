@@ -185,15 +185,14 @@ class StockMove(models.Model):
 
     def _account_entry_move(self):
         res = super(StockMove, self)._account_entry_move()
-        account_moves = []
         picking_store_id = self.picking_id.quotation_store_id
         if picking_store_id:
+            moves_res = []
             for picking in self:
                 for move in picking.move_lines:
-                    for acc_move in move.account_move_ids:
-                        account_moves.append(acc_move)
-            for accmv in account_moves:
-                accmv.store_id = picking_store_id.id
+                    moves_res += move.account_move_ids.ids
+            print ("############# moves_res: ", moves_res)
+        raise UserError("AQUI")
         return res
 
 
