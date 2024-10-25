@@ -151,11 +151,13 @@ class StockMove(models.Model):
 
 
     def _generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id):
+        print ("########### _generate_valuation_lines_data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         # Llama al método original para obtener los datos básicos
         rslt = super(StockMove, self)._generate_valuation_lines_data(partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
         
         # Agregar el store_id en los valores de `credit_line_vals` y `debit_line_vals`
         store_id = self.picking_id.store_id.id if self.picking_id.store_id else False   # Obtiene el ID de `store_id` del movimiento de inventario
+        print ("################## store_id: ", store_id)
         if store_id:
             if 'debit_line_vals' in rslt:
                 rslt['debit_line_vals'].update({
