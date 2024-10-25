@@ -2,17 +2,17 @@
 # © <2015> <Jarsa Sistemas S.A. de C.V.>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Extensión de Acuerdos de Compra",
-    "version": "11.0.1.0.0",
+    "name": "Extensión de Acuerdos de Compra y Albaranes",
+    "version": "12.0.1.0.0",
     "category": "Report",
     "website": "http://argil.mx",
-    "author": "<Argil Consulting S.A. de C.V.>, Alejandro Robles (Desarrollador jr.)",
+    "author": "<Argil Consulting S.A. de C.V.>, <German Ponce Dominguez>",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "description": """
 
-Agrega un Estado de Acuerdo en las requisiciones de Compra.
+Agrega la sucursal en los apuntes contables.
 
     """,
     "external_dependencies": {
