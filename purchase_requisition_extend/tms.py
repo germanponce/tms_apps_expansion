@@ -150,28 +150,36 @@ class StockMove(models.Model):
     _inherit = 'stock.move'
 
 
-    def _generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id):
-        print ("########### _generate_valuation_lines_data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        # Llama al método original para obtener los datos básicos
-        rslt = super(StockMove, self)._generate_valuation_lines_data(partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
+    # def _generate_valuation_lines_data(self, partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id):
+    #     print ("########### _generate_valuation_lines_data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    #     # Llama al método original para obtener los datos básicos
+    #     rslt = super(StockMove, self)._generate_valuation_lines_data(partner_id, qty, debit_value, credit_value, debit_account_id, credit_account_id)
         
-        # Agregar el store_id en los valores de `credit_line_vals` y `debit_line_vals`
-        store_id = self.picking_id.store_id.id if self.picking_id.store_id else False   # Obtiene el ID de `store_id` del movimiento de inventario
-        print ("################## store_id: ", store_id)
-        if store_id:
-            if 'debit_line_vals' in rslt:
-                rslt['debit_line_vals'].update({
-                    'store_id': store_id,
-                })
+    #     # Agregar el store_id en los valores de `credit_line_vals` y `debit_line_vals`
+    #     store_id = self.picking_id.store_id.id if self.picking_id.store_id else False   # Obtiene el ID de `store_id` del movimiento de inventario
+    #     print ("################## store_id: ", store_id)
+    #     if store_id:
+    #         if 'debit_line_vals' in rslt:
+    #             rslt['debit_line_vals'].update({
+    #                 'store_id': store_id,
+    #             })
             
-            if 'credit_line_vals' in rslt:
-                rslt['credit_line_vals'].update({
-                    'store_id': store_id,
-                })
+    #         if 'credit_line_vals' in rslt:
+    #             rslt['credit_line_vals'].update({
+    #                 'store_id': store_id,
+    #             })
             
-            if 'price_diff_line_vals' in rslt:
-                rslt['price_diff_line_vals'].update({
-                    'store_id': store_id,
-                })
+    #         if 'price_diff_line_vals' in rslt:
+    #             rslt['price_diff_line_vals'].update({
+    #                 'store_id': store_id,
+    #             })
             
-        return rslt
+    #     return rslt
+
+    def _prepare_account_move_line(self, qty, cost, credit_account_id, debit_account_id):
+        res = super(StockMove, self)._prepare_account_move_line(qty, cost, credit_account_id, debit_account_id)
+        if self.mro_order_id:
+            res[0][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
+            res[1][2].update({'store_id': self.picking_id.store_id.id if self.picking_id.store_id else False })
+        return res        
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
