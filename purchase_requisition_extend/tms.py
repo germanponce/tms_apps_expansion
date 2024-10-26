@@ -85,12 +85,15 @@ class PurchaseRequisitionLine(models.Model):
 
     @api.multi
     def _prepare_purchase_order_line(self, name, product_qty=0.0, price_unit=0.0, taxes_ids=False):
+        print ("######## _prepare_purchase_order_line >>>>>>>>>>>> ")
         purchase_order_line = super(PurchaseRequisitionLine, self)._prepare_purchase_order_line(name=name,
                                                                                 product_qty=product_qty,
                                                                                 price_unit=price_unit,
                                                                                 taxes_ids=taxes_ids)
         if self.x_store_id:
             purchase_order_line['store_id'] = self.x_store_id.id
+        print ("#################### self.x_store_id: ", self.x_store_id)
+        print ("#################### purchase_order_line: ", purchase_order_line)
         return purchase_order_line
 
 
@@ -146,6 +149,7 @@ class AccountInvoice(models.Model):
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
+################# Sucursal en las Polizas #########################
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
@@ -190,7 +194,6 @@ class StockMove(models.Model):
             moves_res = self.env['account.move']
             for move in self.picking_id.move_lines:
                 moves_res |= move.account_move_ids
-            print ("############# moves_res: ", moves_res)
             for poliza_prev in moves_res:
                 poliza_prev.store_id = picking_store_id.id
         return res
