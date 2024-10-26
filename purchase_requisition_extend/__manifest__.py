@@ -28,8 +28,9 @@ Agrega la sucursal en los apuntes contables.
         "stock_account",
         "fleet_mro",
         "multi_store_purchase",
-        "fleet_extension"
-
+        "fleet_extension",
+        "l10n_mx_einvoice",
+        "asti_eaccounting_mx_base"
     ],
     "data": [
         # 'tms_xml.xml'

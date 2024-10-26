@@ -171,6 +171,7 @@ class AccountInvoice(models.Model):
                 line['store_id'] = invoice_line.x_store_id.id
 
         return res
+        
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
