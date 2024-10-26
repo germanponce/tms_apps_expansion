@@ -85,15 +85,12 @@ class PurchaseRequisitionLine(models.Model):
 
     @api.multi
     def _prepare_purchase_order_line(self, name, product_qty=0.0, price_unit=0.0, taxes_ids=False):
-        print ("######## _prepare_purchase_order_line >>>>>>>>>>>> ")
         purchase_order_line = super(PurchaseRequisitionLine, self)._prepare_purchase_order_line(name=name,
                                                                                 product_qty=product_qty,
                                                                                 price_unit=price_unit,
                                                                                 taxes_ids=taxes_ids)
         if self.x_store_id:
             purchase_order_line['store_id'] = self.x_store_id.id
-        print ("#################### self.x_store_id: ", self.x_store_id)
-        print ("#################### purchase_order_line: ", purchase_order_line)
         return purchase_order_line
 
 
@@ -123,8 +120,6 @@ class AccountInvoice(models.Model):
     # Load all unsold PO lines
     @api.onchange('purchase_id')
     def purchase_order_change(self):
-        print ("######### purchase_order_change>>>>>>>>>>>>>>>>>>>>> ")
-        print ("######### purchase_order_change>>>>>>>>>>>>>>>>>>>>> ")
         if not self.purchase_id:
             return {}
         if not self.partner_id:
@@ -142,7 +137,6 @@ class AccountInvoice(models.Model):
         new_lines = self.env['account.invoice.line']
         for line in self.purchase_id.order_line - self.invoice_line_ids.mapped('purchase_line_id'):
             data = self._prepare_invoice_line_from_po_line(line)
-            print ("######### line.store_id: ", line.store_id)
             if line.store_id:
                 # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
                 data['x_store_id'] = line.store_id.id
@@ -197,7 +191,7 @@ class AccountInvoice(models.Model):
                     if move_line and invoice_line.x_store_id:
                         move_line.write({'store_id': invoice_line.x_store_id.id})
         return res
-        
+
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
@@ -232,12 +226,9 @@ class PurchaseOrder(models.Model):
             if not create_bill:
                 result['res_id'] = self.invoice_ids.id or False
         res_id = result.get('res_id', False)
-        print  ("############ res_id: ",res_id)
         if res_id:
             invoice_br = self.env['account.invoice'].browse(res_id)
             for line in invoice_br.invoice_line_ids:
-                print  ("############ line.purchase_line_id: ",line.purchase_line_id)
-                print  ("############ line.purchase_line_id.store_id: ",line.purchase_line_id.store_id)
                 if line.purchase_line_id and line.purchase_line_id.store_id:
                     # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
                     line.x_store_id = line.purchase_line_id.store_id.id
