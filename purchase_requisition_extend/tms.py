@@ -120,19 +120,6 @@ class AccountInvoice(models.Model):
     #         res['x_store_id'] = line.store_id.id
     #     return res
 
-    @api.multi
-    def action_move_create(self):
-        res = super(AccountInvoice, self).action_move_create()
-        for invoice in self:
-            if invoice.type == 'in_invoice':
-                for invoice_line in invoice.invoice_line_ids:
-                    # Filtrar la línea de apunte correspondiente al producto de la línea de factura
-                    move_line = invoice.move_id.line_ids.filtered(lambda l: l.product_id == invoice_line.product_id)
-                    # Asignar el valor de x_store_id a store_id en la línea de apunte
-                    if move_line and invoice_line.x_store_id:
-                        move_line.write({'store_id': invoice_line.x_store_id.id})
-        return res
-
     # Load all unsold PO lines
     @api.onchange('purchase_id')
     def purchase_order_change(self):
@@ -169,6 +156,21 @@ class AccountInvoice(models.Model):
         self.purchase_id = False
         return {}
 
+    @api.model
+    def invoice_line_move_line_get(self):
+        # Llama al método original
+        res = super(AccountInvoice, self).invoice_line_move_line_get()
+
+        # Agrega `x_sucursal_id` a cada línea en `res` si está presente en la línea de factura
+        for line in res:
+            # Busca la línea de factura original con el `invl_id`
+            invoice_line = self.env['account.invoice.line'].browse(line['invl_id'])
+            
+            # Verifica si `x_sucursal_id` existe y lo agrega al diccionario `line`
+            if hasattr(invoice_line, 'x_store_id') and invoice_line.x_store_id:
+                line['store_id'] = invoice_line.x_store_id.id
+
+        return res
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
