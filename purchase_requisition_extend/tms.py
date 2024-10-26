@@ -92,6 +92,7 @@ class PurchaseRequisitionLine(models.Model):
                                                                                 taxes_ids=taxes_ids)
         if self.x_store_id:
             purchase_order_line['store_id'] = self.x_store_id.id
+            purchase_order_line['product_qty'] = 10000
         print ("#################### self.x_store_id: ", self.x_store_id)
         print ("#################### purchase_order_line: ", purchase_order_line)
         return purchase_order_line
@@ -155,7 +156,7 @@ class PurchaseOrderLine(models.Model):
         print ("### context: ", context)
         return False
 
-    store_id = fields.Many2one('res.store', index=True,  default=_get_current_po_store)
+    store_id = fields.Many2one('res.store', index=True,  default=_get_current_po_store, readonly=False)
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
