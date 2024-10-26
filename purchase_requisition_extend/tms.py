@@ -155,8 +155,7 @@ class PurchaseOrderLine(models.Model):
         print ("### context: ", context)
         return False
 
-    store_id = fields.Many2one('res.store', index=True,
-                               store=True, readonly=True, default=_get_current_po_store)
+    store_id = fields.Many2one('res.store', index=True,  default=_get_current_po_store)
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
