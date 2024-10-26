@@ -136,6 +136,8 @@ class AccountInvoice(models.Model):
     # Load all unsold PO lines
     @api.onchange('purchase_id')
     def purchase_order_change(self):
+        print ("######### purchase_order_change>>>>>>>>>>>>>>>>>>>>> ")
+        print ("######### purchase_order_change>>>>>>>>>>>>>>>>>>>>> ")
         if not self.purchase_id:
             return {}
         if not self.partner_id:
