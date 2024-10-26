@@ -150,7 +150,7 @@ class AccountInvoice(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    x_store_id = fields.Many2one('res.store', string="Sucursal", readonly=False)
+    store_id = fields.Many2one('res.store', string="Sucursal", readonly=False)
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
