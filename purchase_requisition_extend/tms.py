@@ -110,15 +110,15 @@ class AccountInvoiceLine(models.Model):
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    @api.multi
-    def _prepare_invoice_line_from_po_line(self, line):
-        # Preparar los valores de la línea de factura desde la línea de compra
-        res = super(AccountInvoice, self)._prepare_invoice_line_from_po_line(line)
-        print ("########## RES: ", res)
-        # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
-        if line.store_id:
-            res['x_store_id'] = line.store_id.id
-        return res
+    # @api.multi
+    # def _prepare_invoice_line_from_po_line(self, line):
+    #     # Preparar los valores de la línea de factura desde la línea de compra
+    #     res = super(AccountInvoice, self)._prepare_invoice_line_from_po_line(line)
+    #     print ("########## RES: ", res)
+    #     # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
+    #     if line.store_id:
+    #         res['x_store_id'] = line.store_id.id
+    #     return res
 
     @api.multi
     def action_move_create(self):
