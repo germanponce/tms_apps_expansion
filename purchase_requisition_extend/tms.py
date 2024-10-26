@@ -114,6 +114,7 @@ class AccountInvoice(models.Model):
     def _prepare_invoice_line_from_po_line(self, line):
         # Preparar los valores de la línea de factura desde la línea de compra
         res = super(AccountInvoice, self)._prepare_invoice_line_from_po_line(line)
+        print ("########## RES: ", res)
         # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
         if line.store_id:
             res['x_store_id'] = line.store_id.id
@@ -149,7 +150,7 @@ class AccountInvoice(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    store_id = fields.Many2one('res.store', string="Sucursal", readonly=False)
+    x_store_id = fields.Many2one('res.store', string="Sucursal", readonly=False)
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
