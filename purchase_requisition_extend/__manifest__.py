@@ -21,6 +21,7 @@ Agrega la sucursal en los apuntes contables.
     },
     "depends": [
         "account",
+        "sale",
         "purchase_requisition",
         "purchase",
         "tms",
