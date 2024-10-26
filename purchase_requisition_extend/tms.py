@@ -155,6 +155,7 @@ class AccountInvoice(models.Model):
         new_lines = self.env['account.invoice.line']
         for line in self.purchase_id.order_line - self.invoice_line_ids.mapped('purchase_line_id'):
             data = self._prepare_invoice_line_from_po_line(line)
+            print ("######### line.store_id: ", line.store_id)
             if line.store_id:
                 # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
                 data['x_store_id'] = line.store_id.id
