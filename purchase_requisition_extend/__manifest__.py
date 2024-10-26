@@ -26,7 +26,8 @@ Agrega la sucursal en los apuntes contables.
         "tms",
         "stock",
         "stock_account",
-        "fleet_mro"
+        "fleet_mro",
+        "multi_store_purchase"
 
     ],
     "data": [

@@ -146,6 +146,18 @@ class AccountInvoice(models.Model):
                 line.x_store_id = line.purchase_line_id.store_id.id
         return invoice
 
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    def _get_current_po_store(self):
+        print ("################## _get_current_po_store >>>>>>>>>>")
+        context=self._context
+        print ("### context: ", context)
+        return False
+
+    store_id = fields.Many2one('res.store', index=True,
+                               store=True, readonly=True, default=_get_current_po_store)
+
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
