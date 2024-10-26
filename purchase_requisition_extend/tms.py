@@ -183,6 +183,15 @@ class PurchaseOrder(models.Model):
             # Do not set an invoice_id if we want to create a new bill.
             if not create_bill:
                 result['res_id'] = self.invoice_ids.id or False
+        res_id = result.get('res_id', False)
+        if res_id:
+            invoice_br = self.env['account.invoice'].browse(res_id)
+            for line in invoice_br.invoice_line_ids:
+                print  ("############ line.purchase_line_id: ",line.purchase_line_id)
+                print  ("############ line.purchase_line_id.store_id: ",line.purchase_line_id.store_id)
+                if line.purchase_line_id and line.purchase_line_id.store_id:
+                    # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
+                    line.x_store_id = line.purchase_line_id.store_id.id
         result['context']['default_origin'] = self.name
         result['context']['default_reference'] = self.partner_ref
         print ("#************ result: ", result)
