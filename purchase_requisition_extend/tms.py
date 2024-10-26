@@ -184,6 +184,7 @@ class PurchaseOrder(models.Model):
             if not create_bill:
                 result['res_id'] = self.invoice_ids.id or False
         res_id = result.get('res_id', False)
+        print  ("############ res_id: ",res_id)
         if res_id:
             invoice_br = self.env['account.invoice'].browse(res_id)
             for line in invoice_br.invoice_line_ids:
