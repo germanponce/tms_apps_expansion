@@ -139,9 +139,12 @@ class AccountInvoice(models.Model):
 
     @api.model
     def create(self, vals):
+        print  ("############ create >>>>>>>>>>> ")
         # Crear la factura de proveedor
         invoice = super(AccountInvoice, self).create(vals)
         for line in invoice.invoice_line_ids:
+            print  ("############ line.purchase_line_id: ",line.purchase_line_id)
+            print  ("############ line.purchase_line_id.store_id: ",line.purchase_line_id.store_id)
             if line.purchase_line_id and line.purchase_line_id.store_id:
                 # Pasar el valor de store_id de la línea de compra a x_store_id en la línea de factura
                 line.x_store_id = line.purchase_line_id.store_id.id
