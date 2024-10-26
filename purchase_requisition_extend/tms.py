@@ -171,7 +171,7 @@ class AccountInvoice(models.Model):
                 line['store_id'] = invoice_line.x_store_id.id
 
         return res
-     
+
     # @api.model
     # def create(self, vals):
     #     print  ("############ create >>>>>>>>>>> ")
@@ -185,6 +185,19 @@ class AccountInvoice(models.Model):
     #             line.x_store_id = line.purchase_line_id.store_id.id
     #     return invoice
 
+    @api.multi
+    def action_move_create(self):
+        res = super(AccountInvoice, self).action_move_create()
+        for invoice in self:
+            if invoice.type == 'in_invoice':
+                for invoice_line in invoice.invoice_line_ids:
+                    # Filtrar la línea de apunte correspondiente al producto de la línea de factura
+                    move_line = invoice.move_id.line_ids.filtered(lambda l: l.product_id == invoice_line.product_id)
+                    # Asignar el valor de x_store_id a store_id en la línea de apunte
+                    if move_line and invoice_line.x_store_id:
+                        move_line.write({'store_id': invoice_line.x_store_id.id})
+        return res
+        
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
