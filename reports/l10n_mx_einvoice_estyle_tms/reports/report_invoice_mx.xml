@@ -334,29 +334,41 @@
                                     <td>
                                     </td>
                                     <td style="text-align:center; padding: 1px; text-align: center;">
-                                      <b>BANCOMER</b><br/>
-                                        <b>VIA ELECTRÓNICA:</b><br/>
-                                        <span>012905004545547366</span><br/>
-                                        <b>VIA ELECTRÓNICA:</b><br/>
-                                        <span>012905004545547366</span><br/>
+                                        <div t-if="o.company_id.id == 1">
+                                          <b>BANCOMER</b><br/>
+                                          <b>VIA ELECTRÓNICA:</b><br/>
+                                          <span>012905004545547366</span><br/>
+                                          <b>VIA ELECTRÓNICA:</b><br/>
+                                          <span>012905004545547366</span><br/>
+                                        </div>
+                                        
+                                        <div t-if="o.company_id.id == 2">
+                                          <b>BANCOMER</b><br/>
+                                          <b>VIA ELECTRÓNICA:</b><br/>
+                                          <span>012905001220977021</span><br/>
+                                        </div>
+                                        
                                     </td>
                                     <td>
                                     </td>
                                     <td style="text-align:center; padding: 1px; text-align: center;">
-                                      <b>BANAMEX</b><br/>
-                                       <b>CUENTA:</b><br/>
-                                       <span>23900924383</span><br/>
-                                       <b>CLABE INTERBANCARIA:</b><br/>
-                                       <span>002905023909243831</span><br/>
+                                      <div t-if="o.company_id.id == 1">
+                                        <b>BANAMEX</b><br/>
+                                         <b>CUENTA:</b><br/>
+                                         <span>23900924383</span><br/>
+                                         <b>CLABE INTERBANCARIA:</b><br/>
+                                         <span>002905023909243831</span><br/>
+                                         </div>
                                     </td>
                                     <td>
                                     </td>
                                     <td style="text-align:center; padding: 2px; text-align: center;">
-                                        <b>BBVA BANCOMER, SA</b><br/>
-                                        <b>CUENTA: </b><span> 00175306051</span><br/>
-                                        <b>SWIFT No: </b><span> BCMRMXMM</span><br/>
-                                        <b>DIRECCION: </b><span> AVENIDA UNIVERSIDAD 1200 COLONIA:XOCO CP.03339 MEXICO DF</span><br/>
-
+                                        <div t-if="o.company_id.id == 1">
+                                          <b>BANAMEX</b><br/>
+                                          <b>CUENTA: </b><span> 002905023991905608</span><br/>
+                                          <b>SWIFT No: </b><span> BNMXMXMM</span><br/>
+                                          <b>DIRECCION: </b><span> Isabel la Catolica 44 CP06000 Col. Centro Deleg. Cuauhtémoc</span><br/>
+                                        </div>
                                     </td>
                               </tr>
                               </table>
