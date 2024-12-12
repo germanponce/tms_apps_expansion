@@ -297,6 +297,8 @@ class StockMove(models.Model):
 class tms_fuelvoucher(models.Model):
     _inherit ='tms.fuelvoucher'
 
+    ### Query Update ####
+    # update account_move_line set store_id=tms_fuelvoucher.store_id from tms_fuelvoucher where account_move_line.move_id = tms_fuelvoucher.move_id and account_move_line.store_id is null;
     def get_move_line_dict(self, journal_id, monto, precision, is_debit=False, is_credit=False):
         move_line_vals = super(tms_fuelvoucher, self).get_move_line_dict(journal_id, monto, precision, is_debit=is_debit, is_credit=is_credit)
         if self.store_id:
