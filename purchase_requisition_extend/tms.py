@@ -299,6 +299,7 @@ class tms_fuelvoucher(models.Model):
 
     ### Query Update ####
     # update account_move_line set store_id=tms_fuelvoucher.store_id from tms_fuelvoucher where account_move_line.move_id = tms_fuelvoucher.move_id and account_move_line.store_id is null;
+    # update account_move set store_id=tms_fuelvoucher.store_id from tms_fuelvoucher where account_move.id = tms_fuelvoucher.move_id and account_move.store_id is null;
     def get_move_line_dict(self, journal_id, monto, precision, is_debit=False, is_credit=False):
         move_line_vals = super(tms_fuelvoucher, self).get_move_line_dict(journal_id, monto, precision, is_debit=is_debit, is_credit=is_credit)
         if self.store_id:
@@ -322,4 +323,16 @@ class tms_fuelvoucher(models.Model):
         #         'currency_id'   :  self.currency_id != self.company_id.currency_id and self.currency_id.id or False,
         #         'amount_currency': self.currency_id != self.company_id.currency_id and \
         #                            (waybill_line.price_subtotal * (is_debit and 1.0 or -1.0)) or False,
+        #         }
+
+    def get_move_dict(self, journal_id, move_lines, notes):
+        move_vals = super(tms_fuelvoucher, self).get_move_dict(journal_id, move_lines, notes)
+        if self.store_id:
+            move_vals.update({'store_id': self.store_id.id})
+        return move_vals
+        # return {'ref'        : _('Fuel Voucher: %s') % (self.name),
+        #         'journal_id' : journal_id,
+        #         'narration'  : notes,
+        #         'line_ids'   : [x for x in move_lines],
+        #         'date'       : self.date,
         #         }
