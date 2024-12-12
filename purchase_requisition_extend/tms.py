@@ -294,4 +294,30 @@ class StockMove(models.Model):
         return res
 
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class tms_fuelvoucher(models.Model):
+    _inherit ='tms.fuelvoucher'
+
+    def get_move_line_dict(self, journal_id, monto, precision, is_debit=False, is_credit=False):
+        move_line_vals = super(tms_fuelvoucher, self).get_move_line_dict(journal_id, monto, precision, is_debit=is_debit, is_credit=is_credit)
+        if self.store_id:
+            move_line_vals.update({'store_id': self.store_id.id})
+        return move_line_vals
+        # account_id = is_debit and \
+        #              (self.product_id.tms_property_account_expense_id.id or \
+        #               self.product_id.categ_id.tms_property_account_expense_categ_id.id) or \
+        #              (self.product_id.tms_property_account_expense_id2.id or \
+        #               self.product_id.categ_id.tms_property_account_expense_categ_id2.id)
+        # return {'name'          : _('Fuel Voucher: %s') % (self.name),
+        #         'account_id'    : account_id,
+        #         'debit'         : is_debit  and round(self.price_subtotal, precision) or 0.0,
+        #         'credit'        : is_credit and round(self.price_subtotal, precision) or 0.0,
+        #         'journal_id'    : journal_id,
+        #         'vehicle_id'    : self.vehicle_id.id,
+        #         'employee_id'   : self.employee_id.id or False,
+        #         'product_id'    : self.product_id.id,
+        #         'product_uom_id': self.product_id.uom_id.id,
+        #         'quantity'      : self.product_uom_qty,
+        #         'currency_id'   :  self.currency_id != self.company_id.currency_id and self.currency_id.id or False,
+        #         'amount_currency': self.currency_id != self.company_id.currency_id and \
+        #                            (waybill_line.price_subtotal * (is_debit and 1.0 or -1.0)) or False,
+        #         }
