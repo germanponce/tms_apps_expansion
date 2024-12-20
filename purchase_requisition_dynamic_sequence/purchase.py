@@ -114,3 +114,11 @@ class PurchaseRequisition(models.Model):
         res = super(PurchaseRequisition, self).action_in_progress()
         return res
 
+            company_id = self.env.user.company_id.id
+            sequence_id = False
+            if company_id:
+                sequence_id = self.env['ir.sequence'].search([('code','=','purchase.order'),('company_id','=',company_id)], limit=1)
+            if not company_id or not sequence_id:
+                sequence_id = self.env['ir.sequence'].search([('code','=','purchase.order',('company_id','=',False))], limit=1)
+                
+            vals['name'] = sequence_id.next_by_id()
