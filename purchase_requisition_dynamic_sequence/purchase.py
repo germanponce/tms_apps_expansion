@@ -66,7 +66,7 @@ class PurchaseRequisition(models.Model):
         if self.name == 'New':
             if self.type_of_agreement == 'standard':
                 if self.is_quantity_copy != 'none':
-                    company_id = self.company_id.id if self.company_id else False:
+                    company_id = self.company_id.id if self.company_id else False
                     sequence_id = False
                     if company_id:
                         sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.purchase.tender'),('company_id','=',company_id)], limit=1)
@@ -76,7 +76,7 @@ class PurchaseRequisition(models.Model):
                     sequence_code = 'purchase.requisition.purchase.tender'
                     #sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.purchase.tender')
                 else:
-                    company_id = self.company_id.id if self.company_id else False:
+                    company_id = self.company_id.id if self.company_id else False
                     sequence_id = False
                     if company_id:
                         sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.blanket.order'),('company_id','=',company_id)], limit=1)
@@ -86,7 +86,7 @@ class PurchaseRequisition(models.Model):
                     sequence_code = 'purchase.requisition.blanket.order'
                     # sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.blanket.order')
             elif self.type_of_agreement == 'mro':
-                company_id = self.company_id.id if self.company_id else False:
+                company_id = self.company_id.id if self.company_id else False
                 sequence_id = False
                 if company_id:
                     sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.mro'),('company_id','=',company_id)], limit=1)
@@ -96,7 +96,7 @@ class PurchaseRequisition(models.Model):
                 sequence_code = 'purchase.requisition.mro'
                 # sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.mro')
             elif self.type_of_agreement == 'supplies':
-                company_id = self.company_id.id if self.company_id else False:
+                company_id = self.company_id.id if self.company_id else False
                 sequence_id = False
                 if company_id:
                     sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.supplies'),('company_id','=',company_id)], limit=1)
