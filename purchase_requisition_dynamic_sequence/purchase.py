@@ -62,20 +62,55 @@ class PurchaseRequisition(models.Model):
                 if requisition_line.product_qty <= 0.0:
                     raise UserError('No se puede confirmar el Acuerdo Abierto sin cantidad')
         sequence_name = ""
+        sequence_code = ""
         if self.name == 'New':
             if self.type_of_agreement == 'standard':
                 if self.is_quantity_copy != 'none':
-                    sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.purchase.tender')
+                    company_id = self.company_id.id if self.company_id else False:
+                    sequence_id = False
+                    if company_id:
+                        sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.purchase.tender'),('company_id','=',company_id)], limit=1)
+                    if not company_id or not sequence_id:
+                        sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.purchase.tender',('company_id','=',False))], limit=1)
+                    sequence_name = sequence_id.next_by_id() if sequence_id else ""
+                    sequence_code = 'purchase.requisition.purchase.tender'
+                    #sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.purchase.tender')
                 else:
-                    sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.blanket.order')
+                    company_id = self.company_id.id if self.company_id else False:
+                    sequence_id = False
+                    if company_id:
+                        sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.blanket.order'),('company_id','=',company_id)], limit=1)
+                    if not company_id or not sequence_id:
+                        sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.blanket.order',('company_id','=',False))], limit=1)
+                    sequence_name = sequence_id.next_by_id() if sequence_id else ""
+                    sequence_code = 'purchase.requisition.blanket.order'
+                    # sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.blanket.order')
             elif self.type_of_agreement == 'mro':
-                sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.mro')
+                company_id = self.company_id.id if self.company_id else False:
+                sequence_id = False
+                if company_id:
+                    sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.mro'),('company_id','=',company_id)], limit=1)
+                if not company_id or not sequence_id:
+                    sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.mro',('company_id','=',False))], limit=1)
+                sequence_name = sequence_id.next_by_id() if sequence_id else ""
+                sequence_code = 'purchase.requisition.mro'
+                # sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.mro')
             elif self.type_of_agreement == 'supplies':
-                sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.supplies')
+                company_id = self.company_id.id if self.company_id else False:
+                sequence_id = False
+                if company_id:
+                    sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.supplies'),('company_id','=',company_id)], limit=1)
+                if not company_id or not sequence_id:
+                    sequence_id = self.env['ir.sequence'].search([('code','=','purchase.requisition.supplies',('company_id','=',False))], limit=1)
+                sequence_code = 'purchase.requisition.supplies'
+                sequence_name = sequence_id.next_by_id() if sequence_id else ""
+                # sequence_name = self.env['ir.sequence'].next_by_code('purchase.requisition.supplies')
             else:
                 _logger.warning("\n#### Ocurrio un error al Asignar la Secuencia en el Acuerdo ID %s " % self.id)
         if sequence_name:
             self.name = sequence_name
+        else:
+            raise UserError("No se pudo generar el Folio, consulta si existe secuencia para el código %s y la empresa del registro %s" % (sequence_code, self.company_id.name if self.company_id else "NA"))
         res = super(PurchaseRequisition, self).action_in_progress()
         return res
 
