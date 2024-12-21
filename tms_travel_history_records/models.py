@@ -47,7 +47,7 @@ class TMSTravelHistoryEvents(models.Model):
         return self.env.user.id
 
     user_id = fields.Many2one('res.users', 'Usuario', default=_get_current_user)
-    name = fields.Char('Comentarios', size=128)
+    name = fields.Char('Comentarios', size=512)
     travel_id = fields.Many2one('tms.travel', 'Viaje')
 
     vehicle_id = fields.Many2one('fleet.vehicle', 'Vehiculo', related="travel_id.vehicle_id", store=True)
@@ -55,8 +55,8 @@ class TMSTravelHistoryEvents(models.Model):
     partner_id = fields.Many2one('res.partner', 'Cliente', related="travel_id.partner_id", store=True)
     x_reference = fields.Char('Referencia', compute="_get_x_reference", store=True)
 
-    location = fields.Char('Ubicación', size=128, required=True)
-    status = fields.Char('Status', size=128, required=True)
+    location = fields.Char('Ubicación', size=512, required=True)
+    status = fields.Char('Status', size=512, required=True)
 
     date_time = fields.Datetime('Fecha/Hora', default=_get_current_date_time)
 
