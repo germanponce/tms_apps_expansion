@@ -4,7 +4,7 @@
         
         <template id="ifrs_template">
             <t t-call="web.html_container">
-                <t t-set="data_report_dpi" t-value="600"/>
+                <t t-set="data_report_dpi" t-value="90"/>
                 <t t-foreach="docs" t-as="rec">
                     <t t-call="web.external_layout">
                         <t t-set="o" t-value="rec.ifrs_id"/>
@@ -93,7 +93,7 @@
                                 
         <template id="ifrs_template2">
             <t t-call="web.html_container">
-                <t t-set="data_report_dpi" t-value="600"/>
+                <t t-set="data_report_dpi" t-value="90"/>
                 <t t-foreach="docs" t-as="rec">
                     <t t-call="web.external_layout">
                         <t t-set="o" t-value="rec.ifrs_id"/>
