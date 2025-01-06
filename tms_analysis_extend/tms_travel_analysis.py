@@ -14,7 +14,6 @@ class tms_travel_analysis(models.Model):
     def create_temp_view(self, company_id=False):
         self.invalidate_cache()
         tools.drop_view_if_exists(self.env.cr, self._table)
-        print ("#### company_id ", company_id)
         argil_sql_str = """
                     CREATE OR REPLACE VIEW tms_travel_analysis AS (
                         WITH r AS (

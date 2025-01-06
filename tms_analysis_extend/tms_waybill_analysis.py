@@ -58,7 +58,6 @@ class tms_waybill_analysis(models.Model):
     def create_temp_view(self, company_id=False):
         self.invalidate_cache()
         tools.drop_view_if_exists(self.env.cr, self._table)
-        print ("#### company_id ", company_id)
         argil_sql_str = """
                     create or replace view tms_waybill_analysis as
                     select row_number() over() as id,
