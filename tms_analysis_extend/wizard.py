@@ -33,3 +33,8 @@ class TMSAnalisisReportsWizard(models.TransientModel):
 
             }
                 
+#### Ejecutar:
+### delete from ir_filters where name in ('Tipo de Gasto','Combustible','Salario del Empleado');
+###
+###
+###

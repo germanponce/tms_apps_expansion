@@ -37,7 +37,7 @@
 
 
      <menuitem action="tms_analisis_reports_wizard_tms_expense_analysis_act" 
-              id="tms_analysis.menu_tms_expense_analysis" 
+              id="menu_tms_expense_analysis" 
               parent="tms.menu_tms_reporting"
               sequence="70" />
           
