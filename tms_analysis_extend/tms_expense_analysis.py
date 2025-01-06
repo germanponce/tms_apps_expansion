@@ -98,7 +98,7 @@ class tms_expense_analysis(models.Model):
                                   and b.company_id = %s
 
                             order by name, date
-                            ) select row_number() over() as id, * from r
+                            ) select row_number() over() as id, * from r);
 
         """ % (company_id, company_id)
         self.env.cr.execute(argil_sql_str)
