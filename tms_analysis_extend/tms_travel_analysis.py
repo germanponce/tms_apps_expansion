@@ -16,7 +16,7 @@ class tms_travel_analysis(models.Model):
         tools.drop_view_if_exists(self.env.cr, self._table)
         print ("#### company_id ", company_id)
         argil_sql_str = """
-                    CREATE OR REPLACE VIEW %s AS (
+                    CREATE OR REPLACE VIEW tms_travel_analysis AS (
                         WITH r AS (
                             -- Bloque de ingresos (a-income)
                             SELECT 

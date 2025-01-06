@@ -83,7 +83,7 @@
      <menuitem action="tms_analisis_reports_wizard_tms_travel_analysis_act" 
               id="menu_tms_travel_analysis" 
               parent="tms.menu_tms_reporting"
-              sequence="80" name="Analisis de Viajes"/>
+              sequence="500" name="Analisis de Viajes"/>
 
   </data>
 </openerp>
