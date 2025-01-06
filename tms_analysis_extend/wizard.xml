@@ -17,6 +17,9 @@
                 </group>
                 <footer>
                     <button name="tms_expense_analysis" invisible="context.get('process','') != 'tms_expense_analysis'" string="Analisis de Gastos" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
+
+                    <button name="tms_waybill_analysis" invisible="context.get('process','') != 'tms_waybill_analysis'" string="Analisis de Cartas Porte" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
+
                     ó 
                     <button special="cancel" string="Cancelar" class="oe_link"/>
                 </footer>
@@ -24,7 +27,7 @@
         </field>
     </record>
     
-    
+    <!-- Analisis de Gastos -->
     <record id="tms_analisis_reports_wizard_tms_expense_analysis_act" model="ir.actions.act_window">
         <field name="name">Generación de Reportes TMS (Compañia)</field>
         <field name="type">ir.actions.act_window</field>
@@ -40,6 +43,24 @@
               id="menu_tms_expense_analysis" 
               parent="tms.menu_tms_reporting"
               sequence="70" />
-          
+
+    <!-- Analisis de Cartas Porte -->
+
+    <record id="tms_analisis_reports_wizard_tms_waybill_analysis_act" model="ir.actions.act_window">
+        <field name="name">Generación de Reportes TMS (Compañia)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.analisis.reports.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'process':'tms_waybill_analysis'}</field>
+     </record> 
+
+
+     <menuitem action="tms_analisis_reports_wizard_tms_waybill_analysis_act" 
+              id="menu_tms_waybill_analysis" 
+              parent="tms.menu_tms_reporting"
+              sequence="80" />
+
   </data>
 </openerp>
