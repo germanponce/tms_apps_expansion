@@ -35,7 +35,7 @@
     'author'        : 'Argil Consulting',
     'website'       : 'http://www.argil.mx',
     'images' : [],
-    'depends': ["tms","multi_store_tms","belchez_foreign_curr_to_local_curr"],
+    'depends': ["tms","multi_store_tms"],
     'data' : [
                 'tms_waybill_analysis_view.xml',
                 # 'tms_travel_analysis_view.xml',
