@@ -64,7 +64,7 @@ class tms_expense_analysis(models.Model):
         tools.drop_view_if_exists(self.env.cr, self._table)
         print ("#### company_id ", company_id)
         argil_sql_str = """
-                            CREATE or REPLACE VIEW %s as (
+                            CREATE or REPLACE VIEW tms_expense_analysis as (
                             with r as 
                             (
                             select 
