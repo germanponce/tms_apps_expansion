@@ -16,9 +16,11 @@
                     <field name="company_id" required="1" />
                 </group>
                 <footer>
-                    <button name="tms_expense_analysis" invisible="context.get('process','') != 'tms_expense_analysis'" string="Analisis de Gastos" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
+                    <button name="tms_expense_analysis" invisible="context.get('process','') != 'tms_expense_analysis'" string="Analisis de Gastos de Viaje" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
 
                     <button name="tms_waybill_analysis" invisible="context.get('process','') != 'tms_waybill_analysis'" string="Analisis de Cartas Porte" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
+
+                    <button name="tms_travel_analysis" invisible="context.get('process','') != 'tms_travel_analysis'" string="Analisis de Viajes" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
 
                     ó 
                     <button special="cancel" string="Cancelar" class="oe_link"/>
@@ -29,7 +31,7 @@
     
     <!-- Analisis de Gastos -->
     <record id="tms_analisis_reports_wizard_tms_expense_analysis_act" model="ir.actions.act_window">
-        <field name="name">Análisis de Gastos</field>
+        <field name="name">Análisis de Gastos de Viaje</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tms.analisis.reports.wizard</field>
         <field name="view_type">form</field>
@@ -62,6 +64,26 @@
               id="menu_tms_waybill_analysis" 
               parent="tms.menu_tms_reporting"
               sequence="80" name="Analisis de Cartas Porte"/>
+
+
+
+    <!-- Analisis de Viajes -->
+
+    <record id="tms_analisis_reports_wizard_tms_travel_analysis_act" model="ir.actions.act_window">
+        <field name="name">Análisis de Viajes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.analisis.reports.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'process':'tms_travel_analysis'}</field>
+     </record> 
+
+
+     <menuitem action="tms_analisis_reports_wizard_tms_travel_analysis_act" 
+              id="menu_tms_travel_analysis" 
+              parent="tms.menu_tms_reporting"
+              sequence="80" name="Analisis de Viajes"/>
 
   </data>
 </openerp>

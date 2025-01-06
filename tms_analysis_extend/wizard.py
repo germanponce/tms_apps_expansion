@@ -49,6 +49,20 @@ class TMSAnalisisReportsWizard(models.TransientModel):
             }
                 
 
+    def tms_travel_analysis(self):
+        self.env['tms.travel.analysis'].create_temp_view(self.company_id.id)
+        list_ids = self.env['tms.travel.analysis'].search([]).ids
+        
+        return {
+            'domain': [('id', 'in', list_ids)],
+            'name': "Analisis de Cartas Porte",
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'context': {'tree_view_ref': 'tms_analysis.view_tms_travel_analysis_pivot', 'search_default_ended_this_month':1, 'group_by':[], 'group_by_no_leaf':1},
+            'res_model': 'tms.travel.analysis',
+            'type': 'ir.actions.act_window'
+
+            }
 
 #### Ejecutar:
 ### delete from ir_filters where name in ('Tipo de Gasto','Combustible','Salario del Empleado');
