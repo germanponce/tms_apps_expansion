@@ -3,6 +3,8 @@
 from odoo.exceptions import UserError
 from odoo import api, fields, models, _, tools
 import odoo.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
 class tms_expense_analysis(models.Model):
     _name = "tms.expense.analysis"
