@@ -43,7 +43,7 @@ class TMSAnalisisReportsWizard(models.TransientModel):
             'view_mode': 'tree,form',
             'view_type': 'form',
             'context': {'tree_view_ref': 'tms_analysis_extend.view_tms_waybill_analysis_pivot', 'search_default_this_month':1, 'group_by':[], 'group_by_no_leaf':1},
-            'res_model': 'tms.expense.analysis',
+            'res_model': 'tms.waybill.analysis',
             'type': 'ir.actions.act_window'
 
             }
