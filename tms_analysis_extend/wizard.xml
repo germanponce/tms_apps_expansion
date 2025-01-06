@@ -44,6 +44,7 @@
               parent="tms.menu_tms_reporting"
               sequence="70" />
 
+
     <!-- Analisis de Cartas Porte -->
 
     <record id="tms_analisis_reports_wizard_tms_waybill_analysis_act" model="ir.actions.act_window">
