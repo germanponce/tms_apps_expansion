@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    
+    <!-- Wizard --> 
+     <record id="tms_analisis_reports_wizard" model="ir.ui.view">
+        <field name="name">tms.analisis.reports.wizard</field>
+        <field name="model">tms.analisis.reports.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Generación de Reportes TMS (Compañia)">
+                <p class="oe_grey">
+                    Selecciona la Compañia para generar el Reporte
+                </p>
+                <group>
+                    <field name="company_id" required="1" />
+                </group>
+                <footer>
+                    <button name="tms_expense_analysis" invisible="context.get('process','') != 'tms_expense_analysis'" string="Analisis de Gastos" type="object" class="oe_highlight" icon="fa-file-pdf-o"/>
+                    ó 
+                    <button special="cancel" string="Cancelar" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    
+    <record id="tms_analisis_reports_wizard_tms_expense_analysis_act" model="ir.actions.act_window">
+        <field name="name">Proyección de Pagos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tms.analisis.reports.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'process':'tms_expense_analysis'}</field>
+     </record> 
+
+
+     <menuitem action="tms_analisis_reports_wizard_tms_expense_analysis_act" 
+              id="tms_analysis.menu_tms_expense_analysis" 
+              parent="tms.menu_tms_reporting"
+              sequence="70" />
+          
+  </data>
+</openerp>

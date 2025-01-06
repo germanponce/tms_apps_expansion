@@ -56,97 +56,54 @@ class tms_expense_analysis(models.Model):
             ('cancel', 'Cancelado')
             ], 'Estado Gasto',readonly=True)
 
+
+    def create_temp_view(self, company_id=False):
+        self.invalidate_cache()
+        tools.drop_view_if_exists(self.env.cr, self._table)
+
+        argil_sql_str = """
+                            CREATE or REPLACE VIEW %s as (
+                            with r as 
+                            (
+                            select 
+                            a.driver_helper,
+                            a.store_id, 
+                            a.name, 
+                            a.date,
+                            to_char(date_trunc('day',a.date), 'YYYY') as year,
+                            to_char(date_trunc('day',a.date), 'MM') as month,
+                            to_char(date_trunc('day',a.date), 'YYYY-MM-DD') as day,
+                            a.employee_id,
+                            a.vehicle_id, 
+                            fv.name as vehicle_char, 
+                            a.currency_id, 
+                            b.product_id, 
+                            b.name expense_line_description,
+                            b.travel_id,
+                            trav.route_id,
+                            b.product_uom_qty qty,
+                            b.price_unit,
+                            b.price_subtotal subtotal,
+                            b.operation_id,
+                            b.line_type,
+                            a.state
+                            from tms_expense a
+                                inner join tms_expense_line b on a.id = b.expense_id 
+                                left join fleet_vehicle fv on fv.id=a.vehicle_id
+                                left join tms_travel trav on trav.id=b.travel_id
+                                where a.state <> 'cancel' 
+                                  and trav.company_id = %s
+                                  and b.company_id = %s
+
+                            order by name, date
+                            ) select row_number() over() as id, * from r
+
+        """ % (company_id, company_id)
+        self.env.cr.execute(argil_sql_str)
+
+
     @api.model_cr
     def init(self):
-        # self._table = tms_expense_analysis
-        tools.drop_view_if_exists(self.env.cr, self._table)        
-        # self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
-        #     %s
-        #     %s
-        #     %s
-        #     )""" % (self._table, self._select(), self._from(), self._where()))
-
-        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
-with r as 
-(
-select 
-a.driver_helper,
-a.store_id, 
-a.name, 
-a.date,
-to_char(date_trunc('day',a.date), 'YYYY') as year,
-to_char(date_trunc('day',a.date), 'MM') as month,
-to_char(date_trunc('day',a.date), 'YYYY-MM-DD') as day,
-a.employee_id,
-a.vehicle_id, 
-fv.name as vehicle_char, 
-a.currency_id, 
-b.product_id, 
-b.name expense_line_description,
-b.travel_id,
-trav.route_id,
-b.product_uom_qty qty,
-b.price_unit,
-b.price_subtotal subtotal,
-b.operation_id,
-b.line_type,
-a.state
-from tms_expense a
-    inner join tms_expense_line b on a.id = b.expense_id 
-    left join fleet_vehicle fv on fv.id=a.vehicle_id
-    left join tms_travel trav on trav.id=b.travel_id
-    where a.state <> 'cancel'
-
-order by name, date
-) select row_number() over() as id, * from r
-
-    );""" % (self._table, ))      
-
-    #_order = "date, store_id, name"
-
-#     def _select(self):
-#         select_str = """
-#             select b.id as id,
-#             a.driver_helper,
-#             a.store_id, off.name store_name, a.name, 
-#             a.date,
-#             a.employee_id, a.vehicle_id, fv.name as vehicle_char, a.currency_id, 
-#             b.product_id, --b.name expense_line_description,
-#             b.product_uom_qty qty,
-#             b.price_unit,
-#             b.price_subtotal subtotal,
-#             b.operation_id,
-#             b.line_type,
-#             b.travel_id,
-#             trav.route_id
-#         """
-#         return select_str
-    
-#     def _from(self):
-#         from_str = """    
-#             from tms_expense a
-#                 inner join tms_expense_line b on a.id = b.expense_id 
-#                 left join fleet_vehicle fv on fv.id=a.vehicle_id
-#                 inner join res_store off on off.id=a.store_id
-#                 left join tms_travel trav on trav.id=b.travel_id
-#         """
-#         return from_str
-    
-#     def _where(self):
-#         where_str = """
-#             where a.state != 'confirmed'
-#         """
-#         return where_str
-    
-        
-#     @api.model_cr
-#     def init(self):
-#         # self._table = tms_expense_analysis
-#         tools.drop_view_if_exists(self.env.cr, self._table)        
-#         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
-#             %s
-#             %s
-#             %s
-#             )""" % (self._table, self._select(), self._from(), self._where()))        
-
-
+        _logger.info("\n########### Generando la Vista Analisis de Gastos .............")
+        #self.create_temp_view()
+            
