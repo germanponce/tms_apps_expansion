@@ -29,7 +29,7 @@
     
     <!-- Analisis de Gastos -->
     <record id="tms_analisis_reports_wizard_tms_expense_analysis_act" model="ir.actions.act_window">
-        <field name="name">Generación de Reportes TMS (Compañia)</field>
+        <field name="name">Análisis de Gastos</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tms.analisis.reports.wizard</field>
         <field name="view_type">form</field>
@@ -48,7 +48,7 @@
     <!-- Analisis de Cartas Porte -->
 
     <record id="tms_analisis_reports_wizard_tms_waybill_analysis_act" model="ir.actions.act_window">
-        <field name="name">Generación de Reportes TMS (Compañia)</field>
+        <field name="name">Análisis de Cartas Porte</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tms.analisis.reports.wizard</field>
         <field name="view_type">form</field>

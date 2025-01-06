@@ -24,7 +24,7 @@ class TMSAnalisisReportsWizard(models.TransientModel):
         
         return {
             'domain': [('id', 'in', list_ids)],
-            'name': "Analisis de Gastos",
+            'name': "Análisis de Gastos",
             'view_mode': 'tree,form',
             'view_type': 'form',
             'context': {'tree_view_ref': 'tms_analysis.view_tms_expense_analysis_tree', 'search_default_this_month':1},
