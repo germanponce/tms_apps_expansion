@@ -82,10 +82,10 @@
         <field name="help">From this report, you can have an overview of the amount of Waybills Income.</field>
     </record>
 
-    <menuitem action="action_tms_waybill_analysis" 
+    <!-- <menuitem action="action_tms_waybill_analysis" 
               name="Analisis de Cartas Porte" 
                   parent="tms.menu_tms_reporting"
-                  id="menu_tms_waybill_analysis" sequence="80"/>        
+                  id="menu_tms_waybill_analysis" sequence="80"/>   -->      
         
         
         

@@ -3,6 +3,9 @@ from odoo.exceptions import UserError
 from odoo import api, fields, models, _, tools, release
 import odoo.addons.decimal_precision as dp
 
+import logging
+_logger = logging.getLogger(__name__)
+
 class tms_waybill_analysis(models.Model):
     _name = "tms.waybill.analysis"
     _description = "Waybill Analisys"

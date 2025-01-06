@@ -42,7 +42,7 @@ class TMSAnalisisReportsWizard(models.TransientModel):
             'name': "Analisis de Cartas Porte",
             'view_mode': 'tree,form',
             'view_type': 'form',
-            'context': {'tree_view_ref': 'tms_analysis.view_tms_travel_analysis_pivot', 'search_default_ended_this_month':1, 'group_by':[], 'group_by_no_leaf':1},
+            'context': {'tree_view_ref': 'tms_analysis_extend.view_tms_waybill_analysis_pivot', 'search_default_this_month':1, 'group_by':[], 'group_by_no_leaf':1},
             'res_model': 'tms.expense.analysis',
             'type': 'ir.actions.act_window'
 
